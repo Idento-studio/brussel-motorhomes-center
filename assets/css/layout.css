@@ -1,221 +1,302 @@
 /* ==========================================================================
-   layout.css — site-chrome & structuur die op ELKE pagina hetzelfde is:
-   container, nav, footer, sectie-ritme, scroll-progressbar, reveal-animatie.
+   layout.css — raamwerk: kolom, header, secties, footer, mobiele balk
    ========================================================================== */
 
-/* — Skip link (toetsenbord/screenreader): onzichtbaar tot het focus krijgt — */
-.skip-link {
-  position: absolute;
-  top: -3rem;
-  left: var(--sp-4);
-  z-index: 100;
-  background: var(--inverse-bg-strong);
-  color: var(--inverse-text);
-  padding: 0.7rem 1.2rem;
-  border-radius: var(--radius-sm);
-  font-size: var(--fs-small);
-  font-weight: 600;
-  text-decoration: none;
-  transition: top 0.2s var(--ease);
-}
-.skip-link:focus {
-  top: var(--sp-4);
-}
-
-
-/* — Container — */
+/* — Boxed kolom van 1400px. Achtergronden lopen van rand tot rand, de
+     inhoud blijft binnen deze breedte, ook in de header. — */
 .wrap {
   width: 100%;
-  max-width: 1160px;
+  max-width: var(--wrap);
   margin-inline: auto;
-  padding-inline: var(--sp-6);
+  padding-inline: var(--gutter);
 }
-@media (max-width: 640px) {
-  .wrap { padding-inline: var(--sp-5); }
+@media (min-width: 768px) { .wrap { padding-inline: 2rem; } }
+
+.skip-link {
+  position: absolute;
+  left: -9999px;
+  top: 0;
+  z-index: 200;
+  background: var(--accent);
+  color: var(--wit);
+  padding: 0.75rem 1.25rem;
+  font-weight: 600;
+  border-radius: 0 0 var(--radius-sm) 0;
+}
+.skip-link:focus { left: 0; }
+
+/* ── Header ───────────────────────────────────────────────────────────── */
+
+.site-header {
+  position: sticky;
+  top: env(safe-area-inset-top, 0px);
+  z-index: 50;
+  background: var(--wit);
 }
 
-
-/* — Section scaffolding — */
-.section { padding-block: var(--sp-9); }
-.section-head {
-  display: flex;
-  flex-direction: column;
-  gap: var(--sp-4);
-  max-width: 640px;
-  margin-bottom: var(--sp-8);
-}
-.section-head h2 { font-size: var(--fs-h2); line-height: 1.08; }
-.section-head p { color: var(--text-muted); font-size: var(--fs-lead); line-height: 1.55; }
-.section-alt { background: var(--surface); }
-
-
-/* — Page header — compacte kop voor subpagina's (geen volledige hero).
-   Gebruik op elke pagina behalve de homepage. — */
-.page-header {
-  position: relative;
-  padding-top: calc(4.5rem + var(--sp-8));
-  padding-bottom: var(--sp-8);
-  background: var(--inverse-bg);
-  color: var(--inverse-text);
+/* Servicebalk. Schuift dicht bij het scrollen — zie site.js voor de
+   hysterese die het knipperen voorkomt. */
+.service-balk {
+  background: var(--blauw-900);
+  color: var(--inverse-text-bright);
+  font-size: var(--fs-mini);
   overflow: hidden;
+  max-height: 3rem;
+  opacity: 1;
+  transition: max-height 0.3s var(--ease), opacity 0.3s var(--ease);
 }
-.page-header::after {
+.site-header.is-vast .service-balk { max-height: 0; opacity: 0; }
+
+.service-balk .wrap {
+  display: flex;
+  align-items: center;
+  gap: 1.25rem;
+  padding-block: 0.5rem;
+}
+.service-balk a:hover { color: var(--accent); }
+.service-balk-tel { font-weight: 600; color: var(--wit); }
+.service-balk-scheiding { color: rgba(255, 255, 255, 0.45); }
+.service-nav { margin-left: auto; display: flex; align-items: center; gap: 1.25rem; }
+@media (max-width: 767px) {
+  .service-balk-uren, .service-balk-scheiding, .service-nav { display: none; }
+}
+
+.header-balk {
+  border-bottom: 1px solid var(--border);
+  transition: box-shadow 0.3s var(--ease);
+}
+.site-header.is-vast .header-balk { box-shadow: 0 2px 10px rgba(26, 43, 61, 0.08); }
+
+.header-balk .wrap {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+  padding-block: 0.875rem;
+  transition: padding 0.3s var(--ease);
+}
+.site-header.is-vast .header-balk .wrap { padding-block: 0.5rem; }
+
+.merk { display: flex; align-items: center; flex-shrink: 0; }
+.merk img {
+  height: 2.75rem;
+  width: auto;
+  transition: height 0.3s var(--ease);
+}
+.site-header.is-vast .merk img { height: 2.25rem; }
+
+/* Tekstueel terugvalmerk zolang het logobestand er niet is. */
+.merk-tekst {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 1.125rem;
+  line-height: 1.1;
+  color: var(--blauw-700);
+}
+.merk-tekst span {
+  display: block;
+  font-family: var(--font-body);
+  font-size: 0.6rem;
+  font-weight: 600;
+  letter-spacing: 1.4px;
+  text-transform: uppercase;
+  color: var(--accent);
+}
+
+.hoofdnav {
+  margin-left: auto;
+  display: flex;
+  align-items: center;
+  gap: 1.75rem;
+  font-size: var(--fs-small);
+  font-weight: 500;
+}
+@media (min-width: 1280px) { .hoofdnav { gap: 2.25rem; } }
+
+.hoofdnav a { position: relative; padding-block: 0.25rem; }
+.hoofdnav a::after {
+  content: "";
+  position: absolute;
+  inset-inline: 0;
+  bottom: 0;
+  height: 2px;
+  background: var(--accent);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.2s var(--ease);
+}
+.hoofdnav a:hover::after,
+.hoofdnav a[aria-current="page"]::after { transform: scaleX(1); }
+.hoofdnav a[aria-current="page"] { color: var(--blauw-700); }
+
+.header-cta { flex-shrink: 0; }
+
+.nav-knop {
+  margin-left: auto;
+  display: none;
+  background: none;
+  border: 0;
+  padding: 0.5rem;
+  color: var(--blauw-700);
+  cursor: pointer;
+  border-radius: var(--radius-sm);
+}
+.nav-knop svg { display: block; }
+.nav-knop .icoon-sluit { display: none; }
+.nav-knop[aria-expanded="true"] .icoon-sluit { display: block; }
+.nav-knop[aria-expanded="true"] .icoon-open { display: none; }
+
+.mobiele-nav {
+  display: none;
+  border-bottom: 1px solid var(--border);
+  background: var(--wit);
+  padding-bottom: var(--sp-5);
+}
+.mobiele-nav.is-open { display: block; }
+.mobiele-nav a {
+  display: block;
+  padding-block: 0.75rem;
+  border-bottom: 1px solid var(--border);
+  font-size: 0.9375rem;
+  font-weight: 500;
+}
+.mobiele-nav .btn { margin-top: var(--sp-4); width: 100%; }
+
+@media (max-width: 1023px) {
+  .hoofdnav, .header-cta { display: none; }
+  .nav-knop { display: block; }
+}
+
+/* ── Paginakop (elke subpagina) ───────────────────────────────────────── */
+
+.paginakop {
+  position: relative;
+  isolation: isolate;
+  background: var(--inverse-bg);
+  color: var(--wit);
+  padding-block: var(--sp-7);
+}
+@media (min-width: 768px) { .paginakop { padding-block: var(--sp-8); } }
+.paginakop::before {
   content: "";
   position: absolute;
   inset: 0;
-  background:
-    radial-gradient(60% 90% at 12% 0%, var(--accent-veil), transparent 65%),
-    radial-gradient(50% 80% at 95% 100%, var(--brand-veil), transparent 70%);
-  pointer-events: none;
+  z-index: -1;
+  background: radial-gradient(110% 80% at 82% 10%,
+              rgba(59, 115, 155, 0.6) 0%,
+              rgba(26, 75, 119, 0.28) 45%,
+              rgba(18, 56, 92, 0) 75%);
 }
-.page-header > .wrap { position: relative; z-index: 1; }
-.page-header .eyebrow { color: var(--accent-inverse); }
-.page-header .eyebrow::before { background: var(--accent-inverse); }
-.page-header h1 {
-  margin-top: var(--sp-3);
-  color: var(--inverse-text);
-  font-size: var(--fs-h2);
-  line-height: 1.08;
-  max-width: 22ch;
-}
-.page-header p {
-  margin-top: var(--sp-4);
-  max-width: 58ch;
-  color: var(--inverse-text-muted);
-  font-size: var(--fs-lead);
-  line-height: 1.55;
-}
-
-/* — Breadcrumb — */
-.breadcrumb {
-  display: flex;
-  align-items: center;
-  gap: var(--sp-2);
-  margin-top: var(--sp-5);
-  font-size: var(--fs-eyebrow);
-  color: var(--inverse-text-soft);
-}
-.breadcrumb a { text-decoration: none; transition: color 0.2s ease; }
-.breadcrumb a:hover { color: var(--accent-inverse); }
-.breadcrumb span[aria-current] { color: var(--inverse-text-emphasis); }
-
-
-/* — Nav — */
-.nav {
-  position: fixed;
-  top: 0; left: 0; right: 0;
-  z-index: 50;
-  background: var(--inverse-veil-nav);
-  backdrop-filter: blur(14px) saturate(140%);
-  -webkit-backdrop-filter: blur(14px) saturate(140%);
-  border-bottom: 1px solid var(--hairline);
-}
-.nav-inner {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  height: 4.5rem;
-}
-.brand-mark {
-  display: flex;
-  align-items: center;
-  gap: 0.6rem;
-  text-decoration: none;
-  font-family: var(--font-display);
-  font-weight: 600;
-  font-size: 1.15rem;
-  color: var(--text-strong);
-}
-.brand-mark svg { flex-shrink: 0; }
-.nav-links {
-  display: flex;
-  align-items: center;
-  gap: var(--sp-6);
-}
-.nav-links-list a:not(.btn) {
-  text-decoration: none;
-  font-size: 0.9375rem;
-  font-weight: 500;
-  color: var(--text-muted);
-  transition: color 0.2s ease;
-}
-.nav-links-list a:not(.btn):hover { color: var(--accent-ink); }
-/* Actieve pagina in de nav — */
-.nav-links-list a[aria-current="page"] {
-  color: var(--text-strong);
-  font-weight: 600;
-  box-shadow: inset 0 -2px 0 var(--accent);
-}
-.nav-cta { display: flex; align-items: center; gap: var(--sp-5); }
-.nav-links-list { display: flex; gap: var(--sp-6); }
-@media (max-width: 760px) {
-  .nav-links-list { display: none; }
-}
-@media (max-width: 420px) {
-  .brand-mark { font-size: 1rem; gap: 0.4rem; }
-  .brand-mark svg { width: 24px; height: 24px; }
-  .nav .btn-primary { padding: 0.7rem 1.1rem; font-size: 0.875rem; }
-}
-
-
-/* — Footer — */
-footer {
-  background: var(--inverse-bg-strong);
-  color: var(--inverse-text-dim);
-  padding-block: var(--sp-6);
-}
-.footer-inner {
+.kruimelpad {
   display: flex;
   flex-wrap: wrap;
-  justify-content: space-between;
-  gap: var(--sp-3) var(--sp-6);
-  font-size: 0.875rem;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: var(--fs-small);
+  color: var(--inverse-text-dim);
 }
-.footer-inner strong { color: var(--inverse-text); font-family: var(--font-display); font-weight: 600; }
-.footer-legal { opacity: 0.85; }
-.footer-legal a {
-  color: inherit;
-  text-decoration: underline;
-  text-decoration-color: var(--inverse-underline);
-  text-underline-offset: 2px;
+.kruimelpad a:hover { color: var(--accent); }
+.kruimelpad [aria-current] { color: var(--wit); font-weight: 500; }
+.paginakop h1 { margin-top: var(--sp-4); font-size: var(--fs-h1); max-width: 20ch; }
+.paginakop .intro {
+  margin-top: var(--sp-4);
+  max-width: 62ch;
+  color: var(--inverse-text-bright);
 }
-.footer-legal a:hover { text-decoration-color: var(--accent-inverse); }
 
+/* ── Secties ──────────────────────────────────────────────────────────── */
 
-/* — Progress bar — */
-.progress-bar {
+.sectie { padding-block: var(--sp-8); }
+@media (min-width: 768px) { .sectie { padding-block: var(--sp-9); } }
+.sectie-vlak { background: var(--surface); }
+.sectie-blauw { background: var(--blauw-700); color: var(--wit); }
+.sectie-blauw h2, .sectie-blauw h3 { color: var(--wit); }
+.sectie-blauw p { color: var(--inverse-text-bright); }
+
+.sectie-kop { margin-bottom: var(--sp-7); }
+.sectie-kop.is-midden { text-align: center; }
+.sectie-kop h2 { margin-top: var(--sp-2); font-size: var(--fs-h2); }
+.sectie-kop .intro { margin-top: var(--sp-3); max-width: 62ch; color: var(--text-muted); }
+.sectie-kop.is-midden .intro { margin-inline: auto; }
+.sectie-blauw .sectie-kop .intro { color: var(--inverse-text-bright); }
+
+/* Twee kolommen: tekst naast beeld. */
+.split {
+  display: grid;
+  gap: var(--sp-7);
+  align-items: center;
+}
+@media (min-width: 768px) {
+  .split { grid-template-columns: 1fr 1fr; gap: var(--sp-8); }
+  .split-omgekeerd > :first-child { order: 2; }
+}
+
+/* ── Footer ───────────────────────────────────────────────────────────── */
+
+.site-footer {
+  background: var(--inverse-bg);
+  color: var(--inverse-text);
+  padding-top: var(--sp-8);
+  font-size: var(--fs-small);
+}
+.footer-raster {
+  display: grid;
+  gap: var(--sp-7);
+}
+@media (min-width: 640px) { .footer-raster { grid-template-columns: 1fr 1fr; } }
+@media (min-width: 1024px) { .footer-raster { grid-template-columns: 1.4fr 1fr 1fr 1.2fr; } }
+
+.footer-merk p { margin-top: 0.875rem; max-width: 34ch; line-height: 1.7; }
+.footer-merk .merk-tekst { font-size: 1.5rem; color: var(--wit); }
+.footer-merk .merk-tekst span { display: none; }
+
+.site-footer h2 {
+  font-family: var(--font-body);
+  font-size: var(--fs-label);
+  font-weight: 700;
+  letter-spacing: 2.4px;
+  text-transform: uppercase;
+  color: var(--blauw-200);
+  margin-bottom: var(--sp-4);
+}
+.site-footer li, .site-footer .regel { margin-bottom: 0.5rem; line-height: 1.6; }
+.site-footer a:hover { color: var(--accent); }
+
+.footer-slot {
+  margin-top: var(--sp-7);
+  border-top: 1px solid var(--inverse-hairline);
+  padding-block: var(--sp-4);
+  text-align: center;
+  font-size: var(--fs-mini);
+  color: var(--inverse-text-dim);
+}
+.footer-slot a:hover { color: var(--accent); }
+
+/* ── Vaste actiebalk op gsm ───────────────────────────────────────────── */
+
+.actiebalk {
   position: fixed;
-  top: 0; left: 0; right: 0;
-  height: 3px;
+  inset-inline: 0;
+  bottom: 0;
   z-index: 60;
-  pointer-events: none;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  background: var(--inverse-bg);
+  color: var(--wit);
+  border-top: 1px solid var(--inverse-hairline);
+  padding-bottom: env(safe-area-inset-bottom, 0px);
 }
-.progress-bar-fill {
-  height: 100%;
-  width: 100%;
-  transform: scaleX(0);
-  transform-origin: left center;
-  background: linear-gradient(90deg, var(--accent), var(--danger));
-  will-change: transform;
+.actiebalk a {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.25rem;
+  padding-block: 0.625rem;
+  font-size: 0.6875rem;
+  font-weight: 600;
 }
-html.js .progress-bar-fill { transition: transform 0.12s linear; }
-
-
-/* — Reveal-on-scroll (progressive enhancement) — */
-/* Content stays fully opaque/readable at all times, with or without JS;
-   only a gentle upward settle is deferred to the scroll trigger, so a
-   stalled script or a screenshot taken before scrolling never hides text. */
-.reveal { opacity: 1; transform: none; }
-html.js .reveal {
-  transform: translateY(16px);
-  transition: transform 0.7s var(--ease);
-}
-html.js .reveal.is-visible { transform: none; }
-
-
-/* — Motion policy: globale onderdelen — */
-@media (prefers-reduced-motion: reduce) {
-  html { scroll-behavior: auto; }
-  html.js .reveal { transition: none; opacity: 1; transform: none; }
-  .progress-bar-fill { transition: none; }
+.actiebalk a + a { border-left: 1px solid var(--inverse-hairline); }
+body { padding-bottom: 4rem; }
+@media (min-width: 768px) {
+  .actiebalk { display: none; }
+  body { padding-bottom: 0; }
 }

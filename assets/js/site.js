@@ -1,105 +1,87 @@
 /* ==========================================================================
-   site.js — progressive enhancement voor de hele site.
-   Alles is optioneel: zonder JS blijft de pagina volledig leesbaar.
-   Home-specifieke hooks (sticky bar, nudge, hero-parallax) doen niets
-   op pagina's waar die elementen niet bestaan.
+   site.js — sitebreed gedrag: header, mobiel menu, accordeon, tabs, jaartal
+   Geen frameworks, geen afhankelijkheden.
    ========================================================================== */
 (function () {
-  document.documentElement.classList.add('js');
-  var reducedMotion = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  "use strict";
 
-  // Fade/settle-in on scroll (content itself is never opacity:0 — see .reveal CSS)
-  var els = document.querySelectorAll('.reveal');
-  if ('IntersectionObserver' in window && els.length) {
-    var io = new IntersectionObserver(function (entries) {
-      entries.forEach(function (entry) {
-        if (entry.isIntersecting) {
-          entry.target.classList.add('is-visible');
-          io.unobserve(entry.target);
-        }
-      });
-    }, { threshold: 0.12, rootMargin: '0px 0px -8% 0px' });
-    els.forEach(function (el) { io.observe(el); });
+  /* ── Header ─────────────────────────────────────────────────────────────
+     De servicebalk klapt dicht bij het scrollen. Met één drempel verschuift
+     de pagina-inhoud mee bij het in- en uitklappen, waardoor scrollY er
+     opnieuw overheen springt en de balk begint te knipperen. Vandaar
+     hysterese: dicht vanaf 140px, pas terug open onder 60px. Die marge is
+     ruim groter dan de hoogte van de balk, dus de lus kan niet ontstaan. */
+  var header = document.querySelector(".site-header");
+  if (header) {
+    var vast = false;
+    var wachtend = false;
+    var meet = function () {
+      wachtend = false;
+      var y = window.scrollY;
+      var nieuw = vast ? y > 60 : y > 140;
+      if (nieuw !== vast) {
+        vast = nieuw;
+        header.classList.toggle("is-vast", vast);
+      }
+    };
+    window.addEventListener("scroll", function () {
+      if (!wachtend) { wachtend = true; window.requestAnimationFrame(meet); }
+    }, { passive: true });
+    meet();
   }
 
-  // Count-up numbers (stat row), once each, while visible
-  var counters = document.querySelectorAll('[data-count-to]');
-  if ('IntersectionObserver' in window && counters.length) {
-    var countIo = new IntersectionObserver(function (entries) {
-      entries.forEach(function (entry) {
-        if (!entry.isIntersecting) return;
-        countIo.unobserve(entry.target);
-        var el = entry.target;
-        var target = parseInt(el.getAttribute('data-count-to'), 10) || 0;
-        var suffix = el.getAttribute('data-suffix') || '';
-        if (reducedMotion) { el.textContent = target + suffix; return; }
-        var start = null;
-        var duration = 1100;
-        function step(ts) {
-          if (start === null) start = ts;
-          var progress = Math.min((ts - start) / duration, 1);
-          var eased = 1 - Math.pow(1 - progress, 3);
-          el.textContent = Math.round(eased * target) + suffix;
-          if (progress < 1) requestAnimationFrame(step);
-        }
-        requestAnimationFrame(step);
-      });
-    }, { threshold: 0.4 });
-    counters.forEach(function (el) { countIo.observe(el); });
-  }
-
-  // Thin scroll progress bar
-  var progressFill = document.getElementById('progressFill');
-  var heroEl = document.getElementById('hero');
-  var heroPhoto = document.getElementById('heroPhoto');
-  var heroImg = heroPhoto ? heroPhoto.querySelector('img') : null;
-  var stickyBar = document.getElementById('stickyBar');
-  // Referentiepunt voor de nudge: die schuift binnen zodra de bezoeker
-    // voorbij deze sectie is. Hernoem je #diensten in de HTML, pas dit
-    // dan mee aan.
-    var nudgeAnchorEl = document.getElementById('diensten');
-  var nudgeEl = document.getElementById('nudge');
-  var nudgeShown = false;
-  var nudgeDismissed = false;
-  var ticking = false;
-
-  function onScroll() {
-    if (ticking) return;
-    ticking = true;
-    requestAnimationFrame(function () {
-      var doc = document.documentElement;
-      var scrollTop = window.scrollY || doc.scrollTop;
-      var scrollable = (doc.scrollHeight - doc.clientHeight) || 1;
-      if (progressFill) progressFill.style.transform = 'scaleX(' + Math.min(scrollTop / scrollable, 1) + ')';
-
-      if (heroEl) {
-        var heroBottom = heroEl.offsetTop + heroEl.offsetHeight;
-        if (stickyBar) stickyBar.classList.toggle('is-visible', scrollTop > heroBottom - 120);
-
-        if (!reducedMotion && heroImg && scrollTop < heroBottom) {
-          var shift = Math.min(scrollTop * 0.08, 28);
-          heroImg.style.transform = 'translateY(' + shift + 'px)';
-        }
+  /* ── Mobiel menu ─────────────────────────────────────────────────────── */
+  var navKnop = document.querySelector("[data-nav-toggle]");
+  var mobieleNav = document.getElementById("mobiele-nav");
+  if (navKnop && mobieleNav) {
+    navKnop.addEventListener("click", function () {
+      var open = mobieleNav.classList.toggle("is-open");
+      navKnop.setAttribute("aria-expanded", String(open));
+      navKnop.setAttribute("aria-label", open ? "Menu sluiten" : "Menu openen");
+    });
+    mobieleNav.addEventListener("click", function (e) {
+      if (e.target.closest("a")) {
+        mobieleNav.classList.remove("is-open");
+        navKnop.setAttribute("aria-expanded", "false");
       }
-
-      if (nudgeAnchorEl && !nudgeShown && !nudgeDismissed) {
-        var nudgeAnchorBottom = nudgeAnchorEl.offsetTop + nudgeAnchorEl.offsetHeight;
-        if (scrollTop > nudgeAnchorBottom) {
-          nudgeShown = true;
-          if (nudgeEl) nudgeEl.classList.add('is-visible');
-        }
-      }
-      ticking = false;
     });
   }
-  window.addEventListener('scroll', onScroll, { passive: true });
-  onScroll();
 
-  var nudgeClose = document.getElementById('nudgeClose');
-  if (nudgeClose && nudgeEl) {
-    nudgeClose.addEventListener('click', function () {
-      nudgeDismissed = true;
-      nudgeEl.classList.remove('is-visible');
+  /* ── Accordeon ───────────────────────────────────────────────────────── */
+  document.querySelectorAll(".accordeon").forEach(function (blok) {
+    blok.addEventListener("click", function (e) {
+      var knop = e.target.closest("button[aria-expanded]");
+      if (!knop || !blok.contains(knop)) return;
+      var open = knop.getAttribute("aria-expanded") === "true";
+      blok.querySelectorAll("button[aria-expanded]").forEach(function (k) {
+        k.setAttribute("aria-expanded", "false");
+        var p = document.getElementById(k.getAttribute("aria-controls"));
+        if (p) p.hidden = true;
+      });
+      if (!open) {
+        knop.setAttribute("aria-expanded", "true");
+        var paneel = document.getElementById(knop.getAttribute("aria-controls"));
+        if (paneel) paneel.hidden = false;
+      }
     });
-  }
+  });
+
+  /* ── Tabs (FAQ-categorieën) ──────────────────────────────────────────── */
+  document.querySelectorAll("[data-tabs]").forEach(function (lijst) {
+    lijst.addEventListener("click", function (e) {
+      var tab = e.target.closest("[role='tab']");
+      if (!tab) return;
+      lijst.querySelectorAll("[role='tab']").forEach(function (t) {
+        var actief = t === tab;
+        t.setAttribute("aria-selected", String(actief));
+        var paneel = document.getElementById(t.getAttribute("aria-controls"));
+        if (paneel) paneel.hidden = !actief;
+      });
+    });
+  });
+
+  /* ── Jaartal in de footer ────────────────────────────────────────────── */
+  document.querySelectorAll("[data-jaar]").forEach(function (el) {
+    el.textContent = String(new Date().getFullYear());
+  });
 })();

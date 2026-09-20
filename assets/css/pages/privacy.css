@@ -1,48 +1,16 @@
 /* ==========================================================================
-   pages/privacy.css — uitsluitend voor privacy.html.
-   Leesbare, lopende tekst: eigen ritme voor koppen, alinea's en lijsten,
-   los van de "geen bullets"-reset in brand.css (die is voor UI, niet voor
-   een juridische tekst die wél lijsten en duidelijke tussenkopjes nodig heeft).
+   pages/privacy.css — lopende tekst van juridische pagina's
    ========================================================================== */
 
-.contact-page .section-first { padding-top: var(--sp-8); padding-bottom: var(--sp-9); }
-
-.prose { max-width: 720px; }
-.prose > * + * { margin-top: var(--sp-5); }
-.prose h2 {
-  font-size: var(--fs-h3);
+.juridisch { max-width: 70ch; }
+.juridisch h2 {
   margin-top: var(--sp-7);
-  padding-top: var(--sp-5);
-  border-top: 1px solid var(--border);
+  font-size: 1.375rem;
 }
-.prose h2:first-of-type { margin-top: var(--sp-5); }
-.prose p { color: var(--text-muted); line-height: 1.7; }
-.prose a { color: var(--accent-ink); font-weight: 600; }
-.prose ul, .prose ol {
-  list-style: disc;
-  padding-left: 1.4em;
-  color: var(--text-muted);
-  line-height: 1.7;
-}
-.prose ol { list-style: decimal; }
-
-.cookie-table {
-  width: 100%;
-  border-collapse: collapse;
-  font-size: var(--fs-small);
-}
-.cookie-table th, .cookie-table td {
-  text-align: left;
-  padding: 0.6rem 0.8rem;
-  border: 1px solid var(--border);
-}
-.cookie-table thead th {
-  background: var(--surface-subtle);
-  font-weight: 600;
-}
-.cookie-table code {
-  background: var(--surface-subtle);
-  padding: 0.1rem 0.4rem;
-  border-radius: 5px;
-  font-size: 0.85em;
-}
+.juridisch h2:first-child { margin-top: 0; }
+.juridisch h3 { margin-top: var(--sp-5); font-size: 1.0625rem; }
+.juridisch p,
+.juridisch ul { margin-top: var(--sp-4); color: var(--text-muted); line-height: 1.75; }
+.juridisch ul { display: grid; gap: 0.5rem; padding-left: 1.25rem; list-style: disc; }
+.juridisch a { color: var(--blauw-700); text-decoration: underline; text-underline-offset: 3px; }
+.juridisch .bijgewerkt { font-size: var(--fs-small); color: var(--text-soft); }

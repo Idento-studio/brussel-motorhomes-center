@@ -1,0 +1,59 @@
+/* ==========================================================================
+   pages/info.css — de inhoudspagina's
+   onderhoud, accessoires, camper op maat, verkoop je camper,
+   andersvaliden, over ons, veelgestelde vragen
+   ========================================================================== */
+
+/* Verkoop je camper: de twee formules naast elkaar. */
+.formules { display: grid; gap: var(--sp-6); }
+@media (min-width: 1024px) { .formules { grid-template-columns: repeat(2, 1fr); } }
+.formule { padding: var(--sp-7); box-shadow: var(--shadow-card); display: flex; flex-direction: column; }
+.formule h3 { margin-top: var(--sp-2); font-size: 1.5rem; }
+.formule .intro { margin-top: var(--sp-3); font-size: 0.90625rem; line-height: 1.65; color: var(--text-muted); }
+.formule .vinklijst { margin-top: var(--sp-5); }
+
+.twee-trajecten { display: grid; gap: var(--sp-7); }
+@media (min-width: 1024px) { .twee-trajecten { grid-template-columns: repeat(2, 1fr); } }
+.twee-trajecten h3 { margin-bottom: var(--sp-5); font-size: 1.25rem; }
+
+/* Over ons: team. */
+.teamlid .kaart-body { padding: var(--sp-5); }
+.teamlid h3 { font-size: 1.125rem; }
+.teamlid .rol { margin-top: 0.25rem; }
+.teamlid p { margin-top: var(--sp-3); font-size: var(--fs-small); line-height: 1.6; color: var(--text-muted); }
+
+/* Over ons: missie in twee kolommen. */
+.missie { display: grid; gap: var(--sp-7); align-items: start; }
+@media (min-width: 768px) { .missie { grid-template-columns: 1fr 1fr; gap: var(--sp-8); } }
+.missie .tekst { display: grid; gap: var(--sp-4); color: var(--text-muted); }
+.missie .tekst p { line-height: 1.7; }
+
+/* Andersvaliden: partnerblok. */
+.partner p { margin-top: var(--sp-3); line-height: 1.7; color: var(--text-muted); }
+.partner .vinklijst { margin-top: var(--sp-5); }
+
+/* FAQ: categorietabs boven de accordeon. */
+.faq-tabs { margin-bottom: var(--sp-6); }
+.faq-groep[hidden] { display: none; }
+
+/* Contact: gegevens naast formulier. */
+.contact-raster { display: grid; gap: var(--sp-6); }
+@media (min-width: 1024px) { .contact-raster { grid-template-columns: 1fr 1.2fr; gap: var(--sp-7); } }
+.contact-kolom { display: grid; gap: var(--sp-5); align-content: start; }
+.contact-gegevens { padding: var(--sp-6); }
+.contact-gegevens h2 { font-size: 1.25rem; }
+.contact-gegevens dl { margin-top: var(--sp-5); display: grid; gap: var(--sp-4); font-size: 0.875rem; }
+.contact-gegevens dl > div { display: flex; gap: 0.75rem; }
+.contact-gegevens .icoon { flex-shrink: 0; margin-top: 2px; color: var(--accent); }
+.contact-gegevens dt {
+  font-size: var(--fs-label);
+  font-weight: 700;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: var(--text-muted);
+}
+.contact-gegevens dd { margin: 0.25rem 0 0; }
+.contact-gegevens dd a:hover { color: var(--blauw-700); }
+.contact-gegevens .uren { line-height: 1.6; color: var(--text-muted); }
+.contact-knoppen { margin-top: var(--sp-6); display: grid; gap: 0.625rem; }
+@media (min-width: 640px) { .contact-knoppen { grid-template-columns: 1fr 1fr; } }
