@@ -1,0 +1,12 @@
+HOMEPAGE
+========
+hero.png                de grote foto bovenaan       1600 x 1200 of breder
+dienst-te-koop.png      kaartje 'Te koop'             800 x 500
+dienst-te-huur.png      kaartje 'Te huur'             800 x 500
+dienst-onderhoud.png    kaartje 'Onderhoud'           800 x 500
+dienst-accessoires.png  kaartje 'Accessoires'         800 x 500
+maatwerk.png            naast 'Van leeg chassis'      1200 x 900
+andersvaliden.png       naast 'Vrijheid voor iedereen' 1200 x 900
+
+De tekst staat links over de herofoto, dus zet daar niet het belangrijkste
+deel van het beeld. De uitsnede is breed en laag op desktop.

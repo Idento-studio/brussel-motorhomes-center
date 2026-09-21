@@ -80,6 +80,17 @@
     });
   });
 
+  /* ── Video-geluidsknop ───────────────────────────────────────────────── */
+  document.querySelectorAll("[data-video-geluid]").forEach(function (knop) {
+    var video = knop.closest(".media-video");
+    video = video && video.querySelector("video");
+    if (!video) return;
+    knop.addEventListener("click", function () {
+      video.muted = !video.muted;
+      knop.setAttribute("aria-pressed", String(!video.muted));
+    });
+  });
+
   /* ── Jaartal in de footer ────────────────────────────────────────────── */
   document.querySelectorAll("[data-jaar]").forEach(function (el) {
     el.textContent = String(new Date().getFullYear());

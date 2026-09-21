@@ -1,0 +1,8 @@
+MERKLOGO'S
+==========
+adria.png  blucamp.png  burstner.png  dethleffs.png
+hymer.png  ilusion.png  knaus.png     westfalia.png
+
+Transparante PNG, ongeveer 340 px breed. Ze komen op een blauwe achtergrond,
+dus een wit of licht logo werkt het best.
+Ontbreekt een bestand, dan blijft de merknaam in tekst staan.
