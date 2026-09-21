@@ -32,11 +32,27 @@ export function AanbodTabs({
           <p className="label">{d.aanbodKop}</p>
           <h2>{isKoop ? d.aanbodTitelKoop : d.aanbodTitelHuur}</h2>
         </div>
-        <div className="tabs">
-          <button type="button" className="tab" aria-selected={isKoop} onClick={() => setActief("koop")}>
+        <div className="tabs" role="tablist">
+          <button
+            type="button"
+            id="tab-koop"
+            className="tab"
+            role="tab"
+            aria-selected={isKoop}
+            aria-controls="paneel-koop"
+            onClick={() => setActief("koop")}
+          >
             {d.tabTeKoop} <span className="aantal">({verkoopVoertuigen.length})</span>
           </button>
-          <button type="button" className="tab" aria-selected={!isKoop} onClick={() => setActief("huur")}>
+          <button
+            type="button"
+            id="tab-huur"
+            className="tab"
+            role="tab"
+            aria-selected={!isKoop}
+            aria-controls="paneel-huur"
+            onClick={() => setActief("huur")}
+          >
             {d.tabTeHuur} <span className="aantal">({verhuurVoertuigen.length})</span>
           </button>
         </div>
@@ -47,7 +63,7 @@ export function AanbodTabs({
           voorwaardelijk gerenderd — anders staat het "te huur"-aanbod nooit
           in de brondocument van de homepage voor een crawler die niet zelf
           op de tab klikt (zie LAUNCH.md §3, GEO). */}
-      <div hidden={!isKoop}>
+      <div id="paneel-koop" role="tabpanel" aria-labelledby="tab-koop" hidden={!isKoop}>
         {uitgelichtKoop.length > 0 ? (
           <>
             <div className="raster raster-3 raster-ruim" style={{ marginTop: "var(--sp-6)" }}>
@@ -63,7 +79,7 @@ export function AanbodTabs({
           </div>
         )}
       </div>
-      <div hidden={isKoop}>
+      <div id="paneel-huur" role="tabpanel" aria-labelledby="tab-huur" hidden={isKoop}>
         {uitgelichtHuur.length > 0 ? (
           <>
             <div className="raster raster-3 raster-ruim" style={{ marginTop: "var(--sp-6)" }}>

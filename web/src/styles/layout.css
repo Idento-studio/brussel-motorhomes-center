@@ -373,3 +373,11 @@ body { padding-bottom: 4rem; }
 @media (min-width: 768px) {
   .whatsapp-zwevend { bottom: 1.5rem; left: 1.5rem; }
 }
+/* Cookiebanner staat onderaan over de volledige breedte — knop tijdelijk
+   hoger zodat ze niet overlappen. */
+body[data-cookiebanner="open"] .whatsapp-zwevend {
+  bottom: calc(4rem + 1.25rem + 5.5rem + env(safe-area-inset-bottom, 0px));
+}
+@media (min-width: 768px) {
+  body[data-cookiebanner="open"] .whatsapp-zwevend { bottom: calc(1.5rem + 5.5rem); }
+}

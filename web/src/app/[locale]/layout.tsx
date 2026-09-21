@@ -5,6 +5,7 @@ import { SiteHeader } from "@/components/SiteHeader";
 import { SiteFooter } from "@/components/SiteFooter";
 import { ActionBar } from "@/components/ActionBar";
 import { FloatingWhatsApp } from "@/components/FloatingWhatsApp";
+import { CookieConsent } from "@/components/CookieConsent";
 import { SetHtmlLang } from "@/components/SetHtmlLang";
 import { JsonLd } from "@/components/JsonLd";
 import { buildLocalBusiness } from "@/lib/structuredData";
@@ -61,6 +62,7 @@ export default async function LocaleLayout({
       <SiteFooter locale={locale} dict={dict} />
       <ActionBar locale={locale} dict={dict} />
       <FloatingWhatsApp locale={locale} />
+      <CookieConsent locale={locale} />
     </>
   );
 }

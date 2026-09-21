@@ -9,7 +9,7 @@
 # Dit is een tijdelijke previewomgeving voor Idento (een GitHub Pages-
 # projectpagina op een subpad, https://idento-studio.github.io/brussel-
 # motorhomes-center/). De uiteindelijke klantsite draait straks op het
-# hoofddomein brusselmotorhomescenter.be via een andere host — zie
+# hoofddomein brusselmotorhomes.be via een andere host (Vercel) — zie
 # NEXT_PUBLIC_BASE_PATH hieronder, die enkel voor déze previewbuild het
 # subpad in alle links/afbeeldingen meeneemt (web/src/lib/basePath.ts).
 name: Deploy site to GitHub Pages

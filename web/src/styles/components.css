@@ -74,6 +74,30 @@
   border: 0;
   z-index: 1;
 }
+.kaart-placeholder {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0.875rem;
+  width: 100%;
+  height: 100%;
+  padding: var(--sp-4);
+  text-align: center;
+  border: 0;
+  background: transparent;
+  cursor: pointer;
+  font: inherit;
+}
+.kaart-placeholder span:first-child {
+  max-width: 32ch;
+  font-size: var(--fs-small);
+  color: var(--text-muted);
+}
+
 .media-4x3 { aspect-ratio: 4 / 3; }
 .media-16x10 { aspect-ratio: 16 / 10; }
 .media-4x5 { aspect-ratio: 4 / 5; }
@@ -541,3 +565,36 @@
   transition: border-color 0.15s var(--ease);
 }
 .wa-knop:hover { border-color: var(--whatsapp); }
+
+/* ── Cookiebanner ──────────────────────────────────────────────────────── */
+
+.cookie-banner {
+  position: fixed;
+  inset: auto 0 0 0;
+  z-index: 80;
+  background: var(--blauw-900, #0a2540);
+  color: var(--wit);
+  padding: 1.25rem 0;
+  padding-bottom: calc(1.25rem + env(safe-area-inset-bottom, 0px));
+  box-shadow: 0 -4px 16px rgba(0, 0, 0, 0.18);
+}
+.cookie-banner-inhoud {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+}
+.cookie-banner-inhoud p {
+  margin: 0;
+  max-width: 62ch;
+  font-size: var(--fs-small);
+  line-height: 1.5;
+}
+.cookie-banner-inhoud a { color: inherit; text-decoration: underline; }
+.cookie-banner-knoppen {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  flex-shrink: 0;
+}

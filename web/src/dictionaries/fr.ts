@@ -40,6 +40,16 @@ export const fr: Dictionary = {
     whatsapp: "WhatsApp",
     aanbod: "Offre",
   },
+  cookieBanner: {
+    tekst: "Ce site utilise des cookies fonctionnels nécessaires à son fonctionnement. Nous ne plaçons des cookies analytiques qu'avec votre accord — plus d'infos dans notre",
+    linkTekst: "politique de confidentialité",
+    weigeren: "Uniquement les cookies nécessaires",
+    aanvaarden: "Accepter les cookies analytiques",
+  },
+  kaart: {
+    tekst: "Cette carte est chargée via Google Maps. Google peut y placer des cookies.",
+    knop: "Afficher la carte",
+  },
   taal: {
     aria: "Changer de langue",
     nl: "NL",

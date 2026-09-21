@@ -203,7 +203,7 @@ export default async function Home({
                 ? "Motorhomes in front of the Brussel Motorhomes Center warehouse"
                 : "Motorhomes voor de loods van Brussel Motorhomes Center"
             }
-            loading="lazy"
+            fetchPriority="high"
           />
         </div>
         <div className="wrap">

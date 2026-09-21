@@ -5,6 +5,7 @@ import { L, buildAlternates, buildOpenGraph, type Locale } from "@/lib/i18n";
 import { getDictionary } from "@/dictionaries";
 import { JsonLd } from "@/components/JsonLd";
 import { buildBreadcrumbList } from "@/lib/structuredData";
+import { KaartMetToestemming } from "@/components/KaartMetToestemming";
 
 export async function generateMetadata({
   params,
@@ -202,11 +203,11 @@ export default async function ContactPagina({
             </div>
             <div className="kaart contact-kaartje">
               <div className="media media-16x10">
-                <iframe
+                <KaartMetToestemming
                   src="https://www.google.com/maps?q=Rue+de+l%27Alliance+103%2C+1480+Clabecq%2C+Belgi%C3%AB&output=embed"
-                  title={t.kaartTitel}
-                  loading="lazy"
-                  referrerPolicy="no-referrer-when-downgrade"
+                  titel={t.kaartTitel}
+                  knopTekst={dict.kaart.knop}
+                  uitlegTekst={dict.kaart.tekst}
                 />
               </div>
             </div>

@@ -38,6 +38,16 @@ export const nl = {
     whatsapp: "WhatsApp",
     aanbod: "Aanbod",
   },
+  cookieBanner: {
+    tekst: "Deze site gebruikt functionele cookies die nodig zijn om te werken. Analytische cookies plaatsen we enkel met jouw toestemming — meer info in ons",
+    linkTekst: "privacybeleid",
+    weigeren: "Enkel noodzakelijke",
+    aanvaarden: "Analytics aanvaarden",
+  },
+  kaart: {
+    tekst: "Deze kaart wordt geladen via Google Maps. Google kan daarbij cookies plaatsen.",
+    knop: "Kaart tonen",
+  },
   taal: {
     aria: "Taal wisselen",
     nl: "NL",

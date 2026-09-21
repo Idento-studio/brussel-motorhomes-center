@@ -11,7 +11,6 @@ import "@/styles/privacy.css";
 import "@/styles/configurator.css";
 import "./globals.css";
 import { SITE_URL } from "@/lib/i18n";
-import { metPad } from "@/lib/basePath";
 
 const newsreader = Newsreader({
   subsets: ["latin"],
@@ -32,11 +31,9 @@ export const metadata: Metadata = {
     template: "%s | Brussel Motorhomes Center",
   },
   description: "Motorhomes te koop en te huur bij Brussel Motorhomes Center.",
-  // favicon.ico en apple-icon.png worden automatisch opgepikt via de
-  // Next.js-bestandsconventie in deze map (src/app/) — geen metadata nodig.
-  // Het manifest (public/site.webmanifest) wordt niet automatisch gelinkt
-  // omdat het geen app/manifest.ts is, dus dat moet wel hier.
-  manifest: metPad("/site.webmanifest"),
+  // favicon.ico, apple-icon.png en manifest.ts worden automatisch opgepikt
+  // via de Next.js-bestandsconventie in deze map (src/app/) — geen
+  // metadata-veld nodig.
 };
 
 export const viewport: Viewport = {
