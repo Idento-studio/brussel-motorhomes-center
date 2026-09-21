@@ -1,0 +1,14 @@
+{
+  "redirects": [
+    {
+      "source": "/studio",
+      "destination": "https://brussel-motorhomes-center.sanity.studio/",
+      "statusCode": 303
+    },
+    {
+      "source": "/studio/",
+      "destination": "https://brussel-motorhomes-center.sanity.studio/",
+      "statusCode": 303
+    }
+  ]
+}
