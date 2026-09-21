@@ -15,6 +15,18 @@
    xmlns:svg="http://www.w3.org/2000/svg">
   <defs
      id="defs1" />
+  <style id="donker-modus-stijl">
+    /* Donkerblauwe lijnen worden te donker op een donkere browsertabbalk;
+       in donkere modus lichter blauw zodat het icoon zichtbaar blijft. */
+    @media (prefers-color-scheme: dark) {
+      [style*="stroke:#0a3e6e"], [style*="stroke:#093e6e"] {
+        stroke: #6FAEE0 !important;
+      }
+      #path1964-5, #path1965-1 {
+        fill: #6FAEE0 !important;
+      }
+    }
+  </style>
   <g
      inkscape:label="Laag 1"
      inkscape:groupmode="layer"
