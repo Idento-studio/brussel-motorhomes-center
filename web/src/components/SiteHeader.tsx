@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { L, type Locale } from "@/lib/i18n";
 import { metPad } from "@/lib/basePath";
 import { getDictionary } from "@/dictionaries";
@@ -11,6 +11,8 @@ export function SiteHeader({ locale, actiefPad }: { locale: Locale; actiefPad?: 
   const dict = getDictionary(locale);
   const [vast, setVast] = useState(false);
   const [mobielOpen, setMobielOpen] = useState(false);
+  const navKnopRef = useRef<HTMLButtonElement>(null);
+  const mobieleNavRef = useRef<HTMLElement>(null);
 
   const NAV_LINKS = [
     { href: L(locale, "/verkoop/"), label: dict.nav.teKoop },
@@ -39,6 +41,31 @@ export function SiteHeader({ locale, actiefPad }: { locale: Locale; actiefPad?: 
     meet();
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
+
+  // Sluit met Escape, blokkeer de paginascroll erachter zolang het mobiele
+  // menu open staat (anders lijkt het net of het menu "kapot" is: de lijst
+  // met 7 hoofdlinks + over ons/FAQ + taalwissel + contactknop is langer dan
+  // veel telefoonschermen, en zonder scroll-lock scrollt de pagina eronder
+  // mee weg i.p.v. het menu zelf) en verplaats de focus naar de eerste link
+  // bij het openen, terug naar de knop bij het sluiten.
+  useEffect(() => {
+    if (!mobielOpen) return;
+    const vorigeOverflow = document.body.style.overflow;
+    document.body.style.overflow = "hidden";
+    const eersteLink = mobieleNavRef.current?.querySelector("a");
+    (eersteLink as HTMLElement | null)?.focus();
+    const onKey = (e: KeyboardEvent) => {
+      if (e.key === "Escape") {
+        setMobielOpen(false);
+        navKnopRef.current?.focus();
+      }
+    };
+    window.addEventListener("keydown", onKey);
+    return () => {
+      document.body.style.overflow = vorigeOverflow;
+      window.removeEventListener("keydown", onKey);
+    };
+  }, [mobielOpen]);
 
   return (
     <header className={`site-header${vast ? " is-vast" : ""}`}>
@@ -76,6 +103,7 @@ export function SiteHeader({ locale, actiefPad }: { locale: Locale; actiefPad?: 
           <Link className="btn btn-goud btn-klein header-cta" href={L(locale, "/contact/")}>{dict.nav.contact}</Link>
 
           <button
+            ref={navKnopRef}
             className="nav-knop"
             type="button"
             aria-expanded={mobielOpen}
@@ -89,16 +117,25 @@ export function SiteHeader({ locale, actiefPad }: { locale: Locale; actiefPad?: 
         </div>
       </div>
 
-      <nav className={`mobiele-nav wrap${mobielOpen ? " is-open" : ""}`} id="mobiele-nav" aria-label="Mobiele navigatie" onClick={(e) => {
-        if ((e.target as HTMLElement).closest("a")) setMobielOpen(false);
-      }}>
-        {NAV_LINKS.map((link) => (
-          <Link key={link.href} href={link.href}>{link.label}</Link>
-        ))}
-        <Link href={L(locale, "/over-ons/")}>{dict.nav.overOns}</Link>
-        <Link href={L(locale, "/veelgestelde-vragen/")}>{dict.nav.veelgesteldeVragen}</Link>
-        <Link className="btn btn-goud" href={L(locale, "/contact/")}>{dict.nav.contact}</Link>
-        <LanguageSwitcher locale={locale} dict={dict} />
+      <nav
+        ref={mobieleNavRef}
+        className={`mobiele-nav${mobielOpen ? " is-open" : ""}`}
+        id="mobiele-nav"
+        aria-label="Mobiele navigatie"
+        onClick={(e) => {
+          if ((e.target as HTMLElement).closest("a")) setMobielOpen(false);
+        }}
+      >
+        <div className="mobiele-nav-inhoud wrap">
+          {NAV_LINKS.map((link) => (
+            <Link key={link.href} href={link.href}>{link.label}</Link>
+          ))}
+          <div className="mobiele-nav-scheiding" aria-hidden="true" />
+          <Link href={L(locale, "/over-ons/")}>{dict.nav.overOns}</Link>
+          <Link href={L(locale, "/veelgestelde-vragen/")}>{dict.nav.veelgesteldeVragen}</Link>
+          <LanguageSwitcher locale={locale} dict={dict} />
+          <Link className="btn btn-goud" href={L(locale, "/contact/")}>{dict.nav.contact}</Link>
+        </div>
       </nav>
     </header>
   );

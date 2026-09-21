@@ -10,6 +10,8 @@ import { urlFor } from "@/sanity/image";
 import { L, buildAlternates, type Locale } from "@/lib/i18n";
 import { getDictionary } from "@/dictionaries";
 import { opbouwtypeLabel, brandstofLabel, transmissieLabel, staatLabel, rijbewijsLabel } from "@/lib/voertuigLabels";
+import { JsonLd } from "@/components/JsonLd";
+import { buildBreadcrumbList } from "@/lib/structuredData";
 
 export async function generateStaticParams({ params }: { params: { locale: string } }) {
   const voertuigen = await haalVerkoopVoertuigen(params.locale as Locale);
@@ -85,6 +87,7 @@ export default async function VerkoopDetailPagina({
   return (
     <main id="inhoud" className="detail">
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(ldJson) }} />
+      <JsonLd data={buildBreadcrumbList(locale, [{ label: dict.breadcrumbHome, pad: "/" }, { label: dict.voertuig.kruimelTeKoop, pad: "/verkoop/" }, { label: v.titel }])} />
 
       <div className="detail-kruimel">
         <div className="wrap">

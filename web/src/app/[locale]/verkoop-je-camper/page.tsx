@@ -3,6 +3,8 @@ import type { Metadata } from "next";
 import { VerkoopStappenKeuze } from "@/components/VerkoopStappenKeuze";
 import { L, buildAlternates, type Locale } from "@/lib/i18n";
 import { getDictionary } from "@/dictionaries";
+import { JsonLd } from "@/components/JsonLd";
+import { buildBreadcrumbList, buildService } from "@/lib/structuredData";
 
 export async function generateMetadata({
   params,
@@ -122,6 +124,8 @@ export default async function VerkoopJeCamperPagina({
     <main id="inhoud">
       <div className="paginakop">
         <div className="wrap">
+          <JsonLd data={buildBreadcrumbList(locale, [{ label: dict.breadcrumbHome, pad: "/" }, { label: t.kruimel }])} />
+          <JsonLd data={buildService(locale, t.h1, t.intro, "/verkoop-je-camper/")} />
           <nav className="kruimelpad" aria-label="Kruimelpad">
             <Link href={L(locale, "/")}>{dict.breadcrumbHome}</Link>
             <span aria-hidden="true">/</span>

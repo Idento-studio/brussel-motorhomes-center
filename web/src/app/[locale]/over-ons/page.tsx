@@ -3,6 +3,8 @@ import type { Metadata } from "next";
 import { FotoMetPlaceholder } from "@/components/FotoMetPlaceholder";
 import { L, buildAlternates, type Locale } from "@/lib/i18n";
 import { getDictionary } from "@/dictionaries";
+import { JsonLd } from "@/components/JsonLd";
+import { buildBreadcrumbList } from "@/lib/structuredData";
 
 export async function generateMetadata({
   params,
@@ -154,6 +156,7 @@ export default async function OverOnsPagina({
     <main id="inhoud">
       <div className="paginakop">
         <div className="wrap">
+          <JsonLd data={buildBreadcrumbList(locale, [{ label: dict.breadcrumbHome, pad: "/" }, { label: t.kruimel }])} />
           <nav className="kruimelpad" aria-label="Kruimelpad">
             <Link href={L(locale, "/")}>{dict.breadcrumbHome}</Link>
             <span aria-hidden="true">/</span>

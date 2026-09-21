@@ -3,6 +3,8 @@ import type { Metadata } from "next";
 import { FaqAccordion, type FaqGroep } from "@/components/FaqAccordion";
 import { L, buildAlternates, type Locale } from "@/lib/i18n";
 import { getDictionary } from "@/dictionaries";
+import { JsonLd } from "@/components/JsonLd";
+import { buildBreadcrumbList, buildFAQPage } from "@/lib/structuredData";
 
 export async function generateMetadata({
   params,
@@ -466,6 +468,8 @@ export default async function VeelgesteldeVragenPagina({
     <main id="inhoud">
       <div className="paginakop">
         <div className="wrap">
+          <JsonLd data={buildBreadcrumbList(locale, [{ label: dict.breadcrumbHome, pad: "/" }, { label: dict.nav.veelgesteldeVragen }])} />
+          <JsonLd data={buildFAQPage(faqGroepen.flatMap((groep) => groep.vragen))} />
           <nav className="kruimelpad" aria-label="Kruimelpad">
             <Link href={L(locale, "/")}>{dict.breadcrumbHome}</Link>
             <span aria-hidden="true">/</span>

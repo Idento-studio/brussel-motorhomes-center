@@ -177,21 +177,33 @@
 .nav-knop[aria-expanded="true"] .icoon-sluit { display: block; }
 .nav-knop[aria-expanded="true"] .icoon-open { display: none; }
 
+/* De lijst (7 hoofdlinks + over ons/FAQ + taalwissel + contactknop) is op
+   veel telefoons langer dan het scherm. Begrensd op de resterende
+   viewporthoogte onder de header en zelf scrollbaar i.p.v. te vertrouwen op
+   paginascroll erachter (die bovendien geblokkeerd is zolang het menu open
+   staat, zie de useEffect in SiteHeader.tsx) — zo blijft elk item bereikbaar,
+   ongeacht schermhoogte of hoeveel er in de lijst staat. */
 .mobiele-nav {
   display: none;
+  max-height: calc(100dvh - 8rem);
+  overflow-y: auto;
+  overscroll-behavior: contain;
   border-bottom: 1px solid var(--border);
   background: var(--wit);
-  padding-bottom: var(--sp-5);
 }
 .mobiele-nav.is-open { display: block; }
+.mobiele-nav-inhoud { padding-bottom: var(--sp-5); }
 .mobiele-nav a {
-  display: block;
+  display: flex;
+  align-items: center;
+  min-height: 44px;
   padding-block: 0.75rem;
   border-bottom: 1px solid var(--border);
   font-size: 0.9375rem;
   font-weight: 500;
 }
-.mobiele-nav .btn { margin-top: var(--sp-4); width: 100%; }
+.mobiele-nav-scheiding { height: 1px; margin-top: var(--sp-3); background: var(--border-strong); }
+.mobiele-nav .btn { margin-top: var(--sp-4); width: 100%; min-height: 44px; }
 
 @media (max-width: 1023px) {
   .hoofdnav, .header-cta { display: none; }

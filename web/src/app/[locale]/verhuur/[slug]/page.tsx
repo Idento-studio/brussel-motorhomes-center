@@ -11,6 +11,8 @@ import type { TariefPeriode } from "@/sanity/types";
 import { L, buildAlternates, type Locale } from "@/lib/i18n";
 import { getDictionary } from "@/dictionaries";
 import { opbouwtypeLabel, brandstofLabel, transmissieLabel, rijbewijsLabel } from "@/lib/voertuigLabels";
+import { JsonLd } from "@/components/JsonLd";
+import { buildBreadcrumbList, buildRentalProduct } from "@/lib/structuredData";
 
 export async function generateStaticParams({ params }: { params: { locale: string } }) {
   const voertuigen = await haalVerhuurVoertuigen(params.locale as Locale);
@@ -84,6 +86,16 @@ export default async function VerhuurDetailPagina({
 
   return (
     <main id="inhoud" className="detail">
+      <JsonLd
+        data={buildRentalProduct(locale, {
+          titel: v.titel,
+          slug: v.slug,
+          vanafPrijs: vanaf,
+          afbeelding: urlFor(v.coverFoto).width(1200).height(900).fit("crop").url(),
+          beschrijving: v.indeling,
+        })}
+      />
+      <JsonLd data={buildBreadcrumbList(locale, [{ label: dict.breadcrumbHome, pad: "/" }, { label: dict.voertuig.kruimelTeHuur, pad: "/verhuur/" }, { label: v.titel }])} />
       <div className="detail-kruimel">
         <div className="wrap">
           <Link href={L(locale, "/")}>{dict.breadcrumbHome}</Link>

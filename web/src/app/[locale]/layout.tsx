@@ -6,6 +6,8 @@ import { SiteFooter } from "@/components/SiteFooter";
 import { ActionBar } from "@/components/ActionBar";
 import { FloatingWhatsApp } from "@/components/FloatingWhatsApp";
 import { SetHtmlLang } from "@/components/SetHtmlLang";
+import { JsonLd } from "@/components/JsonLd";
+import { buildLocalBusiness } from "@/lib/structuredData";
 
 export function generateStaticParams() {
   return locales.map((locale) => ({ locale }));
@@ -64,6 +66,7 @@ export default async function LocaleLayout({
   return (
     <>
       <SetHtmlLang locale={locale} />
+      <JsonLd data={buildLocalBusiness(locale)} />
       <a className="skip-link" href="#inhoud">{locale === "fr" ? "Aller au contenu" : locale === "en" ? "Skip to content" : "Ga naar inhoud"}</a>
       <SiteHeader locale={locale} />
       {children}

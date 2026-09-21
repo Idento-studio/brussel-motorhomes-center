@@ -5,6 +5,8 @@ import { haalVerkoopVoertuigen } from "@/sanity/queries";
 import { SaleFilters } from "@/components/SaleFilters";
 import { L, buildAlternates, type Locale } from "@/lib/i18n";
 import { getDictionary } from "@/dictionaries";
+import { JsonLd } from "@/components/JsonLd";
+import { buildBreadcrumbList } from "@/lib/structuredData";
 
 export async function generateMetadata({
   params,
@@ -80,6 +82,7 @@ export default async function VerkoopPagina({
     <main id="inhoud">
       <div className="paginakop">
         <div className="wrap">
+          <JsonLd data={buildBreadcrumbList(locale, [{ label: dict.breadcrumbHome, pad: "/" }, { label: dict.voertuig.kruimelTeKoop }])} />
           <nav className="kruimelpad" aria-label="Kruimelpad">
             <Link href={L(locale, "/")}>{dict.breadcrumbHome}</Link>
             <span aria-hidden="true">/</span>

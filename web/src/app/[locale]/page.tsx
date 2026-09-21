@@ -7,6 +7,8 @@ import { AanbodTabs } from "@/components/AanbodTabs";
 import { haalVerkoopVoertuigen, haalVerhuurVoertuigen } from "@/sanity/queries";
 import { L, buildAlternates, type Locale } from "@/lib/i18n";
 import { getDictionary } from "@/dictionaries";
+import { JsonLd } from "@/components/JsonLd";
+import { buildOrganizationAndWebSite } from "@/lib/structuredData";
 
 export async function generateMetadata({
   params,
@@ -193,6 +195,7 @@ export default async function Home({
 
   return (
     <main id="inhoud">
+      <JsonLd data={buildOrganizationAndWebSite(locale)} />
       <section className="hero">
         <div className="media hero-media">
           <FotoMetPlaceholder
