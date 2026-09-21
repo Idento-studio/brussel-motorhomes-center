@@ -6,7 +6,7 @@
  * <video>-bronnen die met een letterlijke "/"-string beginnen (bv.
  * "/assets/img/...") worden dat NIET automatisch — die lopen via
  * `metPad()` hieronder. Op het uiteindelijke hoofddomein (brusselmotor-
- * homescenter.be) blijft deze variabele leeg en verandert er niets.
+ * homes.be) blijft deze variabele leeg en verandert er niets.
  */
 export const BASE_PATH = process.env.NEXT_PUBLIC_BASE_PATH ?? "";
 
