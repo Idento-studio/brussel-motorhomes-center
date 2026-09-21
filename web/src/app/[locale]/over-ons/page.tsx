@@ -1,7 +1,7 @@
 import Link from "next/link";
 import type { Metadata } from "next";
 import { FotoMetPlaceholder } from "@/components/FotoMetPlaceholder";
-import { L, buildAlternates, type Locale } from "@/lib/i18n";
+import { L, buildAlternates, buildOpenGraph, type Locale } from "@/lib/i18n";
 import { getDictionary } from "@/dictionaries";
 import { JsonLd } from "@/components/JsonLd";
 import { buildBreadcrumbList } from "@/lib/structuredData";
@@ -12,23 +12,19 @@ export async function generateMetadata({
   params: Promise<{ locale: Locale }>;
 }): Promise<Metadata> {
   const { locale } = await params;
-  return locale === "fr"
-    ? {
-        title: "À propos",
-        description: "Depuis plus de 15 ans, votre partenaire de confiance pour les motorhomes à Bruxelles et ses environs.",
-        alternates: buildAlternates("/over-ons/"),
-      }
-    : locale === "en"
-    ? {
-        title: "About us",
-        description: "For over 15 years, your trusted partner for motorhomes in Brussels and the surrounding area.",
-        alternates: buildAlternates("/over-ons/"),
-      }
-    : {
-        title: "Over ons",
-        description: "Al meer dan 15 jaar uw vertrouwde partner voor motorhomes in Brussel en omstreken.",
-        alternates: buildAlternates("/over-ons/"),
-      };
+  const title = locale === "fr" ? "À propos" : locale === "en" ? "About us" : "Over ons";
+  const description =
+    locale === "fr"
+      ? "Depuis plus de 15 ans, votre partenaire de confiance pour les motorhomes à Bruxelles et ses environs."
+      : locale === "en"
+      ? "For over 15 years, your trusted partner for motorhomes in Brussels and the surrounding area."
+      : "Al meer dan 15 jaar uw vertrouwde partner voor motorhomes in Brussel en omstreken.";
+  return {
+    title,
+    description,
+    alternates: buildAlternates("/over-ons/"),
+    ...buildOpenGraph({ locale, title, description, pad: "/over-ons/" }),
+  };
 }
 
 export default async function OverOnsPagina({

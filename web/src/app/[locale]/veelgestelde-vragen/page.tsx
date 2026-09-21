@@ -1,7 +1,7 @@
 import Link from "next/link";
 import type { Metadata } from "next";
 import { FaqAccordion, type FaqGroep } from "@/components/FaqAccordion";
-import { L, buildAlternates, type Locale } from "@/lib/i18n";
+import { L, buildAlternates, buildOpenGraph, type Locale } from "@/lib/i18n";
 import { getDictionary } from "@/dictionaries";
 import { JsonLd } from "@/components/JsonLd";
 import { buildBreadcrumbList, buildFAQPage } from "@/lib/structuredData";
@@ -12,25 +12,20 @@ export async function generateMetadata({
   params: Promise<{ locale: Locale }>;
 }): Promise<Metadata> {
   const { locale } = await params;
-  return locale === "fr"
-    ? {
-        title: "Questions fréquentes",
-        description:
-          "Réponses sur l'achat, la location, l'entretien et les accessoires de motorhomes chez BMC.",
-        alternates: buildAlternates("/veelgestelde-vragen/"),
-      }
-    : locale === "en"
-    ? {
-        title: "Frequently asked questions",
-        description:
-          "Answers about buying, renting, maintaining and accessorising motorhomes at BMC.",
-        alternates: buildAlternates("/veelgestelde-vragen/"),
-      }
-    : {
-        title: "Veelgestelde vragen",
-        description: "Antwoorden over kopen, huren, onderhoud en accessoires van motorhomes bij BMC.",
-        alternates: buildAlternates("/veelgestelde-vragen/"),
-      };
+  const title =
+    locale === "fr" ? "Questions fréquentes" : locale === "en" ? "Frequently asked questions" : "Veelgestelde vragen";
+  const description =
+    locale === "fr"
+      ? "Réponses sur l'achat, la location, l'entretien et les accessoires de motorhomes chez BMC."
+      : locale === "en"
+      ? "Answers about buying, renting, maintaining and accessorising motorhomes at BMC."
+      : "Antwoorden over kopen, huren, onderhoud en accessoires van motorhomes bij BMC.";
+  return {
+    title,
+    description,
+    alternates: buildAlternates("/veelgestelde-vragen/"),
+    ...buildOpenGraph({ locale, title, description, pad: "/veelgestelde-vragen/" }),
+  };
 }
 
 const FAQ_GROEPEN_NL: FaqGroep[] = [

@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { locales, type Locale } from "@/lib/i18n";
+import { locales, buildOpenGraph, type Locale } from "@/lib/i18n";
 import { getDictionary } from "@/dictionaries";
 import { SiteHeader } from "@/components/SiteHeader";
 import { SiteFooter } from "@/components/SiteFooter";
@@ -25,34 +25,16 @@ export async function generateMetadata({
       : locale === "en"
       ? "Motorhomes for sale and for rent at Brussel Motorhomes Center."
       : "Motorhomes te koop en te huur bij Brussel Motorhomes Center.";
-  const ogLocale = locale === "fr" ? "fr_BE" : locale === "en" ? "en_US" : "nl_BE";
-
-  // Standaard OG/Twitter-afbeelding voor alle pagina's. Enkel de detailpagina's
-  // van een camper (verkoop/[slug] en verhuur/[slug]) zetten hier zelf een
-  // eigen openGraph-object overheen (met de kaartfoto uit Sanity) — Next.js
-  // vervangt het volledige openGraph-object van de parent zodra een pagina
-  // er zelf een opgeeft, dus die twee routes moeten expliciet hun eigen
-  // afbeelding meegeven i.p.v. deze standaard.
+  // Vangnet-metadata: elke pagina onder [locale] geeft zelf al title/
+  // description/openGraph terug (via buildOpenGraph in @/lib/i18n), dit is
+  // enkel wat een pagina zonder eigen generateMetadata zou tonen.
   return {
     title: {
       default: "Brussel Motorhomes Center",
       template: "%s | Brussel Motorhomes Center",
     },
     description,
-    openGraph: {
-      type: "website",
-      siteName: "Brussel Motorhomes Center",
-      locale: ogLocale,
-      title: "Brussel Motorhomes Center",
-      description,
-      images: [{ url: "/assets/img/og/bmc-featured.png", width: 1200, height: 630, alt: "Brussel Motorhomes Center" }],
-    },
-    twitter: {
-      card: "summary_large_image",
-      title: "Brussel Motorhomes Center",
-      description,
-      images: ["/assets/img/og/bmc-featured.png"],
-    },
+    ...buildOpenGraph({ locale, title: "Brussel Motorhomes Center", description, pad: "/" }),
   };
 }
 

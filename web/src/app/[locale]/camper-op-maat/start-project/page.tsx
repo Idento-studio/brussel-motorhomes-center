@@ -1,7 +1,7 @@
 import Link from "next/link";
 import type { Metadata } from "next";
 import { CamperConfigurator } from "@/components/CamperConfigurator";
-import { L, buildAlternates, type Locale } from "@/lib/i18n";
+import { L, buildAlternates, buildOpenGraph, type Locale } from "@/lib/i18n";
 import { getDictionary } from "@/dictionaries";
 import { JsonLd } from "@/components/JsonLd";
 import { buildBreadcrumbList } from "@/lib/structuredData";
@@ -12,27 +12,23 @@ export async function generateMetadata({
   params: Promise<{ locale: Locale }>;
 }): Promise<Metadata> {
   const { locale } = await params;
-  if (locale === "fr") {
-    return {
-      title: "Configurez votre motorhome idéal",
-      description:
-        "Répondez à quelques questions sur l'usage, le budget et les équipements souhaités, et nous vous proposons le motorhome qui vous correspond.",
-      alternates: buildAlternates("/camper-op-maat/start-project/"),
-    };
-  }
-  if (locale === "en") {
-    return {
-      title: "Configure your ideal motorhome",
-      description:
-        "Answer a few questions about how you'll use it, your budget and the equipment you want, and we'll propose the motorhome that fits you.",
-      alternates: buildAlternates("/camper-op-maat/start-project/"),
-    };
-  }
+  const title =
+    locale === "fr"
+      ? "Configurez votre motorhome idéal"
+      : locale === "en"
+      ? "Configure your ideal motorhome"
+      : "Stel uw ideale motorhome samen";
+  const description =
+    locale === "fr"
+      ? "Répondez à quelques questions sur l'usage, le budget et les équipements souhaités, et nous vous proposons le motorhome qui vous correspond."
+      : locale === "en"
+      ? "Answer a few questions about how you'll use it, your budget and the equipment you want, and we'll propose the motorhome that fits you."
+      : "Beantwoord enkele vragen over gebruik, budget en gewenste uitrusting, en wij stellen de motorhome voor die bij u past.";
   return {
-    title: "Stel uw ideale motorhome samen",
-    description:
-      "Beantwoord enkele vragen over gebruik, budget en gewenste uitrusting, en wij stellen de motorhome voor die bij u past.",
+    title,
+    description,
     alternates: buildAlternates("/camper-op-maat/start-project/"),
+    ...buildOpenGraph({ locale, title, description, pad: "/camper-op-maat/start-project/" }),
   };
 }
 

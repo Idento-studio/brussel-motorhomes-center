@@ -1,7 +1,7 @@
 import Link from "next/link";
 import type { Metadata } from "next";
 import { VideoMetGeluidsknop } from "@/components/VideoMetGeluidsknop";
-import { L, buildAlternates, type Locale } from "@/lib/i18n";
+import { L, buildAlternates, buildOpenGraph, type Locale } from "@/lib/i18n";
 import { getDictionary } from "@/dictionaries";
 import { JsonLd } from "@/components/JsonLd";
 import { buildBreadcrumbList, buildService } from "@/lib/structuredData";
@@ -12,26 +12,24 @@ export async function generateMetadata({
   params: Promise<{ locale: Locale }>;
 }): Promise<Metadata> {
   const { locale } = await params;
-  return locale === "fr"
-    ? {
-        title: "Motorhomes pour personnes à mobilité réduite",
-        description:
-          "Motorhomes adaptés en collaboration avec VJ Mobility : rampes d'accès, portes élargies et commandes adaptées.",
-        alternates: buildAlternates("/andersvaliden/"),
-      }
-    : locale === "en"
-    ? {
-        title: "Motorhomes for people with reduced mobility",
-        description:
-          "Adapted motorhomes in partnership with VJ Mobility: access ramps, widened doors and adapted controls.",
-        alternates: buildAlternates("/andersvaliden/"),
-      }
-    : {
-        title: "Motorhomes voor andersvaliden",
-        description:
-          "Aangepaste motorhomes in samenwerking met VJ Mobility: oprijplaten, verbrede deuren en aangepaste besturing.",
-        alternates: buildAlternates("/andersvaliden/"),
-      };
+  const title =
+    locale === "fr"
+      ? "Motorhomes pour personnes à mobilité réduite"
+      : locale === "en"
+      ? "Motorhomes for people with reduced mobility"
+      : "Motorhomes voor andersvaliden";
+  const description =
+    locale === "fr"
+      ? "Motorhomes adaptés en collaboration avec VJ Mobility : rampes d'accès, portes élargies et commandes adaptées."
+      : locale === "en"
+      ? "Adapted motorhomes in partnership with VJ Mobility: access ramps, widened doors and adapted controls."
+      : "Aangepaste motorhomes in samenwerking met VJ Mobility: oprijplaten, verbrede deuren en aangepaste besturing.";
+  return {
+    title,
+    description,
+    alternates: buildAlternates("/andersvaliden/"),
+    ...buildOpenGraph({ locale, title, description, pad: "/andersvaliden/" }),
+  };
 }
 
 export default async function AndersvalidenPagina({

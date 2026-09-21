@@ -1,7 +1,7 @@
 import Link from "next/link";
 import type { Metadata } from "next";
 import { Formulier } from "@/components/Formulier";
-import { L, buildAlternates, type Locale } from "@/lib/i18n";
+import { L, buildAlternates, buildOpenGraph, type Locale } from "@/lib/i18n";
 import { getDictionary } from "@/dictionaries";
 import { JsonLd } from "@/components/JsonLd";
 import { buildBreadcrumbList } from "@/lib/structuredData";
@@ -12,26 +12,19 @@ export async function generateMetadata({
   params: Promise<{ locale: Locale }>;
 }): Promise<Metadata> {
   const { locale } = await params;
-  return locale === "fr"
-    ? {
-        title: "Contact",
-        description:
-          "Contactez Brussel Motorhomes Center. Rue de l'Alliance 103, 1480 Clabecq. Joignable par téléphone du lundi au vendredi.",
-        alternates: buildAlternates("/contact/"),
-      }
-    : locale === "en"
-    ? {
-        title: "Contact",
-        description:
-          "Contact Brussel Motorhomes Center. Rue de l'Alliance 103, 1480 Clabecq. Reachable by phone Monday to Friday.",
-        alternates: buildAlternates("/contact/"),
-      }
-    : {
-        title: "Contact",
-        description:
-          "Contacteer Brussel Motorhomes Center. Rue de l'Alliance 103, 1480 Clabecq. Telefonisch bereikbaar van maandag tot vrijdag.",
-        alternates: buildAlternates("/contact/"),
-      };
+  const title = "Contact";
+  const description =
+    locale === "fr"
+      ? "Contactez Brussel Motorhomes Center. Rue de l'Alliance 103, 1480 Clabecq. Joignable par téléphone du lundi au vendredi."
+      : locale === "en"
+      ? "Contact Brussel Motorhomes Center. Rue de l'Alliance 103, 1480 Clabecq. Reachable by phone Monday to Friday."
+      : "Contacteer Brussel Motorhomes Center. Rue de l'Alliance 103, 1480 Clabecq. Telefonisch bereikbaar van maandag tot vrijdag.";
+  return {
+    title,
+    description,
+    alternates: buildAlternates("/contact/"),
+    ...buildOpenGraph({ locale, title, description, pad: "/contact/" }),
+  };
 }
 
 export default async function ContactPagina({

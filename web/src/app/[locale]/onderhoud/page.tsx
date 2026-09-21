@@ -2,7 +2,7 @@ import Link from "next/link";
 import type { Metadata } from "next";
 import { Formulier } from "@/components/Formulier";
 import { Accordeon } from "@/components/Accordeon";
-import { L, buildAlternates, type Locale } from "@/lib/i18n";
+import { L, buildAlternates, buildOpenGraph, type Locale } from "@/lib/i18n";
 import { getDictionary } from "@/dictionaries";
 import { JsonLd } from "@/components/JsonLd";
 import { buildBreadcrumbList, buildService } from "@/lib/structuredData";
@@ -13,26 +13,20 @@ export async function generateMetadata({
   params: Promise<{ locale: Locale }>;
 }): Promise<Metadata> {
   const { locale } = await params;
-  return locale === "fr"
-    ? {
-        title: "Entretien & réparations",
-        description:
-          "Spécialistes certifiés pour l'entretien complet de votre motorhome. Du contrôle technique annuel aux travaux de carrosserie.",
-        alternates: buildAlternates("/onderhoud/"),
-      }
-    : locale === "en"
-    ? {
-        title: "Maintenance & repairs",
-        description:
-          "Certified specialists for the complete maintenance of your motorhome. From annual inspection to bodywork.",
-        alternates: buildAlternates("/onderhoud/"),
-      }
-    : {
-        title: "Onderhoud & herstellingen",
-        description:
-          "Gecertificeerde specialisten voor het complete onderhoud van uw motorhome. Van jaarlijkse keuring tot carrosseriewerk.",
-        alternates: buildAlternates("/onderhoud/"),
-      };
+  const title =
+    locale === "fr" ? "Entretien & réparations" : locale === "en" ? "Maintenance & repairs" : "Onderhoud & herstellingen";
+  const description =
+    locale === "fr"
+      ? "Spécialistes certifiés pour l'entretien complet de votre motorhome. Du contrôle technique annuel aux travaux de carrosserie."
+      : locale === "en"
+      ? "Certified specialists for the complete maintenance of your motorhome. From annual inspection to bodywork."
+      : "Gecertificeerde specialisten voor het complete onderhoud van uw motorhome. Van jaarlijkse keuring tot carrosseriewerk.";
+  return {
+    title,
+    description,
+    alternates: buildAlternates("/onderhoud/"),
+    ...buildOpenGraph({ locale, title, description, pad: "/onderhoud/" }),
+  };
 }
 
 export default async function OnderhoudPagina({

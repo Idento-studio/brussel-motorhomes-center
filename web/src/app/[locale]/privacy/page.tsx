@@ -1,6 +1,6 @@
 import Link from "next/link";
 import type { Metadata } from "next";
-import { L, buildAlternates, type Locale } from "@/lib/i18n";
+import { L, buildAlternates, buildOpenGraph, type Locale } from "@/lib/i18n";
 import { getDictionary } from "@/dictionaries";
 import { JsonLd } from "@/components/JsonLd";
 import { buildBreadcrumbList } from "@/lib/structuredData";
@@ -11,26 +11,20 @@ export async function generateMetadata({
   params: Promise<{ locale: Locale }>;
 }): Promise<Metadata> {
   const { locale } = await params;
-  return locale === "fr"
-    ? {
-        title: "Politique de confidentialité",
-        description: "Comment Brussel Motorhomes Center traite vos données à caractère personnel.",
-        robots: { index: false, follow: true },
-        alternates: buildAlternates("/privacy/"),
-      }
-    : locale === "en"
-    ? {
-        title: "Privacy Policy",
-        description: "How Brussel Motorhomes Center handles your personal data.",
-        robots: { index: false, follow: true },
-        alternates: buildAlternates("/privacy/"),
-      }
-    : {
-        title: "Privacybeleid",
-        description: "Hoe Brussel Motorhomes Center omgaat met je persoonsgegevens.",
-        robots: { index: false, follow: true },
-        alternates: buildAlternates("/privacy/"),
-      };
+  const title = locale === "fr" ? "Politique de confidentialité" : locale === "en" ? "Privacy Policy" : "Privacybeleid";
+  const description =
+    locale === "fr"
+      ? "Comment Brussel Motorhomes Center traite vos données à caractère personnel."
+      : locale === "en"
+      ? "How Brussel Motorhomes Center handles your personal data."
+      : "Hoe Brussel Motorhomes Center omgaat met je persoonsgegevens.";
+  return {
+    title,
+    description,
+    robots: { index: false, follow: true },
+    alternates: buildAlternates("/privacy/"),
+    ...buildOpenGraph({ locale, title, description, pad: "/privacy/" }),
+  };
 }
 
 export default async function PrivacyPagina({

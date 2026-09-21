@@ -2,7 +2,7 @@ import Link from "next/link";
 import type { Metadata } from "next";
 import { haalVerhuurVoertuigen } from "@/sanity/queries";
 import { RentalFilters } from "@/components/RentalFilters";
-import { L, buildAlternates, type Locale } from "@/lib/i18n";
+import { L, buildAlternates, buildOpenGraph, type Locale } from "@/lib/i18n";
 import { getDictionary } from "@/dictionaries";
 import { JsonLd } from "@/components/JsonLd";
 import { buildBreadcrumbList } from "@/lib/structuredData";
@@ -13,27 +13,19 @@ export async function generateMetadata({
   params: Promise<{ locale: Locale }>;
 }): Promise<Metadata> {
   const { locale } = await params;
-  if (locale === "fr") {
-    return {
-      title: "Motorhomes à louer",
-      description:
-        "Des modèles de location jeunes et parfaitement entretenus. Assurance omnium, assistance dépannage européenne 24/7 et bouteille de gaz pleine incluses.",
-      alternates: buildAlternates("/verhuur/"),
-    };
-  }
-  if (locale === "en") {
-    return {
-      title: "Motorhomes for rent",
-      description:
-        "Young, perfectly maintained rental models. Includes comprehensive insurance, 24/7 European breakdown assistance and a full gas bottle.",
-      alternates: buildAlternates("/verhuur/"),
-    };
-  }
+  const title =
+    locale === "fr" ? "Motorhomes à louer" : locale === "en" ? "Motorhomes for rent" : "Motorhomes te huur";
+  const description =
+    locale === "fr"
+      ? "Des modèles de location jeunes et parfaitement entretenus. Assurance omnium, assistance dépannage européenne 24/7 et bouteille de gaz pleine incluses."
+      : locale === "en"
+      ? "Young, perfectly maintained rental models. Includes comprehensive insurance, 24/7 European breakdown assistance and a full gas bottle."
+      : "Jonge, perfect onderhouden huurmodellen. Inclusief omniumverzekering, 24/7 Europese pechverhelping en een volle gasfles.";
   return {
-    title: "Motorhomes te huur",
-    description:
-      "Jonge, perfect onderhouden huurmodellen. Inclusief omniumverzekering, 24/7 Europese pechverhelping en een volle gasfles.",
+    title,
+    description,
     alternates: buildAlternates("/verhuur/"),
+    ...buildOpenGraph({ locale, title, description, pad: "/verhuur/" }),
   };
 }
 

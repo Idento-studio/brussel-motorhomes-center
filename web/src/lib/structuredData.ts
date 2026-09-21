@@ -33,7 +33,7 @@ export function buildLocalBusiness(locale: Locale) {
     url: absoluut(locale, "/"),
     telephone: BEDRIJF.telefoon,
     email: BEDRIJF.email,
-    image: `${SITE_URL}/assets/img/og/bmc-featured.png`,
+    image: `${SITE_URL}/assets/img/social/bmc-featured.png`,
     priceRange: "€€€€",
     address: {
       "@type": "PostalAddress",

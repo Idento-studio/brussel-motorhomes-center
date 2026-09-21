@@ -3,7 +3,7 @@ import { Suspense } from "react";
 import type { Metadata } from "next";
 import { haalVerkoopVoertuigen } from "@/sanity/queries";
 import { SaleFilters } from "@/components/SaleFilters";
-import { L, buildAlternates, type Locale } from "@/lib/i18n";
+import { L, buildAlternates, buildOpenGraph, type Locale } from "@/lib/i18n";
 import { getDictionary } from "@/dictionaries";
 import { JsonLd } from "@/components/JsonLd";
 import { buildBreadcrumbList } from "@/lib/structuredData";
@@ -14,27 +14,19 @@ export async function generateMetadata({
   params: Promise<{ locale: Locale }>;
 }): Promise<Metadata> {
   const { locale } = await params;
-  if (locale === "fr") {
-    return {
-      title: "Motorhomes à vendre",
-      description:
-        "Notre offre de motorhomes neufs et d'occasion, avec contrôle technique complet, mesure d'humidité, Car-Pass et contrôle technique avant la vente.",
-      alternates: buildAlternates("/verkoop/"),
-    };
-  }
-  if (locale === "en") {
-    return {
-      title: "Motorhomes for sale",
-      description:
-        "Our range of new and used motorhomes, each with a full technical check-up, damp measurement, Car-Pass and pre-sale inspection.",
-      alternates: buildAlternates("/verkoop/"),
-    };
-  }
+  const title =
+    locale === "fr" ? "Motorhomes à vendre" : locale === "en" ? "Motorhomes for sale" : "Motorhomes te koop";
+  const description =
+    locale === "fr"
+      ? "Notre offre de motorhomes neufs et d'occasion, avec contrôle technique complet, mesure d'humidité, Car-Pass et contrôle technique avant la vente."
+      : locale === "en"
+      ? "Our range of new and used motorhomes, each with a full technical check-up, damp measurement, Car-Pass and pre-sale inspection."
+      : "Ons aanbod nieuwe en tweedehands motorhomes, met technische check-up, vochtmeting, Car-Pass en keuring voor verkoop.";
   return {
-    title: "Motorhomes te koop",
-    description:
-      "Ons aanbod nieuwe en tweedehands motorhomes, met technische check-up, vochtmeting, Car-Pass en keuring voor verkoop.",
+    title,
+    description,
     alternates: buildAlternates("/verkoop/"),
+    ...buildOpenGraph({ locale, title, description, pad: "/verkoop/" }),
   };
 }
 

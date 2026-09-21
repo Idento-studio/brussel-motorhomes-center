@@ -39,11 +39,11 @@ web/public/assets/img/
 │   └── (nog leeg — foto voor de pagina "Andersvaliden")
 ├── contact/
 │   └── (nog leeg — foto/kaart voor de contactpagina)
-└── og/
+└── social/
     └── bmc-featured.png                     deel-afbeelding (WhatsApp/Facebook/LinkedIn)  1200×630
 ```
 
-**Deel-afbeelding (og/bmc-featured.png):** dit is de foto die verschijnt wanneer
+**Deel-afbeelding (social/bmc-featured.png):** dit is de foto die verschijnt wanneer
 iemand een link naar de website deelt op WhatsApp, Facebook, LinkedIn, ... Deze
 ene afbeelding wordt gebruikt op alle pagina's, **behalve** de detailpagina's
 van een camper te koop of te huur — daar wordt automatisch de kaartfoto van

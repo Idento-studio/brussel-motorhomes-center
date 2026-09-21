@@ -2,7 +2,7 @@ import Link from "next/link";
 import type { Metadata } from "next";
 import { Formulier } from "@/components/Formulier";
 import { Accordeon } from "@/components/Accordeon";
-import { L, buildAlternates, type Locale } from "@/lib/i18n";
+import { L, buildAlternates, buildOpenGraph, type Locale } from "@/lib/i18n";
 import { getDictionary } from "@/dictionaries";
 import { JsonLd } from "@/components/JsonLd";
 import { buildBreadcrumbList, buildService } from "@/lib/structuredData";
@@ -13,26 +13,20 @@ export async function generateMetadata({
   params: Promise<{ locale: Locale }>;
 }): Promise<Metadata> {
   const { locale } = await params;
-  return locale === "fr"
-    ? {
-        title: "Accessoires & options",
-        description:
-          "Panneaux solaires, porte-vélos, navigation et auvents, montés avec soin par les techniciens propres de BMC.",
-        alternates: buildAlternates("/accessoires-en-opties/"),
-      }
-    : locale === "en"
-    ? {
-        title: "Accessories & options",
-        description:
-          "Solar panels, bike racks, navigation and awnings, expertly installed by BMC's own technicians.",
-        alternates: buildAlternates("/accessoires-en-opties/"),
-      }
-    : {
-        title: "Accessoires & opties",
-        description:
-          "Zonnepanelen, fietsendragers, navigatie en luifels, vakkundig gemonteerd door de eigen technici van BMC.",
-        alternates: buildAlternates("/accessoires-en-opties/"),
-      };
+  const title =
+    locale === "fr" ? "Accessoires & options" : locale === "en" ? "Accessories & options" : "Accessoires & opties";
+  const description =
+    locale === "fr"
+      ? "Panneaux solaires, porte-vélos, navigation et auvents, montés avec soin par les techniciens propres de BMC."
+      : locale === "en"
+      ? "Solar panels, bike racks, navigation and awnings, expertly installed by BMC's own technicians."
+      : "Zonnepanelen, fietsendragers, navigatie en luifels, vakkundig gemonteerd door de eigen technici van BMC.";
+  return {
+    title,
+    description,
+    alternates: buildAlternates("/accessoires-en-opties/"),
+    ...buildOpenGraph({ locale, title, description, pad: "/accessoires-en-opties/" }),
+  };
 }
 
 export default async function AccessoiresEnOptiesPagina({

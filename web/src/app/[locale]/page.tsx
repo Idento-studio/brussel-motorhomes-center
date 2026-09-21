@@ -5,7 +5,7 @@ import { VideoMetGeluidsknop } from "@/components/VideoMetGeluidsknop";
 import { FotoMetPlaceholder } from "@/components/FotoMetPlaceholder";
 import { AanbodTabs } from "@/components/AanbodTabs";
 import { haalVerkoopVoertuigen, haalVerhuurVoertuigen } from "@/sanity/queries";
-import { L, buildAlternates, type Locale } from "@/lib/i18n";
+import { L, buildAlternates, buildOpenGraph, type Locale } from "@/lib/i18n";
 import { getDictionary } from "@/dictionaries";
 import { JsonLd } from "@/components/JsonLd";
 import { buildOrganizationAndWebSite } from "@/lib/structuredData";
@@ -16,27 +16,23 @@ export async function generateMetadata({
   params: Promise<{ locale: Locale }>;
 }): Promise<Metadata> {
   const { locale } = await params;
-  if (locale === "fr") {
-    return {
-      title: "Acheter, louer et entretenir un motorhome",
-      description:
-        "Motorhomes à acheter, louer ou entretenir en Belgique, près de Bruxelles. Large offre, atelier propre et accompagnement jusqu'à l'homologation belge.",
-      alternates: buildAlternates("/"),
-    };
-  }
-  if (locale === "en") {
-    return {
-      title: "Buy, rent and service a motorhome",
-      description:
-        "Motorhomes to buy, rent or service in Belgium, near Brussels. Wide range, our own workshop and guidance through Belgian homologation.",
-      alternates: buildAlternates("/"),
-    };
-  }
+  const title =
+    locale === "fr"
+      ? "Acheter, louer et entretenir un motorhome"
+      : locale === "en"
+      ? "Buy, rent and service a motorhome"
+      : "Motorhomes kopen, huren en onderhouden";
+  const description =
+    locale === "fr"
+      ? "Motorhomes à acheter, louer ou entretenir en Belgique, près de Bruxelles. Large offre, atelier propre et accompagnement jusqu'à l'homologation belge."
+      : locale === "en"
+      ? "Motorhomes to buy, rent or service in Belgium, near Brussels. Wide range, our own workshop and guidance through Belgian homologation."
+      : "Motorhomes kopen, huren of onderhouden in België, vlakbij Brussel. Ruim aanbod, eigen werkplaats en begeleiding tot Belgische homologatie.";
   return {
-    title: "Motorhomes kopen, huren en onderhouden",
-    description:
-      "Motorhomes kopen, huren of onderhouden in België, vlakbij Brussel. Ruim aanbod, eigen werkplaats en begeleiding tot Belgische homologatie.",
+    title,
+    description,
     alternates: buildAlternates("/"),
+    ...buildOpenGraph({ locale, title, description, pad: "/" }),
   };
 }
 

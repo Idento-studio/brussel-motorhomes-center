@@ -7,7 +7,7 @@ import { Uitrusting } from "@/components/Uitrusting";
 import { Formulier } from "@/components/Formulier";
 import { KlikbareFoto } from "@/components/KlikbareFoto";
 import { urlFor } from "@/sanity/image";
-import { L, buildAlternates, type Locale } from "@/lib/i18n";
+import { L, buildAlternates, buildOpenGraph, type Locale } from "@/lib/i18n";
 import { getDictionary } from "@/dictionaries";
 import { opbouwtypeLabel, brandstofLabel, transmissieLabel, staatLabel, rijbewijsLabel } from "@/lib/voertuigLabels";
 import { JsonLd } from "@/components/JsonLd";
@@ -37,18 +37,13 @@ export async function generateMetadata({
     title: voertuig.titel,
     description: beschrijving,
     alternates: buildAlternates(`/verkoop/${slug}/`),
-    openGraph: {
-      type: "website",
+    ...buildOpenGraph({
+      locale,
       title: voertuig.titel,
       description: beschrijving,
-      images: [{ url: kaartfoto, width: 1200, height: 630, alt: voertuig.coverFoto.alt ?? voertuig.titel }],
-    },
-    twitter: {
-      card: "summary_large_image",
-      title: voertuig.titel,
-      description: beschrijving,
-      images: [kaartfoto],
-    },
+      pad: `/verkoop/${slug}/`,
+      afbeelding: { url: kaartfoto, width: 1200, height: 630, alt: voertuig.coverFoto.alt ?? voertuig.titel },
+    }),
   };
 }
 

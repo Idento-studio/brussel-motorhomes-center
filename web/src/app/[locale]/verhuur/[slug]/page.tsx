@@ -8,7 +8,7 @@ import { Formulier } from "@/components/Formulier";
 import { KlikbareFoto } from "@/components/KlikbareFoto";
 import { urlFor } from "@/sanity/image";
 import type { TariefPeriode } from "@/sanity/types";
-import { L, buildAlternates, type Locale } from "@/lib/i18n";
+import { L, buildAlternates, buildOpenGraph, type Locale } from "@/lib/i18n";
 import { getDictionary } from "@/dictionaries";
 import { opbouwtypeLabel, brandstofLabel, transmissieLabel, rijbewijsLabel } from "@/lib/voertuigLabels";
 import { JsonLd } from "@/components/JsonLd";
@@ -40,18 +40,13 @@ export async function generateMetadata({
     title,
     description,
     alternates: buildAlternates(`/verhuur/${slug}/`),
-    openGraph: {
-      type: "website",
+    ...buildOpenGraph({
+      locale,
       title,
       description,
-      images: [{ url: kaartfoto, width: 1200, height: 630, alt: voertuig.coverFoto.alt ?? voertuig.titel }],
-    },
-    twitter: {
-      card: "summary_large_image",
-      title,
-      description,
-      images: [kaartfoto],
-    },
+      pad: `/verhuur/${slug}/`,
+      afbeelding: { url: kaartfoto, width: 1200, height: 630, alt: voertuig.coverFoto.alt ?? voertuig.titel },
+    }),
   };
 }
 

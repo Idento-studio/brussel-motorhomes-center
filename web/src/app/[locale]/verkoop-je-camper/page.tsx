@@ -1,7 +1,7 @@
 import Link from "next/link";
 import type { Metadata } from "next";
 import { VerkoopStappenKeuze } from "@/components/VerkoopStappenKeuze";
-import { L, buildAlternates, type Locale } from "@/lib/i18n";
+import { L, buildAlternates, buildOpenGraph, type Locale } from "@/lib/i18n";
 import { getDictionary } from "@/dictionaries";
 import { JsonLd } from "@/components/JsonLd";
 import { buildBreadcrumbList, buildService } from "@/lib/structuredData";
@@ -12,27 +12,19 @@ export async function generateMetadata({
   params: Promise<{ locale: Locale }>;
 }): Promise<Metadata> {
   const { locale } = await params;
-  if (locale === "fr") {
-    return {
-      title: "Vendez votre motorhome",
-      description:
-        "Vendez votre motorhome à BMC ou laissez BMC le vendre pour vous. Inspection gratuite et un prix de marché honnête.",
-      alternates: buildAlternates("/verkoop-je-camper/"),
-    };
-  }
-  if (locale === "en") {
-    return {
-      title: "Sell your motorhome",
-      description:
-        "Sell your motorhome to BMC or let BMC sell it for you. Free inspection and a fair market price.",
-      alternates: buildAlternates("/verkoop-je-camper/"),
-    };
-  }
+  const title =
+    locale === "fr" ? "Vendez votre motorhome" : locale === "en" ? "Sell your motorhome" : "Verkoop je motorhome";
+  const description =
+    locale === "fr"
+      ? "Vendez votre motorhome à BMC ou laissez BMC le vendre pour vous. Inspection gratuite et un prix de marché honnête."
+      : locale === "en"
+      ? "Sell your motorhome to BMC or let BMC sell it for you. Free inspection and a fair market price."
+      : "Verkoop uw motorhome aan BMC of laat BMC hem voor u verkopen. Gratis inspectie en een eerlijke marktprijs.";
   return {
-    title: "Verkoop je motorhome",
-    description:
-      "Verkoop uw motorhome aan BMC of laat BMC hem voor u verkopen. Gratis inspectie en een eerlijke marktprijs.",
+    title,
+    description,
     alternates: buildAlternates("/verkoop-je-camper/"),
+    ...buildOpenGraph({ locale, title, description, pad: "/verkoop-je-camper/" }),
   };
 }
 

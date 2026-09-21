@@ -24,7 +24,6 @@ export function AanbodTabs({
 
   const uitgelichtKoop = verkoopVoertuigen.slice(0, 3);
   const uitgelichtHuur = verhuurVoertuigen.slice(0, 3);
-  const heeftAanbod = isKoop ? uitgelichtKoop.length > 0 : uitgelichtHuur.length > 0;
 
   return (
     <>
@@ -43,22 +42,43 @@ export function AanbodTabs({
         </div>
       </div>
 
-      {heeftAanbod ? (
-        <>
-          <div className="raster raster-3 raster-ruim" style={{ marginTop: "var(--sp-6)" }}>
-            {isKoop
-              ? uitgelichtKoop.map((v) => <VerkoopKaart key={v._id} v={v} locale={locale} dict={dict} />)
-              : uitgelichtHuur.map((v) => <VerhuurKaart key={v._id} v={v} locale={locale} dict={dict} />)}
+      {/* Beide panelen staan altijd in de HTML (net als bij FaqAccordion.tsx)
+          en worden enkel visueel getoggled via het hidden-attribuut, i.p.v.
+          voorwaardelijk gerenderd — anders staat het "te huur"-aanbod nooit
+          in de brondocument van de homepage voor een crawler die niet zelf
+          op de tab klikt (zie LAUNCH.md §3, GEO). */}
+      <div hidden={!isKoop}>
+        {uitgelichtKoop.length > 0 ? (
+          <>
+            <div className="raster raster-3 raster-ruim" style={{ marginTop: "var(--sp-6)" }}>
+              {uitgelichtKoop.map((v) => <VerkoopKaart key={v._id} v={v} locale={locale} dict={dict} />)}
+            </div>
+            <div style={{ marginTop: "var(--sp-7)", display: "flex", justifyContent: "center" }}>
+              <Link className="btn btn-blauw" href={L(locale, "/verkoop/")}>{d.bekijkVolledigAanbod}</Link>
+            </div>
+          </>
+        ) : (
+          <div className="notitie-leeg" style={{ marginTop: "var(--sp-6)" }}>
+            <p>{d.geenAanbodKoop}</p>
           </div>
-          <div style={{ marginTop: "var(--sp-7)", display: "flex", justifyContent: "center" }}>
-            <Link className="btn btn-blauw" href={L(locale, isKoop ? "/verkoop/" : "/verhuur/")}>{d.bekijkVolledigAanbod}</Link>
+        )}
+      </div>
+      <div hidden={isKoop}>
+        {uitgelichtHuur.length > 0 ? (
+          <>
+            <div className="raster raster-3 raster-ruim" style={{ marginTop: "var(--sp-6)" }}>
+              {uitgelichtHuur.map((v) => <VerhuurKaart key={v._id} v={v} locale={locale} dict={dict} />)}
+            </div>
+            <div style={{ marginTop: "var(--sp-7)", display: "flex", justifyContent: "center" }}>
+              <Link className="btn btn-blauw" href={L(locale, "/verhuur/")}>{d.bekijkVolledigAanbod}</Link>
+            </div>
+          </>
+        ) : (
+          <div className="notitie-leeg" style={{ marginTop: "var(--sp-6)" }}>
+            <p>{d.geenAanbodHuur}</p>
           </div>
-        </>
-      ) : (
-        <div className="notitie-leeg" style={{ marginTop: "var(--sp-6)" }}>
-          <p>{isKoop ? d.geenAanbodKoop : d.geenAanbodHuur}</p>
-        </div>
-      )}
+        )}
+      </div>
     </>
   );
 }

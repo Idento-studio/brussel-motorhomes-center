@@ -1,7 +1,7 @@
 import Link from "next/link";
 import type { Metadata } from "next";
 import { Formulier } from "@/components/Formulier";
-import { L, buildAlternates, type Locale } from "@/lib/i18n";
+import { L, buildAlternates, buildOpenGraph, type Locale } from "@/lib/i18n";
 import { getDictionary } from "@/dictionaries";
 import { JsonLd } from "@/components/JsonLd";
 import { buildBreadcrumbList, buildService } from "@/lib/structuredData";
@@ -12,25 +12,20 @@ export async function generateMetadata({
   params: Promise<{ locale: Locale }>;
 }): Promise<Metadata> {
   const { locale } = await params;
-  return locale === "fr"
-    ? {
-        title: "Motorhome sur mesure",
-        description:
-          "BMC construit des motorhomes entièrement sur mesure, d'un châssis nu à un véhicule prêt à rouler et homologué.",
-        alternates: buildAlternates("/camper-op-maat/"),
-      }
-    : locale === "en"
-    ? {
-        title: "Custom-built motorhome",
-        description:
-          "BMC builds fully custom motorhomes, from a bare chassis to a ready-to-drive, homologated vehicle.",
-        alternates: buildAlternates("/camper-op-maat/"),
-      }
-    : {
-        title: "Motorhome op maat",
-        description: "BMC bouwt motorhomes volledig op maat, van leeg chassis tot rijklaar en gehomologeerd voertuig.",
-        alternates: buildAlternates("/camper-op-maat/"),
-      };
+  const title =
+    locale === "fr" ? "Motorhome sur mesure" : locale === "en" ? "Custom-built motorhome" : "Motorhome op maat";
+  const description =
+    locale === "fr"
+      ? "BMC construit des motorhomes entièrement sur mesure, d'un châssis nu à un véhicule prêt à rouler et homologué."
+      : locale === "en"
+      ? "BMC builds fully custom motorhomes, from a bare chassis to a ready-to-drive, homologated vehicle."
+      : "BMC bouwt motorhomes volledig op maat, van leeg chassis tot rijklaar en gehomologeerd voertuig.";
+  return {
+    title,
+    description,
+    alternates: buildAlternates("/camper-op-maat/"),
+    ...buildOpenGraph({ locale, title, description, pad: "/camper-op-maat/" }),
+  };
 }
 
 export default async function CamperOpMaatPagina({
