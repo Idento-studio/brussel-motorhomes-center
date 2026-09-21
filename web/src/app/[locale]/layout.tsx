@@ -60,7 +60,7 @@ export default async function LocaleLayout({
       <SiteHeader locale={locale} />
       {children}
       <SiteFooter locale={locale} dict={dict} />
-      <ActionBar locale={locale} dict={dict} />
+      <ActionBar locale={locale} dict={dict.actionBar} />
       <FloatingWhatsApp locale={locale} />
       <CookieConsent locale={locale} />
     </>

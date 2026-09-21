@@ -339,14 +339,18 @@
   color: var(--wit);
   border-top: 1px solid var(--inverse-hairline);
   padding-bottom: env(safe-area-inset-bottom, 0px);
-  /* Eigen compositorlaag: zonder dit herberekent iOS/Android de positie van
-     dit fixed element soms mee met de layoutverschuiving die het in-/uit-
-     schuiven van de adresbalk veroorzaakt, wat als "meebewegen" tijdens het
-     scrollen voelt. Met translateZ(0) blijft de balk op een eigen laag en
-     dus echt vast t.o.v. het scherm. */
-  transform: translateZ(0);
+  /* Bij het landen op de pagina nog niet zichtbaar — pas na de eerste
+     scrollbeweging schuift ze tevoorschijn (ActionBar.tsx zet dan
+     .is-zichtbaar). translateY i.p.v. display, zodat de overgang animeert
+     i.p.v. abrupt te verschijnen; translateZ(0) blijft mee in dezelfde
+     transform zodat de balk ook dan op haar eigen compositorlaag staat en
+     niet meebeweegt met het in-/uitschuiven van de adresbalk tijdens het
+     scrollen zelf. */
+  transform: translate3d(0, 100%, 0);
   will-change: transform;
+  transition: transform 0.25s var(--ease);
 }
+.actiebalk.is-zichtbaar { transform: translate3d(0, 0, 0); }
 .actiebalk a {
   display: flex;
   flex-direction: column;

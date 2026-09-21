@@ -10,7 +10,7 @@ export function SiteFooter({ locale, dict }: { locale: Locale; dict: Dictionary 
       <div className="wrap">
         <div className="footer-raster">
           <div className="footer-merk">
-            <img className="footer-logo" src={metPad("/assets/img/logo/bmc-logo-white.svg")} alt="Brussel Motorhomes Center" />
+            <img className="footer-logo" src={metPad("/assets/img/logo/bmc-logo-white.svg")} alt="Brussel Motorhomes Center" width="323" height="100" />
             <p>{dict.footer.tagline}</p>
           </div>
           <div>

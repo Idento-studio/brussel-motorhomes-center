@@ -88,7 +88,7 @@ export function SiteHeader({ locale, actiefPad }: { locale: Locale; actiefPad?: 
       <div className="header-balk">
         <div className="wrap">
           <Link className="merk" href={L(locale, "/")} aria-label={dict.header.logoAria}>
-            <img src={metPad("/assets/img/logo/bmc-logo.svg")} alt="Brussel Motorhomes Center" onError={(e) => e.currentTarget.remove()} />
+            <img src={metPad("/assets/img/logo/bmc-logo.svg")} alt="Brussel Motorhomes Center" width="323" height="100" onError={(e) => e.currentTarget.remove()} />
             <span className="merk-tekst">Brussel<span>Motorhomes Center</span></span>
           </Link>
 
