@@ -1,8 +1,8 @@
 import type { NextConfig } from "next";
 
 // Enkel gezet tijdens een GitHub Pages-projectpagina-build (zie
-// .github/workflows/deploy-pages.yml) — op het uiteindelijke hoofddomein
-// (brusselmotorhomescenter.be) blijft dit leeg. Zie ook src/lib/basePath.ts
+// .github/workflows/pages.yml) — op het uiteindelijke hoofddomein
+// (brusselmotorhomes.be) blijft dit leeg. Zie ook src/lib/basePath.ts
 // voor de <img>/<video>-bronnen die dit pad zelf moeten meenemen.
 const basePath = process.env.NEXT_PUBLIC_BASE_PATH || "";
 

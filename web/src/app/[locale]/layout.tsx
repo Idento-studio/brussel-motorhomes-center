@@ -8,6 +8,7 @@ import { FloatingWhatsApp } from "@/components/FloatingWhatsApp";
 import { SetHtmlLang } from "@/components/SetHtmlLang";
 import { JsonLd } from "@/components/JsonLd";
 import { buildLocalBusiness } from "@/lib/structuredData";
+import { BASE_PATH } from "@/lib/basePath";
 
 export function generateStaticParams() {
   return locales.map((locale) => ({ locale }));
@@ -34,6 +35,11 @@ export async function generateMetadata({
       template: "%s | Brussel Motorhomes Center",
     },
     description,
+    // BASE_PATH staat enkel tijdens de GitHub Pages-previewbuild: die mag
+    // nooit naast het echte domein in Google terechtkomen. robots.ts
+    // blokkeert daar ook al het crawlen zelf, maar een meta-noindex is het
+    // betrouwbaardere signaal tegen indexering van al bekende URL's.
+    ...(BASE_PATH ? { robots: { index: false, follow: false } } : {}),
     ...buildOpenGraph({ locale, title: "Brussel Motorhomes Center", description, pad: "/" }),
   };
 }
