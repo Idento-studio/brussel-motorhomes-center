@@ -14,3 +14,9 @@ PROJECT-BRIEF.md
 Thumbs.db
 desktop.ini
 .DS_Store
+
+# Claude Code-tooling en eigen werknotities: geen onderdeel van de site,
+# hoeft niet publiek op github.com te staan.
+.agents/
+.claude/
+Claude outputs/

@@ -1,0 +1,363 @@
+/* ==========================================================================
+   layout.css — raamwerk: kolom, header, secties, footer, mobiele balk
+   ========================================================================== */
+
+/* — Boxed kolom van 1400px. Achtergronden lopen van rand tot rand, de
+     inhoud blijft binnen deze breedte, ook in de header. — */
+.wrap {
+  width: 100%;
+  max-width: var(--wrap);
+  margin-inline: auto;
+  padding-inline: var(--gutter);
+}
+@media (min-width: 768px) { .wrap { padding-inline: 2rem; } }
+
+.skip-link {
+  position: absolute;
+  left: -9999px;
+  top: 0;
+  z-index: 200;
+  background: var(--accent);
+  color: var(--wit);
+  padding: 0.75rem 1.25rem;
+  font-weight: 600;
+  border-radius: 0 0 var(--radius-sm) 0;
+}
+.skip-link:focus { left: 0; }
+
+/* ── Header ───────────────────────────────────────────────────────────── */
+
+.site-header {
+  position: sticky;
+  top: env(safe-area-inset-top, 0px);
+  z-index: 50;
+  background: var(--wit);
+}
+
+/* Servicebalk. Schuift dicht bij het scrollen — zie site.js voor de
+   hysterese die het knipperen voorkomt. */
+.service-balk {
+  background: var(--blauw-900);
+  color: var(--inverse-text-bright);
+  font-size: var(--fs-mini);
+  overflow: hidden;
+  max-height: 3rem;
+  opacity: 1;
+  transition: max-height 0.3s var(--ease), opacity 0.3s var(--ease);
+}
+.site-header.is-vast .service-balk { max-height: 0; opacity: 0; }
+
+.service-balk .wrap {
+  display: flex;
+  align-items: center;
+  gap: 1.25rem;
+  padding-block: 0.5rem;
+}
+.service-balk a:hover { color: var(--accent); }
+.service-balk-tel { font-weight: 600; color: var(--wit); }
+.service-balk-scheiding { color: rgba(255, 255, 255, 0.45); }
+.service-nav { margin-left: auto; display: flex; align-items: center; gap: 1.25rem; }
+/* Onder 1024px blijft dit rijtje (uren, over ons, FAQ, e-mail, taalwissel)
+   te breed om zonder te wikkelen op één regel te passen — met de derde taal
+   (EN) erbij overschrijdt de inhoud de beschikbare breedte op tablet, en
+   valt ze stil weg door de overflow:hidden hierboven (voor de inklap-animatie).
+   Verberg daarom tot dezelfde 1023px-grens als de hoofdnav: de mobiele
+   menu-knop (die de taalwissel ook al bevat) is dan toch al actief. */
+@media (max-width: 1023px) {
+  .service-balk-uren, .service-balk-scheiding, .service-nav { display: none; }
+}
+
+.taal-wissel { display: flex; align-items: center; gap: 0.375rem; }
+.taal-wissel a {
+  padding: 0.125rem 0.4375rem;
+  border-radius: 4px;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  color: rgba(255, 255, 255, 0.65);
+}
+.taal-wissel a:hover { color: var(--wit); }
+.taal-wissel a[aria-current="true"] { background: rgba(255, 255, 255, 0.15); color: var(--wit); }
+
+.mobiele-nav .taal-wissel { display: flex; gap: 0.5rem; padding-block: 0.75rem; }
+.mobiele-nav .taal-wissel a {
+  display: inline-block;
+  padding: 0.375rem 0.75rem;
+  border: 1px solid var(--border-strong);
+  border-radius: 999px;
+  font-size: 0.8125rem;
+  color: var(--blauw-700);
+}
+.mobiele-nav .taal-wissel a[aria-current="true"] { background: var(--blauw-700); color: var(--wit); border-color: var(--blauw-700); }
+
+.header-balk {
+  border-bottom: 1px solid var(--border);
+  transition: box-shadow 0.3s var(--ease);
+}
+.site-header.is-vast .header-balk { box-shadow: 0 2px 10px rgba(26, 43, 61, 0.08); }
+
+.header-balk .wrap {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+  padding-block: 0.875rem;
+  transition: padding 0.3s var(--ease);
+}
+.site-header.is-vast .header-balk .wrap { padding-block: 0.5rem; }
+
+.merk { display: flex; align-items: center; flex-shrink: 0; }
+.merk img {
+  height: 2.75rem;
+  width: auto;
+  transition: height 0.3s var(--ease);
+}
+.site-header.is-vast .merk img { height: 2.25rem; }
+
+/* Staat het logobestand er, dan verdwijnt de tekstversie. Verdwijnt de <img>
+   omdat het bestand ontbreekt (onerror), dan komt de tekst vanzelf terug. */
+.merk img + .merk-tekst { display: none; }
+
+/* Tekstueel terugvalmerk zolang het logobestand er niet is. */
+.merk-tekst {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 1.125rem;
+  line-height: 1.1;
+  color: var(--blauw-700);
+}
+.merk-tekst span {
+  display: block;
+  font-family: var(--font-body);
+  font-size: 0.6rem;
+  font-weight: 600;
+  letter-spacing: 1.4px;
+  text-transform: uppercase;
+  color: var(--accent);
+}
+
+.hoofdnav {
+  margin-left: auto;
+  display: flex;
+  align-items: center;
+  gap: 1.75rem;
+  font-size: var(--fs-small);
+  font-weight: 500;
+}
+@media (min-width: 1280px) { .hoofdnav { gap: 2.25rem; } }
+
+.hoofdnav a { position: relative; padding-block: 0.25rem; }
+.hoofdnav a::after {
+  content: "";
+  position: absolute;
+  inset-inline: 0;
+  bottom: 0;
+  height: 2px;
+  background: var(--accent);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.2s var(--ease);
+}
+.hoofdnav a:hover::after,
+.hoofdnav a[aria-current="page"]::after { transform: scaleX(1); }
+.hoofdnav a[aria-current="page"] { color: var(--blauw-700); }
+
+.header-cta { flex-shrink: 0; }
+
+.nav-knop {
+  margin-left: auto;
+  display: none;
+  background: none;
+  border: 0;
+  padding: 0.5rem;
+  color: var(--blauw-700);
+  cursor: pointer;
+  border-radius: var(--radius-sm);
+}
+.nav-knop svg { display: block; }
+.nav-knop .icoon-sluit { display: none; }
+.nav-knop[aria-expanded="true"] .icoon-sluit { display: block; }
+.nav-knop[aria-expanded="true"] .icoon-open { display: none; }
+
+.mobiele-nav {
+  display: none;
+  border-bottom: 1px solid var(--border);
+  background: var(--wit);
+  padding-bottom: var(--sp-5);
+}
+.mobiele-nav.is-open { display: block; }
+.mobiele-nav a {
+  display: block;
+  padding-block: 0.75rem;
+  border-bottom: 1px solid var(--border);
+  font-size: 0.9375rem;
+  font-weight: 500;
+}
+.mobiele-nav .btn { margin-top: var(--sp-4); width: 100%; }
+
+@media (max-width: 1023px) {
+  .hoofdnav, .header-cta { display: none; }
+  .nav-knop { display: block; }
+}
+
+/* ── Paginakop (elke subpagina) ───────────────────────────────────────── */
+
+.paginakop {
+  position: relative;
+  isolation: isolate;
+  background: var(--inverse-bg);
+  color: var(--wit);
+  padding-block: var(--sp-7);
+}
+@media (min-width: 768px) { .paginakop { padding-block: var(--sp-8); } }
+.paginakop::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background: radial-gradient(110% 80% at 82% 10%,
+              rgba(59, 115, 155, 0.6) 0%,
+              rgba(26, 75, 119, 0.28) 45%,
+              rgba(18, 56, 92, 0) 75%);
+}
+.kruimelpad {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: var(--fs-small);
+  color: var(--inverse-text-dim);
+}
+.kruimelpad a:hover { color: var(--accent); }
+.kruimelpad [aria-current] { color: var(--wit); font-weight: 500; }
+.paginakop h1 { margin-top: var(--sp-4); font-size: var(--fs-h1); max-width: 20ch; }
+.paginakop .intro {
+  margin-top: var(--sp-4);
+  max-width: 62ch;
+  color: var(--inverse-text-bright);
+}
+
+/* ── Secties ──────────────────────────────────────────────────────────── */
+
+.sectie { padding-block: var(--sp-8); }
+@media (min-width: 768px) { .sectie { padding-block: var(--sp-9); } }
+.sectie-vlak { background: var(--surface); }
+.sectie-blauw { background: var(--blauw-700); color: var(--wit); }
+.sectie-blauw h2, .sectie-blauw h3 { color: var(--wit); }
+.sectie-blauw p { color: var(--inverse-text-bright); }
+
+.sectie-kop { margin-bottom: var(--sp-7); }
+.sectie-kop.is-midden { text-align: center; }
+.sectie-kop h2 { margin-top: var(--sp-2); font-size: var(--fs-h2); }
+.sectie-kop .intro { margin-top: var(--sp-3); max-width: 62ch; color: var(--text-muted); }
+.sectie-kop.is-midden .intro { margin-inline: auto; }
+.sectie-blauw .sectie-kop .intro { color: var(--inverse-text-bright); }
+
+/* Twee kolommen: tekst naast beeld. */
+.split {
+  display: grid;
+  gap: var(--sp-7);
+  align-items: center;
+}
+@media (min-width: 768px) {
+  .split { grid-template-columns: 1fr 1fr; gap: var(--sp-8); }
+  .split-omgekeerd > :first-child { order: 2; }
+}
+
+/* ── Footer ───────────────────────────────────────────────────────────── */
+
+.site-footer {
+  background: var(--inverse-bg);
+  color: var(--inverse-text);
+  padding-top: var(--sp-8);
+  font-size: var(--fs-small);
+}
+.footer-raster {
+  display: grid;
+  gap: var(--sp-7);
+}
+@media (min-width: 640px) { .footer-raster { grid-template-columns: 1fr 1fr; } }
+@media (min-width: 1024px) { .footer-raster { grid-template-columns: 1.4fr 1fr 1fr 1.2fr; } }
+
+.footer-merk p { margin-top: 0.875rem; max-width: 34ch; line-height: 1.7; }
+.footer-logo { height: 4rem; width: auto; }
+
+.site-footer h2 {
+  font-family: var(--font-body);
+  font-size: var(--fs-label);
+  font-weight: 700;
+  letter-spacing: 2.4px;
+  text-transform: uppercase;
+  color: var(--blauw-200);
+  margin-bottom: var(--sp-4);
+}
+.site-footer li, .site-footer .regel { margin-bottom: 0.5rem; line-height: 1.6; }
+.site-footer a:hover { color: var(--accent); }
+
+.footer-slot {
+  margin-top: var(--sp-7);
+  border-top: 1px solid var(--inverse-hairline);
+  padding-block: var(--sp-4);
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.5rem var(--sp-5);
+  font-size: var(--fs-mini);
+  color: var(--inverse-text-dim);
+}
+.footer-slot p { margin: 0; }
+@media (max-width: 639px) {
+  .footer-slot { justify-content: center; text-align: center; }
+}
+.footer-slot a:hover { color: var(--accent); }
+
+/* ── Vaste actiebalk op gsm ───────────────────────────────────────────── */
+
+.actiebalk {
+  position: fixed;
+  inset-inline: 0;
+  bottom: 0;
+  z-index: 60;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  background: var(--inverse-bg);
+  color: var(--wit);
+  border-top: 1px solid var(--inverse-hairline);
+  padding-bottom: env(safe-area-inset-bottom, 0px);
+}
+.actiebalk a {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.25rem;
+  padding-block: 0.625rem;
+  font-size: 0.6875rem;
+  font-weight: 600;
+}
+.actiebalk a + a { border-left: 1px solid var(--inverse-hairline); }
+body { padding-bottom: 4rem; }
+@media (min-width: 768px) {
+  .actiebalk { display: none; }
+  body { padding-bottom: 0; }
+}
+
+/* ── Zwevende WhatsApp-knop (alle schermgroottes) ────────────────────── */
+
+.whatsapp-zwevend {
+  position: fixed;
+  left: 1.25rem;
+  bottom: calc(4rem + 1.25rem + env(safe-area-inset-bottom, 0px));
+  z-index: 70;
+  display: grid;
+  place-items: center;
+  width: 3.25rem;
+  height: 3.25rem;
+  border-radius: 50%;
+  background: #25d366;
+  color: var(--wit);
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.22);
+  transition: transform 0.2s var(--ease);
+}
+.whatsapp-zwevend:hover { transform: scale(1.06); }
+@media (min-width: 768px) {
+  .whatsapp-zwevend { bottom: 1.5rem; left: 1.5rem; }
+}

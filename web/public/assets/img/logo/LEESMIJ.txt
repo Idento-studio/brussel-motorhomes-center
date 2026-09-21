@@ -1,0 +1,5 @@
+LOGO
+====
+bmc-logo.svg   liefst SVG. Anders bmc-logo.png op 600 px breed, transparant.
+               Wordt 44 px hoog getoond, 36 px zodra je scrollt.
+Zolang dit bestand ontbreekt, toont de site de merknaam in tekst.

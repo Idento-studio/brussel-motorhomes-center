@@ -1,0 +1,10 @@
+SOCIAL EN ICONEN
+================
+Deze horen NIET in deze map maar rechtstreeks in assets/img/ :
+
+og-image.jpg           1200 x 630   verschijnt bij het delen op WhatsApp,
+                                    Facebook en LinkedIn
+apple-touch-icon.png    180 x 180
+icon-192.png            192 x 192   voor het webmanifest
+icon-512.png            512 x 512   voor het webmanifest
+favicon.svg                         staat er al, vervang hem door het merkicoon

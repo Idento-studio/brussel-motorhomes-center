@@ -1,0 +1,22 @@
+/* Structurele laag bovenop brand.css/layout.css/components.css/aanbod.css:
+   enkel wat next/font en de sticky footer nodig hebben. Het merkpalet zelf
+   (kleuren, fonts, spacing) staat in src/styles/brand.css. */
+
+html,
+body {
+  height: 100%;
+}
+
+/* Geen overflow-x: hidden op body — dat dwingt browsers om overflow-y ook
+   naar "auto" te herrekenen (CSS Overflow-spec), waardoor body zelf een
+   scrollcontainer wordt en position: sticky in .zijkolom (aanbod.css) niet
+   meer relatief aan de viewport werkt. */
+
+body {
+  display: flex;
+  flex-direction: column;
+}
+
+main {
+  flex: 1;
+}

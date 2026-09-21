@@ -1,0 +1,162 @@
+/* ==========================================================================
+   pages/home.css — hero, merkenbalk, aanbodblok, diensten
+   ========================================================================== */
+
+.hero {
+  position: relative;
+  isolation: isolate;
+  color: var(--wit);
+}
+.hero .hero-media { position: absolute; inset: 0; z-index: -2; }
+.hero .hero-media::after { opacity: 0.12; }
+.hero::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background: linear-gradient(100deg,
+              rgba(18,35,52,0.94) 0%,
+              rgba(18,35,52,0.82) 34%,
+              rgba(18,35,52,0.46) 66%,
+              rgba(18,35,52,0.22) 100%);
+}
+.hero::after {
+  content: "";
+  position: absolute;
+  inset-inline: 0;
+  bottom: 0;
+  height: 8rem;
+  z-index: -1;
+  background: linear-gradient(to top, rgba(18,35,52,0.55), rgba(18,35,52,0));
+}
+.hero .wrap { padding-block: var(--sp-8) var(--sp-7); }
+@media (min-width: 768px) { .hero .wrap { padding-block: 6rem var(--sp-8); } }
+
+.hero-tekst { max-width: 730px; }
+.hero h1 { font-size: var(--fs-hero); line-height: 1.1; }
+.hero .lead { margin-top: var(--sp-5); max-width: 52ch; color: var(--inverse-text-bright); }
+
+.hero-troeven {
+  margin-top: var(--sp-5);
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem 1.25rem;
+  font-size: var(--fs-small);
+  font-weight: 500;
+  color: var(--inverse-text-bright);
+}
+.hero-troeven li { display: flex; align-items: center; gap: 0.5rem; }
+.hero-troeven svg { color: var(--accent); }
+
+/* Zoekbalk. text kleur expliciet: de hero zet wit, en dat erfde de
+   witte balk anders mee — wit op wit. */
+.zoekbalk {
+  margin-top: var(--sp-6);
+  background: rgba(255, 255, 255, 0.95);
+  color: var(--text);
+  border-radius: var(--radius-lg);
+  padding: var(--sp-3);
+  box-shadow: var(--shadow-lift);
+  backdrop-filter: blur(6px);
+}
+@media (min-width: 768px) { .zoekbalk { margin-top: var(--sp-7); padding: var(--sp-4); } }
+.zoekbalk-raster { display: grid; gap: var(--sp-3); }
+@media (min-width: 768px) { .zoekbalk-raster { grid-template-columns: 1fr 1fr auto; align-items: end; } }
+.zoekbalk .veld > label { color: var(--text-muted); }
+.zoekbalk select { color: var(--text); }
+
+/* ── Merkenbalk ───────────────────────────────────────────────────────── */
+
+.merkenbalk { background: var(--blauw-700); overflow: hidden; padding-block: var(--sp-4); }
+.merken-spoor {
+  display: flex;
+  width: max-content;
+  align-items: center;
+  gap: 3.5rem;
+  animation: merken-schuiven 38s linear infinite;
+}
+.merkenbalk:hover .merken-spoor { animation-play-state: paused; }
+@keyframes merken-schuiven {
+  from { transform: translateX(0); }
+  to { transform: translateX(-50%); }
+}
+.merk-logo {
+  position: relative;
+  display: grid;
+  place-items: center;
+  width: 126px;
+  height: 2.75rem;
+  flex-shrink: 0;
+}
+/* position:absolute i.p.v. height:100% — in een grid-item met
+   place-items:center (dus niet gestretcht) valt een percentage-hoogte op
+   een <img> terug op de intrinsieke aspect ratio, waardoor het logo niet de
+   volle 44px vult en de padding boven/onder het logo scheeftrekt. */
+.merk-logo img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: contain; }
+/* Zelfde terugval als bij het hoofdlogo: is het bestand er niet, dan blijft
+   de merknaam in tekst staan. */
+.merk-logo img + span { display: none; }
+.merk-logo span {
+  font-size: var(--fs-mini);
+  font-weight: 700;
+  letter-spacing: 2.4px;
+  text-transform: uppercase;
+  color: var(--inverse-text-bright);
+}
+@media (prefers-reduced-motion: reduce) {
+  .merken-spoor {
+    animation: none;
+    width: 100%;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: var(--sp-6);
+  }
+}
+
+/* ── Aanbodblok op de home ────────────────────────────────────────────── */
+
+.aanbod-kop {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: var(--sp-5);
+}
+.aanbod-kop h2 { margin-top: var(--sp-2); font-size: var(--fs-h2); }
+
+/* ── Dienstenkaarten ──────────────────────────────────────────────────── */
+
+.dienst { display: flex; flex-direction: column; }
+.dienst .media { position: relative; }
+.dienst .media-scrim {
+  position: absolute;
+  inset-inline: 0;
+  bottom: 0;
+  height: 66%;
+  z-index: 2;
+  background: linear-gradient(to top, rgba(26,43,61,0.8), transparent);
+}
+.dienst .media h3 {
+  position: absolute;
+  left: var(--sp-4);
+  bottom: var(--sp-3);
+  z-index: 3;
+  color: var(--wit);
+  font-size: 1.1875rem;
+}
+.dienst .kaart-body { gap: var(--sp-4); }
+.dienst p { flex: 1; font-size: 0.875rem; line-height: 1.65; color: var(--text-muted); }
+.dienst .tekst-link { align-self: flex-start; }
+
+/* ── Slot-CTA ─────────────────────────────────────────────────────────── */
+
+.slot-cta { text-align: center; }
+.slot-cta h2 { font-size: var(--fs-h2); }
+.slot-cta p { margin: var(--sp-3) auto 0; max-width: 46ch; color: var(--text-muted); }
+.slot-cta .knoppen {
+  margin-top: var(--sp-6);
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 0.875rem;
+}

@@ -1,12 +1,17 @@
-# Publiceert de site naar GitHub Pages.
+# Bouwt de Next.js-site (web/) en publiceert de statische export naar
+# GitHub Pages.
 #
 # Waarom een eigen workflow in plaats van de standaard "Deploy from a branch"?
 # Die ingebouwde variant faalde met: Ensure GITHUB_TOKEN has permission
 # "id-token: write". Die OIDC-scope moet expliciet opgevraagd worden, en dat
 # kan alleen in een eigen workflow — zie het permissions-blok hieronder.
 #
-# Deze site is platte HTML/CSS/JS, dus er komt geen Jekyll aan te pas:
-# de map wordt gewoon als statische bestanden geüpload.
+# Dit is een tijdelijke previewomgeving voor Idento (een GitHub Pages-
+# projectpagina op een subpad, https://idento-studio.github.io/brussel-
+# motorhomes-center/). De uiteindelijke klantsite draait straks op het
+# hoofddomein brusselmotorhomescenter.be via een andere host — zie
+# NEXT_PUBLIC_BASE_PATH hieronder, die enkel voor déze previewbuild het
+# subpad in alle links/afbeeldingen meeneemt (web/src/lib/basePath.ts).
 name: Deploy site to GitHub Pages
 
 on:
@@ -25,31 +30,52 @@ concurrency:
   cancel-in-progress: false
 
 jobs:
+  build:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: web
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Node instellen
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+          cache-dependency-path: web/package-lock.json
+
+      - name: Dependencies installeren
+        run: npm ci
+
+      - name: Site bouwen
+        run: npm run build
+        env:
+          # GitHub Pages-projectpagina's staan op een subpad, niet op de
+          # domeinroot — zonder dit klopt geen enkele link of afbeelding.
+          NEXT_PUBLIC_BASE_PATH: /brussel-motorhomes-center
+          # Publieke Sanity-projectgegevens (geen geheimen) — nodig om de
+          # camperlijsten tijdens de build op te halen. Zie web/.env.local
+          # voor dezelfde waarden lokaal.
+          NEXT_PUBLIC_SANITY_PROJECT_ID: th815q8m
+          NEXT_PUBLIC_SANITY_DATASET: production
+
+      - name: Configure Pages
+        uses: actions/configure-pages@v5
+
+      - name: Upload site
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: web/out
+
   deploy:
+    needs: build
     runs-on: ubuntu-latest
     environment:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
     steps:
-      - name: Checkout
-        uses: actions/checkout@v4
-
-      - name: Configure Pages
-        uses: actions/configure-pages@v5
-
-      # De interne documenten mogen niet mee online. Zonder deze stap staat
-      # de ingevulde PROJECT-BRIEF.md — met klantnotities, concurrenten en
-      # "wat de klant zeker NIET wil" — publiek downloadbaar op
-      # https://domein/PROJECT-BRIEF.md. Dit draait op de checkout van de
-      # runner, dus je eigen bestanden blijven ongemoeid.
-      - name: Interne documenten uit de publicatie halen
-        run: rm -f ./*.md
-
-      - name: Upload site
-        uses: actions/upload-pages-artifact@v3
-        with:
-          path: .
-
       - name: Deploy to Pages
         id: deployment
         uses: actions/deploy-pages@v4

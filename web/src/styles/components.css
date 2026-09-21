@@ -1,0 +1,543 @@
+/* ==========================================================================
+   components.css — knoppen, kaarten, formulieren, accordeon, tabellen
+   ========================================================================== */
+
+/* ── Knoppen ──────────────────────────────────────────────────────────── */
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  font-family: var(--font-body);
+  font-size: 0.875rem;
+  font-weight: 600;
+  line-height: 1;
+  padding: 0.875rem 1.5rem;
+  border: 2px solid transparent;
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+  transition: background-color 0.15s var(--ease), color 0.15s var(--ease),
+              border-color 0.15s var(--ease), transform 0.15s var(--ease);
+}
+.btn:hover { transform: translateY(-1px); }
+.btn-klein { padding: 0.6875rem 1.25rem; font-size: var(--fs-small); }
+.btn-vol { width: 100%; }
+
+.btn-goud { background: var(--accent); border-color: var(--accent); color: var(--wit); }
+.btn-goud:hover { background: var(--goud-400); border-color: var(--goud-400); }
+
+.btn-licht { background: transparent; border-color: rgba(255,255,255,0.55); color: var(--wit); }
+.btn-licht:hover { background: rgba(255,255,255,0.12); border-color: var(--wit); }
+
+.btn-blauw { background: transparent; border-color: var(--blauw-700); color: var(--blauw-700); }
+.btn-blauw:hover { background: var(--blauw-700); color: var(--wit); }
+
+.btn-stil { background: var(--wit); border-color: var(--border-strong); color: var(--text); }
+.btn-stil:hover { border-color: var(--blauw-700); color: var(--blauw-700); }
+
+.tekst-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.375rem;
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: var(--blauw-700);
+}
+.tekst-link:hover { color: var(--accent); }
+.tekst-link svg { transition: transform 0.2s var(--ease); }
+.tekst-link:hover svg { transform: translateX(3px); }
+
+/* ── Beeldkader met placeholder ───────────────────────────────────────────
+   Zolang er geen foto is, blijft dit kader staan met een campersilhouet in
+   plaats van een gebroken afbeelding. Zet er later een <img> in en die
+   overdekt het kader vanzelf. — */
+
+.media {
+  position: relative;
+  overflow: hidden;
+  background: linear-gradient(145deg, #DCE7F1, #AFC8DE);
+}
+.media::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 120 64' fill='none' stroke='%231A4B77' stroke-width='3' stroke-linejoin='round' stroke-linecap='round'%3E%3Cpath d='M6 44V22a6 6 0 0 1 6-6h50l18 14h28a6 6 0 0 1 6 6v8a4 4 0 0 1-4 4h-6'/%3E%3Cpath d='M6 44h14M46 44h32'/%3E%3Ccircle cx='33' cy='44' r='9'/%3E%3Ccircle cx='91' cy='44' r='9'/%3E%3Cpath d='M20 22h22v12H20z'/%3E%3C/svg%3E") center / min(50%, 120px) no-repeat;
+  opacity: 0.3;
+}
+.media > img, .media > video, .media > iframe {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border: 0;
+  z-index: 1;
+}
+.media-4x3 { aspect-ratio: 4 / 3; }
+.media-16x10 { aspect-ratio: 16 / 10; }
+.media-4x5 { aspect-ratio: 4 / 5; }
+.media-kaart { aspect-ratio: 297 / 180; }
+
+/* ── Video met geluidsknop (bv. camper op maat, andersvaliden) ──────────── */
+
+.media-video video { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; z-index: 1; }
+.video-geluidsknop {
+  position: absolute;
+  right: var(--sp-4);
+  bottom: var(--sp-4);
+  z-index: 2;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.5rem 0.875rem;
+  border: 1px solid rgba(255,255,255,0.5);
+  border-radius: var(--radius-pill);
+  background: rgba(18,35,52,0.45);
+  backdrop-filter: blur(6px);
+  color: var(--wit);
+  font-family: var(--font-body);
+  font-size: var(--fs-small);
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.15s var(--ease);
+}
+.video-geluidsknop:hover { background: rgba(18,35,52,0.65); }
+.video-geluidsknop svg { display: block; }
+.video-geluidsknop .icoon-geluid { display: none; }
+.video-geluidsknop[aria-pressed="true"] .icoon-geluid { display: block; }
+.video-geluidsknop[aria-pressed="true"] .icoon-mute { display: none; }
+.media-rond { border-radius: var(--radius-lg); }
+
+/* ── Kaarten ──────────────────────────────────────────────────────────── */
+
+.kaart {
+  background: var(--surface-raised);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+}
+.kaart-lift { box-shadow: var(--shadow-card); transition: transform 0.2s var(--ease), box-shadow 0.2s var(--ease); }
+.kaart-lift:hover { transform: translateY(-4px); box-shadow: var(--shadow-lift); }
+.kaart-body { padding: var(--sp-5); display: flex; flex-direction: column; flex: 1; }
+.kaart-ruim { padding: var(--sp-6); }
+
+.raster { display: grid; gap: var(--sp-5); }
+.raster-2 { grid-template-columns: 1fr; }
+.raster-3 { grid-template-columns: 1fr; }
+.raster-4 { grid-template-columns: 1fr; }
+@media (min-width: 640px) {
+  .raster-2, .raster-3, .raster-4 { grid-template-columns: repeat(2, 1fr); }
+}
+@media (min-width: 1024px) {
+  .raster-3 { grid-template-columns: repeat(3, 1fr); }
+  .raster-4 { grid-template-columns: repeat(4, 1fr); }
+}
+.raster-ruim { gap: var(--sp-6); }
+
+/* Icoonkaart: onderhoudsdiensten, accessoires, aanpassingen, waarden. */
+.icoon-kaart { padding: var(--sp-6); }
+.icoon-kaart:hover { box-shadow: var(--shadow-card); }
+.icoon-vlak {
+  display: grid;
+  place-items: center;
+  width: 2.75rem;
+  height: 2.75rem;
+  border-radius: var(--radius-md);
+  background: var(--goud-100);
+  color: var(--accent-ink);
+}
+.icoon-kaart h3 { margin-top: var(--sp-4); font-size: 1.125rem; }
+.icoon-kaart p { margin-top: var(--sp-2); font-size: 0.875rem; line-height: 1.65; color: var(--text-muted); }
+
+/* ── Verticaal traject ────────────────────────────────────────────────────
+   Een lijn met stippen, tekst rechts. Werkt even goed bij drie stappen als
+   bij zes, en hoeft op gsm niet te veranderen — het staat daar al verticaal.
+
+   Twee gebruiksvormen:
+   - `.traject` als tweekoloms omhulsel, met links een titelkolom die blijft
+     staan tijdens het scrollen en rechts de lijst;
+   - `.traject-lijst` op zichzelf, wanneer de lijst in een bestaande kolom
+     valt (bijvoorbeeld naast een foto, of onder een tabkeuze).
+   ------------------------------------------------------------------------ */
+
+.traject {
+  display: grid;
+  gap: var(--sp-6);
+}
+@media (min-width: 860px) {
+  .traject {
+    grid-template-columns: 0.75fr 1fr;
+    gap: var(--sp-8);
+    align-items: start;
+  }
+  .traject-intro {
+    position: sticky;
+    top: 7rem;
+  }
+}
+.traject-intro h2 { margin-top: var(--sp-3); font-size: var(--fs-h2); }
+.traject-intro p { margin-top: var(--sp-4); color: var(--text-muted); line-height: 1.7; }
+
+.traject-lijst { position: relative; display: grid; }
+
+.traject-lijst li { position: relative; padding: 0 0 var(--sp-5) 2.5rem; }
+.traject-lijst li:last-child { padding-bottom: 0; }
+
+/* De lijn loopt van onder de stip tot in de volgende stap. Bij de laatste
+   stap valt ze weg, anders hangt er een stukje lijn in het niets. */
+.traject-lijst li::before {
+  content: "";
+  position: absolute;
+  left: 11px;
+  top: 1.5rem;
+  bottom: -0.25rem;
+  width: 2px;
+  background: var(--border-strong);
+}
+.traject-lijst li:last-child::before { display: none; }
+
+.traject-stip {
+  position: absolute;
+  left: 0;
+  top: 2px;
+  display: grid;
+  place-items: center;
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  background: var(--blauw-700);
+  color: var(--wit);
+  font-family: var(--font-body);
+  font-size: 11px;
+  font-weight: 700;
+  font-variant-numeric: tabular-nums;
+}
+
+.traject-lijst h3 { font-size: 1.0625rem; }
+.traject-lijst p {
+  margin-top: 0.3125rem;
+  font-size: var(--fs-small);
+  line-height: 1.6;
+  color: var(--text-muted);
+}
+
+/* Op een blauwe sectie: lichtere lijn, gouden stip. */
+.sectie-blauw .traject-lijst li::before { background: rgba(255, 255, 255, 0.25); }
+.sectie-blauw .traject-stip { background: var(--accent); }
+.sectie-blauw .traject-lijst p { color: var(--inverse-text-bright); }
+
+/* ── Keuzeraster: verticale optielijst naast het bijhorende traject ─────
+   Gebruikt op verkoop-je-camper: links de keuzes onder elkaar, rechts het
+   traject van de actieve keuze. */
+.keuze-raster {
+  display: grid;
+  gap: var(--sp-6);
+  margin-top: var(--sp-6);
+}
+@media (min-width: 768px) {
+  .keuze-raster {
+    grid-template-columns: 1fr 1.3fr;
+    gap: var(--sp-7);
+    align-items: start;
+  }
+}
+.keuze-opties { display: grid; gap: var(--sp-3); align-content: start; }
+.keuze-optie {
+  display: block;
+  width: 100%;
+  text-align: left;
+  border: 1px solid var(--border-strong);
+  background: var(--wit);
+  color: var(--text);
+  border-radius: var(--radius-lg);
+  padding: var(--sp-5);
+  font-family: var(--font-body);
+  font-size: 0.9375rem;
+  font-weight: 600;
+  line-height: 1.4;
+  cursor: pointer;
+  transition: background-color 0.15s var(--ease), color 0.15s var(--ease), border-color 0.15s var(--ease);
+}
+.keuze-optie:hover { border-color: var(--blauw-500); }
+.keuze-optie[aria-selected="true"] { background: var(--blauw-700); border-color: var(--blauw-700); color: var(--wit); }
+
+/* ── Vinklijst ────────────────────────────────────────────────────────── */
+
+.vinklijst { display: grid; gap: 0.8125rem; }
+.vinklijst li {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.6875rem;
+  font-size: 0.90625rem;
+  font-weight: 500;
+}
+.vinklijst svg { flex-shrink: 0; margin-top: 3px; color: var(--accent); }
+.sectie-blauw .vinklijst li { color: var(--inverse-text-bright); }
+
+/* ── Pillen, badges, specs ────────────────────────────────────────────── */
+
+.pil {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.375rem;
+  border-radius: var(--radius-pill);
+  padding: 0.25rem 0.75rem;
+  font-size: var(--fs-mini);
+  font-weight: 500;
+  background: var(--surface);
+  color: var(--text-muted);
+}
+.pil-rij { display: flex; flex-wrap: wrap; gap: 0.375rem; }
+
+.badge {
+  border-radius: var(--radius-pill);
+  padding: 0.25rem 0.75rem;
+  font-size: var(--fs-label);
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+}
+.badge-nieuw { background: var(--accent); color: var(--wit); }
+.badge-occasion { background: rgba(255,255,255,0.95); color: var(--blauw-700); }
+.badge-blauw { background: var(--blauw-700); color: var(--wit); }
+.badge-stil { background: var(--wit); color: var(--text-muted); box-shadow: inset 0 0 0 1px var(--border-strong); }
+
+.prijs-pil {
+  background: rgba(26, 43, 61, 0.85);
+  color: var(--wit);
+  border-radius: var(--radius-pill);
+  padding: 0.375rem 0.875rem;
+  font-size: 0.875rem;
+  font-weight: 700;
+  font-variant-numeric: tabular-nums;
+}
+.prijs-pil .klein { font-weight: 500; opacity: 0.75; }
+
+.speclijst { flex: 1; }
+.speclijst div {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 0.75rem;
+  padding-block: 0.375rem;
+  border-bottom: 1px solid rgba(138,155,173,0.2);
+}
+.speclijst div:last-child { border-bottom: 0; }
+.speclijst dt { font-size: var(--fs-mini); color: var(--text-muted); }
+.speclijst dd { margin: 0; font-size: var(--fs-small); font-weight: 600; font-variant-numeric: tabular-nums; }
+
+/* ── Accordeon ────────────────────────────────────────────────────────── */
+
+.accordeon {
+  background: var(--surface-raised);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+}
+.accordeon > div + div { border-top: 1px solid var(--border); }
+.accordeon h3 { margin: 0; }
+.accordeon button {
+  display: flex;
+  width: 100%;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: var(--sp-4) var(--sp-5);
+  background: none;
+  border: 0;
+  text-align: left;
+  font-family: var(--font-display);
+  font-size: 1.0625rem;
+  font-weight: 700;
+  color: var(--text);
+  cursor: pointer;
+}
+.accordeon button:hover { color: var(--blauw-700); }
+.accordeon button svg { flex-shrink: 0; color: var(--accent); transition: transform 0.2s var(--ease); }
+.accordeon button[aria-expanded="true"] svg { transform: rotate(45deg); }
+.accordeon .antwoord { padding: 0 var(--sp-5) var(--sp-5); font-size: 0.90625rem; line-height: 1.65; color: var(--text-muted); }
+.accordeon .antwoord[hidden] { display: none; }
+
+/* ── Tabs / filterchips ───────────────────────────────────────────────── */
+
+.tabs { display: flex; flex-wrap: wrap; gap: 0.5rem; }
+.tab {
+  border: 1px solid var(--border-strong);
+  background: var(--wit);
+  color: var(--text-muted);
+  border-radius: var(--radius-pill);
+  padding: 0.625rem 1.25rem;
+  font-family: inherit;
+  font-size: 0.875rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.15s var(--ease), color 0.15s var(--ease);
+}
+.tab:hover { color: var(--blauw-700); }
+.tab[aria-selected="true"] { background: var(--blauw-700); border-color: var(--blauw-700); color: var(--wit); }
+.tab .aantal { opacity: 0.6; }
+
+.chips { display: flex; flex-wrap: wrap; gap: 0.5rem; }
+.chip {
+  border: 1px solid var(--border-strong);
+  background: var(--wit);
+  color: var(--text-muted);
+  border-radius: var(--radius-pill);
+  padding: 0.375rem 1rem;
+  font-size: var(--fs-small);
+  font-weight: 500;
+  cursor: pointer;
+}
+.chip:hover { border-color: var(--blauw-500); }
+.chip[aria-pressed="true"] { border-color: var(--accent); background: var(--goud-100); color: var(--accent-ink); }
+
+/* ── Formulieren ──────────────────────────────────────────────────────── */
+
+.formulier {
+  background: var(--surface-raised);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  padding: var(--sp-5);
+}
+@media (min-width: 768px) { .formulier { padding: var(--sp-6); } }
+.formulier.is-verhoogd { box-shadow: var(--shadow-card); }
+.formulier h2, .formulier h3 { font-size: 1.25rem; }
+.formulier .intro { margin-top: 0.375rem; font-size: var(--fs-small); color: var(--text-muted); }
+
+.velden { display: grid; gap: var(--sp-4); margin-top: var(--sp-5); }
+@media (min-width: 640px) { .velden { grid-template-columns: 1fr 1fr; } }
+.veld-breed { grid-column: 1 / -1; }
+
+/* Mobile-first, zoals .velden hierboven: op smalle schermen (~360px, binnen
+   de smalle formulierkolom van .zijkolom) is er te weinig ruimte voor twee
+   datumvelden naast elkaar, dus die staan er eerst onder elkaar. */
+.periode-raster { display: grid; grid-template-columns: 1fr; gap: var(--sp-4); margin-top: 0.5rem; }
+@media (min-width: 640px) { .periode-raster { grid-template-columns: 1fr 1fr; } }
+
+.veld > label {
+  display: block;
+  margin-bottom: 0.375rem;
+  font-size: var(--fs-label);
+  font-weight: 700;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: var(--text-muted);
+}
+.veld input, .veld select, .veld textarea {
+  width: 100%;
+  border: 1px solid var(--border-strong);
+  background: var(--wit);
+  color: var(--text);
+  border-radius: var(--radius-sm);
+  padding: 0.625rem 0.75rem;
+  font-family: var(--font-body);
+  font-size: 0.875rem;
+}
+.veld input[type="file"] { padding: 0.5rem; font-size: 0.8125rem; color: var(--text-muted); }
+.veld input[type="file"]::file-selector-button {
+  margin-right: 0.75rem;
+  border: 0;
+  border-radius: var(--radius-sm);
+  padding: 0.5rem 0.875rem;
+  background: var(--surface);
+  color: var(--text);
+  font-family: var(--font-body);
+  font-size: 0.8125rem;
+  font-weight: 600;
+  cursor: pointer;
+}
+.veld input[type="file"]::file-selector-button:hover { background: var(--border); }
+.veld textarea { resize: vertical; }
+.veld input:focus, .veld select:focus, .veld textarea:focus { border-color: var(--blauw-700); }
+
+.akkoord {
+  grid-column: 1 / -1;
+  display: flex;
+  align-items: flex-start;
+  gap: 0.625rem;
+  font-size: var(--fs-small);
+  color: var(--text-muted);
+}
+.akkoord input { margin-top: 3px; width: 1rem; height: 1rem; accent-color: var(--accent); }
+
+/* Honeypot: onzichtbaar voor mensen, ingevuld door bots. */
+.honeypot {
+  position: absolute !important;
+  left: -9999px;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+}
+
+.formulier-bedankt { text-align: center; padding-block: var(--sp-4); }
+.formulier-bedankt .vink {
+  display: grid;
+  place-items: center;
+  width: 3rem;
+  height: 3rem;
+  margin-inline: auto;
+  border-radius: 50%;
+  background: var(--goud-100);
+  color: var(--accent-ink);
+}
+.formulier-bedankt h3 { margin-top: var(--sp-3); font-size: 1.25rem; }
+.formulier-bedankt p { margin-top: var(--sp-2); font-size: 0.875rem; color: var(--text-muted); }
+
+/* ── Tabel ────────────────────────────────────────────────────────────── */
+
+.tabel-scroll { overflow-x: auto; }
+.tabel {
+  width: 100%;
+  min-width: 440px;
+  font-size: 0.875rem;
+}
+.tabel th, .tabel td { padding-block: 0.625rem; }
+.tabel thead th {
+  border-bottom: 2px solid var(--border-strong);
+  font-size: var(--fs-mini);
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--text-muted);
+  text-align: right;
+}
+.tabel thead th:first-child { text-align: left; }
+.tabel tbody tr { border-bottom: 1px solid rgba(138,155,173,0.2); }
+.tabel tbody tr:last-child { border-bottom: 0; }
+.tabel tbody th { text-align: left; font-weight: 600; }
+.tabel tbody td { text-align: right; font-variant-numeric: tabular-nums; }
+.tabel .leeg { color: var(--text-soft); }
+
+/* ── Notitieblokken ───────────────────────────────────────────────────── */
+
+.notitie {
+  border-radius: var(--radius-md);
+  padding: 0.75rem 1rem;
+  font-size: var(--fs-small);
+  line-height: 1.55;
+}
+.notitie-goud { background: var(--goud-100); color: var(--text); }
+.notitie-stil { background: var(--surface); color: var(--text-muted); }
+.notitie-leeg {
+  border: 1px dashed var(--border-strong);
+  background: var(--wit);
+  border-radius: var(--radius-lg);
+  padding: var(--sp-6);
+  text-align: center;
+  color: var(--text-muted);
+}
+
+/* ── WhatsApp-knop naast een CTA ──────────────────────────────────────── */
+
+.wa-knop {
+  display: grid;
+  place-items: center;
+  width: 2.75rem;
+  flex-shrink: 0;
+  border: 2px solid var(--border-strong);
+  border-radius: var(--radius-sm);
+  color: var(--whatsapp);
+  transition: border-color 0.15s var(--ease);
+}
+.wa-knop:hover { border-color: var(--whatsapp); }
