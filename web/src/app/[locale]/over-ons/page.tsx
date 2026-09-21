@@ -234,7 +234,7 @@ export default async function OverOnsPagina({
             <article className="kaart teamlid">
               <div className="media media-4x5">
                 <FotoMetPlaceholder
-                  src="/assets/img/over-ons/jimmy-verstraete.jpg"
+                  src="/assets/img/over-ons/jimmy-verstraete.webp"
                   alt="Jimmy Verstraete"
                   loading="lazy"
                 />
@@ -250,7 +250,7 @@ export default async function OverOnsPagina({
             <article className="kaart teamlid">
               <div className="media media-4x5">
                 <FotoMetPlaceholder
-                  src="/assets/img/over-ons/didier-de-paepe.jpg"
+                  src="/assets/img/over-ons/didier-de-paepe.webp"
                   alt="Didier De Paepe"
                   loading="lazy"
                 />
@@ -266,7 +266,7 @@ export default async function OverOnsPagina({
             <article className="kaart teamlid">
               <div className="media media-4x5">
                 <FotoMetPlaceholder
-                  src="/assets/img/over-ons/maxime-catry.jpg"
+                  src="/assets/img/over-ons/maxime-catry.webp"
                   alt="Maxime Catry"
                   loading="lazy"
                 />
@@ -282,7 +282,7 @@ export default async function OverOnsPagina({
             <article className="kaart teamlid">
               <div className="media media-4x5">
                 <FotoMetPlaceholder
-                  src="/assets/img/over-ons/philip-thijs.jpg"
+                  src="/assets/img/over-ons/philip-thijs.webp"
                   alt="Philip Thijs"
                   loading="lazy"
                 />

@@ -37,14 +37,14 @@ export async function generateMetadata({
 }
 
 const MERKEN = [
-  { naam: "Adria", bestand: "adria.png" },
-  { naam: "Blucamp", bestand: "blucamp.png" },
-  { naam: "Bürstner", bestand: "burstner.png" },
-  { naam: "Dethleffs", bestand: "dethleffs.png" },
-  { naam: "Hymer", bestand: "hymer.png" },
-  { naam: "Ilusion", bestand: "ilusion.png" },
-  { naam: "Knaus", bestand: "knaus.png" },
-  { naam: "Westfalia", bestand: "westfalia.png" },
+  { naam: "Adria", bestand: "adria.webp" },
+  { naam: "Blucamp", bestand: "blucamp.webp" },
+  { naam: "Bürstner", bestand: "burstner.webp" },
+  { naam: "Dethleffs", bestand: "dethleffs.webp" },
+  { naam: "Hymer", bestand: "hymer.webp" },
+  { naam: "Ilusion", bestand: "ilusion.webp" },
+  { naam: "Knaus", bestand: "knaus.webp" },
+  { naam: "Westfalia", bestand: "westfalia.webp" },
 ];
 
 export default async function Home({
@@ -195,7 +195,7 @@ export default async function Home({
       <section className="hero">
         <div className="media hero-media">
           <FotoMetPlaceholder
-            src="/assets/img/home/hero.jpg"
+            src="/assets/img/home/hero.webp"
             alt={
               locale === "fr"
                 ? "Motorhomes devant le hangar de Brussel Motorhomes Center"
@@ -261,7 +261,7 @@ export default async function Home({
             <article className="kaart kaart-lift dienst">
               <div className="media media-kaart">
                 <FotoMetPlaceholder
-                  src="/assets/img/home/dienst-onderhoud.jpg"
+                  src="/assets/img/home/dienst-onderhoud.webp"
                   alt={t.onderhoudTitel}
                   loading="lazy"
                 />
@@ -279,7 +279,7 @@ export default async function Home({
             <article className="kaart kaart-lift dienst">
               <div className="media media-kaart">
                 <FotoMetPlaceholder
-                  src="/assets/img/home/dienst-accessoires.jpg"
+                  src="/assets/img/home/dienst-accessoires.webp"
                   alt={t.accessoiresTitel}
                   loading="lazy"
                 />
@@ -297,7 +297,7 @@ export default async function Home({
             <article className="kaart kaart-lift dienst">
               <div className="media media-kaart">
                 <FotoMetPlaceholder
-                  src="/assets/img/home/dienst-verkoop-je-camper.jpg"
+                  src="/assets/img/home/dienst-verkoop-je-camper.webp"
                   alt={t.verkoopTitel}
                   loading="lazy"
                 />
@@ -361,7 +361,7 @@ export default async function Home({
           </div>
           <div className="media media-4x3 media-rond">
             <FotoMetPlaceholder
-              src="/assets/img/home/maatwerk.jpg"
+              src="/assets/img/home/maatwerk.webp"
               alt={
                 locale === "fr"
                   ? "Motorhome en construction dans l'atelier de BMC"
@@ -379,7 +379,7 @@ export default async function Home({
         <div className="wrap split">
           <VideoMetGeluidsknop
             src="/assets/video/home/andersvaliden.mp4"
-            poster="/assets/img/home/andersvaliden-poster.jpg"
+            poster="/assets/img/home/andersvaliden-poster.webp"
             ariaLabel={
               locale === "fr"
                 ? "Motorhome adapté avec rampe d'accès"

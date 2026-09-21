@@ -206,7 +206,7 @@ export default async function AndersvalidenPagina({
           <div className="split">
             <VideoMetGeluidsknop
               src="/assets/video/home/andersvaliden.mp4"
-              poster="/assets/img/home/andersvaliden-poster.jpg"
+              poster="/assets/img/home/andersvaliden-poster.webp"
               ariaLabel={t.videoAria}
             />
             <div className="partner">
