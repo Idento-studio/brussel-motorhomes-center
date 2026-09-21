@@ -5,11 +5,16 @@ import { getDictionary } from "@/dictionaries";
 import type { Locale } from "@/lib/i18n";
 
 /**
- * Poort van assets/js/contact-form.js: zolang er geen endpoint is ingesteld
- * (NEXT_PUBLIC_FORM_ENDPOINT), toont het formulier enkel de bevestiging —
- * handig om het gedrag te tonen zonder dat er iets verstuurd wordt. Zet die
- * env var op een Formspree-URL (https://formspree.io/f/xxxxxxxx) om echt te
- * versturen.
+ * Verstuurt naar NEXT_PUBLIC_FORM_ENDPOINT (Formspree, zie .env.local resp.
+ * .github/workflows/pages.yml). Staat die env var onverhoopt niet in de
+ * build, dan valt dit terug op enkel de bevestiging tonen zonder te
+ * versturen — geen kapotte submit-knop, wel stil dataverlies, dus check bij
+ * "geen mails binnen"-meldingen eerst of de env var er nog staat.
+ *
+ * Alle formulieren delen bewust hetzelfde endpoint (één Formspree-inbox
+ * i.p.v. acht te onderhouden) en sturen elk automatisch "pagina" (het pad
+ * waar het formulier stond) en "taal" (de actieve locale) mee, zodat één
+ * inbox toch meteen toont waar en in welke taal een aanvraag vandaan komt.
  *
  * Neemt `locale` i.p.v. `dict` als prop en berekent het woordenboek zelf:
  * Server Components mogen geen functies (zoals de dict.voertuig-helpers)
@@ -56,6 +61,7 @@ export function Formulier({
     // zet zelf de juiste Content-Type met boundary — niet manueel instellen.
     const formData = new FormData(form);
     formData.append("pagina", window.location.pathname);
+    formData.append("taal", locale);
 
     try {
       const res = await fetch(endpoint, {

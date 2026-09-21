@@ -270,6 +270,7 @@ export function CamperConfigurator({ locale }: { locale: Locale }) {
     const formData = new FormData(form);
     formData.append("pagina", window.location.pathname);
     formData.append("type", "configurator-ideale-motorhome");
+    formData.append("taal", locale);
 
     try {
       const res = await fetch(endpoint, {

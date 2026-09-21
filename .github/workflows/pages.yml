@@ -60,6 +60,13 @@ jobs:
           # voor dezelfde waarden lokaal.
           NEXT_PUBLIC_SANITY_PROJECT_ID: th815q8m
           NEXT_PUBLIC_SANITY_DATASET: production
+          # Formspree-endpoint (geen geheim — komt sowieso mee in de
+          # publieke JS-bundel als actiepad van elk formulier op de site).
+          # Alle 8 formulieren (zie Formulier.tsx/CamperConfigurator.tsx)
+          # delen bewust dit ene endpoint: één Formspree-inbox i.p.v. acht
+          # te onderhouden. Let op de gratis limiet van 50 inzendingen/maand
+          # — die geldt over alle formulieren samen.
+          NEXT_PUBLIC_FORM_ENDPOINT: https://formspree.io/f/xoevdjqy
 
       - name: Configure Pages
         uses: actions/configure-pages@v5
