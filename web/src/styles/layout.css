@@ -206,7 +206,11 @@
 .mobiele-nav .btn { margin-top: var(--sp-4); width: 100%; min-height: 44px; }
 
 @media (max-width: 1023px) {
-  .hoofdnav, .header-cta { display: none; }
+  .hoofdnav { display: none; }
+  /* Specifieker dan .btn (die ook display zet, en later in de cascade
+     staat door de importvolgorde in layout.tsx) — anders wint .btn's
+     display:inline-flex alsnog en blijft de knop zichtbaar op mobiel. */
+  .header-balk .header-cta { display: none; }
   .nav-knop { display: block; }
 }
 
@@ -335,6 +339,13 @@
   color: var(--wit);
   border-top: 1px solid var(--inverse-hairline);
   padding-bottom: env(safe-area-inset-bottom, 0px);
+  /* Eigen compositorlaag: zonder dit herberekent iOS/Android de positie van
+     dit fixed element soms mee met de layoutverschuiving die het in-/uit-
+     schuiven van de adresbalk veroorzaakt, wat als "meebewegen" tijdens het
+     scrollen voelt. Met translateZ(0) blijft de balk op een eigen laag en
+     dus echt vast t.o.v. het scherm. */
+  transform: translateZ(0);
+  will-change: transform;
 }
 .actiebalk a {
   display: flex;
@@ -352,32 +363,34 @@ body { padding-bottom: 4rem; }
   body { padding-bottom: 0; }
 }
 
-/* ── Zwevende WhatsApp-knop (alle schermgroottes) ────────────────────── */
+/* ── Zwevende WhatsApp-knop (enkel tablet/desktop) ───────────────────────
+   Op mobiel staat WhatsApp al in de vaste actiebalk onderaan (.actiebalk)
+   — de zwevende knop zou daar dubbel op zijn, dus enkel vanaf 768px. */
 
 .whatsapp-zwevend {
-  position: fixed;
-  left: 1.25rem;
-  bottom: calc(4rem + 1.25rem + env(safe-area-inset-bottom, 0px));
-  z-index: 70;
-  display: grid;
-  place-items: center;
-  width: 3.25rem;
-  height: 3.25rem;
-  border-radius: 50%;
-  background: #25d366;
-  color: var(--wit);
-  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.22);
-  transition: transform 0.2s var(--ease);
+  display: none;
 }
-.whatsapp-zwevend:hover { transform: scale(1.06); }
 @media (min-width: 768px) {
-  .whatsapp-zwevend { bottom: 1.5rem; left: 1.5rem; }
+  .whatsapp-zwevend {
+    position: fixed;
+    left: 1.5rem;
+    bottom: 1.5rem;
+    z-index: 70;
+    display: grid;
+    place-items: center;
+    width: 3.25rem;
+    height: 3.25rem;
+    border-radius: 50%;
+    background: #25d366;
+    color: var(--wit);
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.22);
+    transition: transform 0.2s var(--ease);
+  }
+  .whatsapp-zwevend:hover { transform: scale(1.06); }
 }
 /* Cookiebanner staat onderaan over de volledige breedte — knop tijdelijk
-   hoger zodat ze niet overlappen. */
-body[data-cookiebanner="open"] .whatsapp-zwevend {
-  bottom: calc(4rem + 1.25rem + 5.5rem + env(safe-area-inset-bottom, 0px));
-}
+   hoger zodat ze niet overlappen. Enkel relevant vanaf 768px, want daaronder
+   is .whatsapp-zwevend zelf al niet zichtbaar. */
 @media (min-width: 768px) {
   body[data-cookiebanner="open"] .whatsapp-zwevend { bottom: calc(1.5rem + 5.5rem); }
 }
