@@ -11,6 +11,9 @@ export default defineCliConfig({
      * Learn more at https://www.sanity.io/docs/studio/latest-version-of-sanity#k47faf43faf56
      */
     autoUpdates: true,
+    // Vastgelegd zodat een volgende "sanity deploy" niet opnieuw naar de
+    // hostname vraagt — al gekoppeld aan https://brussel-motorhomes-center.sanity.studio/
+    appId: 'v6td6642n1itjdkvgzr9sgm8',
   },
   typegen: {
     enabled: true,
