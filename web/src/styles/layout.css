@@ -56,6 +56,10 @@
 .service-balk a:hover { color: var(--accent); }
 .service-balk-tel { font-weight: 600; color: var(--wit); }
 .service-balk-scheiding { color: rgba(255, 255, 255, 0.45); }
+/* .service-balk-uren is geen flex-container (in tegenstelling tot .wrap/
+   .service-nav, waar de tussenruimte van hun eigen gap komt) — hier dus
+   expliciete marge rond het scheidingsteken nodig. */
+.service-balk-uren .service-balk-scheiding { margin-inline: 0.5em; }
 .service-nav { margin-left: auto; display: flex; align-items: center; gap: 1.25rem; }
 /* Onder 1024px blijft dit rijtje (uren, over ons, FAQ, e-mail, taalwissel)
    te breed om zonder te wikkelen op één regel te passen — met de derde taal
@@ -321,6 +325,9 @@
   color: var(--inverse-text-dim);
 }
 .footer-slot p { margin: 0; }
+/* Zelfde reden als .service-balk-uren hierboven: dit scheidingsteken zit
+   in doorlopende tekst, niet in een flex-container met een eigen gap. */
+.tekst-scheiding { margin-inline: 0.5em; opacity: 0.6; }
 @media (max-width: 639px) {
   .footer-slot { justify-content: center; text-align: center; }
 }

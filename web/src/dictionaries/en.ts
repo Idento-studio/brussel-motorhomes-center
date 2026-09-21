@@ -14,7 +14,8 @@ export const en: Dictionary = {
     contact: "Contact us",
   },
   header: {
-    uren: "Mon–Fri 9:00–18:00 · by appointment only",
+    urenTijden: "Mon–Fri 9:00–18:00",
+    urenAfspraak: "by appointment only",
     menuOpen: "Open menu",
     menuSluit: "Close menu",
     logoAria: "Brussel Motorhomes Center · home",

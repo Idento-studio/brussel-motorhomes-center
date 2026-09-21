@@ -73,7 +73,11 @@ export function SiteHeader({ locale, actiefPad }: { locale: Locale; actiefPad?: 
         <div className="wrap">
           <a className="service-balk-tel" href="tel:+32471407949">+32 471 40 79 49</a>
           <span className="service-balk-scheiding" aria-hidden="true">&middot;</span>
-          <span className="service-balk-uren">{dict.header.uren}</span>
+          <span className="service-balk-uren">
+            {dict.header.urenTijden}
+            <span className="service-balk-scheiding" aria-hidden="true">&middot;</span>
+            {dict.header.urenAfspraak}
+          </span>
           <nav className="service-nav" aria-label="Secundaire navigatie">
             <Link href={L(locale, "/over-ons/")}>{dict.nav.overOns}</Link>
             <Link href={L(locale, "/veelgestelde-vragen/")}>{dict.nav.veelgesteldeVragen}</Link>

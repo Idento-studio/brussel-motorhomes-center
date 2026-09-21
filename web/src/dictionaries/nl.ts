@@ -12,7 +12,8 @@ export const nl = {
     contact: "Contacteer ons",
   },
   header: {
-    uren: "Ma–vr 9:00–18:00 · enkel op afspraak",
+    urenTijden: "Ma–vr 9:00–18:00",
+    urenAfspraak: "enkel op afspraak",
     menuOpen: "Menu openen",
     menuSluit: "Menu sluiten",
     logoAria: "Brussel Motorhomes Center · home",
