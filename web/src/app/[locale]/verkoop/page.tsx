@@ -15,10 +15,10 @@ export async function generateMetadata({
 }): Promise<Metadata> {
   const { locale } = await params;
   const title =
-    locale === "fr" ? "Motorhomes à vendre" : locale === "en" ? "Motorhomes for sale" : "Motorhomes te koop";
+    locale === "fr" ? "Camping-cars à vendre" : locale === "en" ? "Motorhomes for sale" : "Motorhomes te koop";
   const description =
     locale === "fr"
-      ? "Notre offre de motorhomes neufs et d'occasion, avec contrôle technique complet, mesure d'humidité, Car-Pass et contrôle technique avant la vente."
+      ? "Notre offre de camping-cars neufs et d'occasion, avec contrôle technique complet, mesure d'humidité, Car-Pass et contrôle technique avant la vente."
       : locale === "en"
       ? "Our range of new and used motorhomes, each with a full technical check-up, damp measurement, Car-Pass and pre-sale inspection."
       : "Ons aanbod nieuwe en tweedehands motorhomes, met technische check-up, vochtmeting, Car-Pass en keuring voor verkoop.";
@@ -42,13 +42,13 @@ export default async function VerkoopPagina({
   const inhoud =
     locale === "fr"
       ? {
-          titel: "Motorhomes à vendre",
+          titel: "Camping-cars à vendre",
           intro:
-            "Motorhomes neufs et d'occasion, chacun avec un contrôle technique complet, une mesure d'humidité, un Car-Pass et un contrôle avant la vente.",
+            "Camping-cars neufs et d'occasion, chacun avec un contrôle technique complet, une mesure d'humidité, un Car-Pass et un contrôle avant la vente.",
           leeg: "Il n'y a actuellement aucune offre en ligne. Contactez-nous pour le stock actuel.",
           laden: "Chargement de l'offre…",
           ctaTitel: "Vous ne trouvez pas ce que vous cherchez ?",
-          ctaTekst: "Contactez notre équipe. Nous vous aidons volontiers à trouver le motorhome parfait.",
+          ctaTekst: "Contactez notre équipe. Nous vous aidons volontiers à trouver le camping-car parfait.",
         }
       : locale === "en"
       ? {

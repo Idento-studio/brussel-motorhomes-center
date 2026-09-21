@@ -30,17 +30,17 @@ function getOpties(locale: Locale): { keuze: Keuze; label: string; stappen: { ti
     ? [
         {
           keuze: "bmc-koopt",
-          label: "Je veux vendre mon motorhome à BMC",
+          label: "Je veux vendre mon camping-car à BMC",
           stappen: [
             { titel: "Prenez contact", tekst: "Appelez-nous ou envoyez-nous un e-mail pour un rendez-vous." },
-            { titel: "Inspection & estimation gratuites", tekst: "Notre expert examine le motorhome sur place." },
+            { titel: "Inspection & estimation gratuites", tekst: "Notre expert examine le camping-car sur place." },
             { titel: "Offre & accord", tekst: "Une offre sans engagement, fixée par écrit." },
             { titel: "Paiement immédiat", tekst: "Votre argent est versé dès la signature." },
           ],
         },
         {
           keuze: "bmc-verkoopt",
-          label: "Je veux que BMC vende le motorhome pour moi",
+          label: "Je veux que BMC vende le camping-car pour moi",
           stappen: [
             { titel: "Entretien préalable", tekst: "Nous discutons du prix de vente et des frais." },
             { titel: "Préparation technique", tekst: "Réparations, nettoyage et contrôle complet." },
@@ -110,13 +110,13 @@ export function VerkoopStappenKeuze({ locale }: { locale: Locale }) {
       ? {
           hoeWerktLabel: "Comment ça fonctionne",
           hoeWerktTitel: "Comment souhaitez-vous vendre ?",
-          formTitel: "Prêt à vendre votre motorhome ?",
+          formTitel: "Prêt à vendre votre camping-car ?",
           submitLabel: "Envoyer la demande",
           naam: "Nom",
           email: "E-mail",
           telefoon: "Numéro de téléphone",
-          merkModel: "Marque & modèle du motorhome",
-          fotos: "Photos de votre motorhome (facultatif)",
+          merkModel: "Marque & modèle du camping-car",
+          fotos: "Photos de votre camping-car (facultatif)",
           hoe: "Comment vendre ?",
           maakKeuze: "Faites un choix",
           toelichting: "Remarques supplémentaires (facultatif)",

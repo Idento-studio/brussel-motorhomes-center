@@ -16,7 +16,7 @@ export async function generateMetadata({
     locale === "fr" ? "Questions fréquentes" : locale === "en" ? "Frequently asked questions" : "Veelgestelde vragen";
   const description =
     locale === "fr"
-      ? "Réponses sur l'achat, la location, l'entretien et les accessoires de motorhomes chez BMC."
+      ? "Réponses sur l'achat, la location, l'entretien et les accessoires de camping-cars chez BMC."
       : locale === "en"
       ? "Answers about buying, renting, maintaining and accessorising motorhomes at BMC."
       : "Antwoorden over kopen, huren, onderhoud en accessoires van motorhomes bij BMC.";
@@ -170,19 +170,19 @@ const FAQ_GROEPEN_FR: FaqGroep[] = [
           "BMC travaille avec des partenaires financiers spécialisés pour proposer des prêts sur mesure, jusqu'à la durée légale maximale, adaptés à votre budget.",
       },
       {
-        vraag: "Puis-je faire reprendre mon véhicule ou motorhome actuel ?",
+        vraag: "Puis-je faire reprendre mon véhicule ou camping-car actuel ?",
         antwoord:
-          "Oui. Nous reprenons votre motorhome, caravane ou voiture actuelle à un prix de reprise conforme au marché. Cela est également possible sans que vous achetiez immédiatement un nouveau modèle ou un modèle d'occasion chez nous.",
+          "Oui. Nous reprenons votre camping-car, caravane ou voiture actuelle à un prix de reprise conforme au marché. Cela est également possible sans que vous achetiez immédiatement un nouveau modèle ou un modèle d'occasion chez nous.",
       },
       {
         vraag: "Qu'en est-il de l'immatriculation, de la TMC et de la taxe de circulation en Belgique ?",
         antwoord:
-          "Les motorhomes de catégorie M1 bénéficient de tarifs avantageux en Belgique. En Flandre et à Bruxelles, vous ne payez pas de taxe de mise en circulation (TMC). En Wallonie, un tarif réduit s'applique, avec un montant minimum de 61,50 €. La taxe de circulation annuelle dépend de la masse maximale autorisée (MMA) : environ 132 € par an jusqu'à 3 500 kg (permis B), et environ 145,20 € par an de 3 500 à 7 500 kg (permis C1).",
+          "Les camping-cars de catégorie M1 bénéficient de tarifs avantageux en Belgique. En Flandre et à Bruxelles, vous ne payez pas de taxe de mise en circulation (TMC). En Wallonie, un tarif réduit s'applique, avec un montant minimum de 61,50 €. La taxe de circulation annuelle dépend de la masse maximale autorisée (MMA) : environ 132 € par an jusqu'à 3 500 kg (permis B), et environ 145,20 € par an de 3 500 à 7 500 kg (permis C1).",
       },
       {
-        vraag: "Quelle garantie s'applique à l'achat d'un motorhome d'occasion ?",
+        vraag: "Quelle garantie s'applique à l'achat d'un camping-car d'occasion ?",
         antwoord:
-          "Chaque motorhome d'occasion bénéficie d'une garantie légale, d'un contrôle technique complet du moteur et de la partie habitation, d'une mesure d'humidité, d'un Car-Pass et d'un contrôle technique avant la vente.",
+          "Chaque camping-car d'occasion bénéficie d'une garantie légale, d'un contrôle technique complet du moteur et de la partie habitation, d'une mesure d'humidité, d'un Car-Pass et d'un contrôle technique avant la vente.",
       },
       {
         vraag: "Quelle est la différence entre un campervan, un profilé, un intégral et une capucine ?",
@@ -190,9 +190,9 @@ const FAQ_GROEPEN_FR: FaqGroep[] = [
           "Campervan ou fourgon aménagé : compact, maniable et construit dans la carrosserie d'origine d'un utilitaire, idéal pour les couples et les road trips actifs. Profilé (half-intégral) : aérodynamique, avec une cabine de conduite d'origine et un espace de vie surélevé, offrant beaucoup d'espace et de confort pour une consommation avantageuse. Intégral : la cabine et l'espace de vie ne forment qu'un seul ensemble, avec un espace intérieur maximal, une vue panoramique et une isolation optimale. Capucine : reconnaissable à sa vaste alcôve de couchage au-dessus de la cabine de conduite, particulièrement adaptée aux grandes familles.",
       },
       {
-        vraag: "Quel permis de conduire me faut-il pour conduire un motorhome ?",
+        vraag: "Quel permis de conduire me faut-il pour conduire un camping-car ?",
         antwoord:
-          "Pour les motorhomes d'une MMA allant jusqu'à 3 500 kg inclus, un permis B standard suffit. Au-delà de cette MMA, vous avez besoin du permis C1 ou C.",
+          "Pour les camping-cars d'une MMA allant jusqu'à 3 500 kg inclus, un permis B standard suffit. Au-delà de cette MMA, vous avez besoin du permis C1 ou C.",
       },
     ],
   },
@@ -201,7 +201,7 @@ const FAQ_GROEPEN_FR: FaqGroep[] = [
     label: "À louer",
     vragen: [
       {
-        vraag: "Comment le motorhome doit-il être restitué ?",
+        vraag: "Comment le camping-car doit-il être restitué ?",
         antwoord:
           "L'intérieur doit être restitué propre, avec le réservoir d'eaux usées et la cassette de toilettes vidés et rincés. L'extérieur est nettoyé par notre propre service de nettoyage.",
       },
@@ -230,7 +230,7 @@ const FAQ_GROEPEN_FR: FaqGroep[] = [
           "Une assurance omnium complète avec une franchise de 1 500 €, une assistance dépannage européenne 24h/24 et 7j/7, une bouteille de gaz pleine et des produits pour les toilettes, ainsi que l'équipement technique avec instructions.",
       },
       {
-        vraag: "Quelles sont les conditions pour louer un motorhome ?",
+        vraag: "Quelles sont les conditions pour louer un camping-car ?",
         antwoord:
           "Le conducteur doit avoir au moins 23 ans, selon le modèle, et être titulaire depuis au moins 3 ans d'un permis de conduire B européen valide.",
       },
@@ -241,22 +241,22 @@ const FAQ_GROEPEN_FR: FaqGroep[] = [
     label: "Entretien",
     vragen: [
       {
-        vraag: "Que dois-je faire pour préparer le motorhome à l'hiver ?",
+        vraag: "Que dois-je faire pour préparer le camping-car à l'hiver ?",
         antwoord:
           "Avant les premières gelées, videz toujours tous les réservoirs d'eau : eau propre, eau usée et surtout le chauffe-eau via la vanne de protection contre le gel. Débranchez la batterie auxiliaire ou raccordez-la à un chargeur d'entretien afin d'éviter une décharge profonde pendant le stockage hivernal.",
       },
       {
-        vraag: "Préparez-vous les motorhomes au contrôle technique belge ?",
+        vraag: "Préparez-vous les camping-cars au contrôle technique belge ?",
         antwoord:
-          "Oui. Nous effectuons un contrôle technique préalable complet, incluant la vérification des freins, des feux, de la suspension, de l'âge des pneus et du poids. Si vous le souhaitez, nous conduisons votre motorhome jusqu'à la station de contrôle technique.",
+          "Oui. Nous effectuons un contrôle technique préalable complet, incluant la vérification des freins, des feux, de la suspension, de l'âge des pneus et du poids. Si vous le souhaitez, nous conduisons votre camping-car jusqu'à la station de contrôle technique.",
       },
       {
         vraag: "Pourquoi une mesure d'humidité annuelle est-elle nécessaire ?",
         antwoord:
-          "L'humidité est le pire ennemi d'un motorhome. Un contrôle d'étanchéité annuel est obligatoire pour conserver la garantie d'usine sur l'étanchéité, souvent de 5 à 10 ans, et pour détecter à temps les débuts d'infiltration avant qu'ils ne causent des dommages structurels.",
+          "L'humidité est le pire ennemi d'un camping-car. Un contrôle d'étanchéité annuel est obligatoire pour conserver la garantie d'usine sur l'étanchéité, souvent de 5 à 10 ans, et pour détecter à temps les débuts d'infiltration avant qu'ils ne causent des dommages structurels.",
       },
       {
-        vraag: "En quoi consiste l'entretien d'un motorhome ?",
+        vraag: "En quoi consiste l'entretien d'un camping-car ?",
         antwoord:
           "Moteur et châssis : entretien automobile régulier selon les spécifications du fabricant, notamment l'huile, les freins, la courroie de distribution, les pneus et les filtres. Partie habitation et carrosserie : contrôle du circuit de gaz, du circuit d'eau, de l'électronique, du réfrigérateur, du chauffage, des serrures et des joints d'étanchéité.",
       },
@@ -269,7 +269,7 @@ const FAQ_GROEPEN_FR: FaqGroep[] = [
       {
         vraag: "BMC tient-il compte de la charge utile et de la MMA de 3 500 kg ?",
         antwoord:
-          "Oui. Nous calculons avec vous le poids des accessoires souhaités, afin que votre motorhome reste dans les limites de poids légales.",
+          "Oui. Nous calculons avec vous le poids des accessoires souhaités, afin que votre camping-car reste dans les limites de poids légales.",
       },
       {
         vraag: "Un porte-vélos peut-il supporter des vélos électriques lourds ?",

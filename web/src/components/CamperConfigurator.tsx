@@ -15,9 +15,9 @@ function vertaling(locale: Locale) {
       bezig: "Envoi en cours…",
       fout: "L'envoi a échoué. Réessayez ou appelez-nous au +32 471 40 79 49.",
       bedanktTitel: "Merci, votre demande a été envoyée",
-      bedanktTekst: "Nous analysons vos réponses et vous recontactons avec une proposition sur mesure, ou des motorhomes d'occasion qui correspondent déjà à vos souhaits.",
-      stap1Titel: "Comment allez-vous utiliser votre motorhome ?",
-      stap1Intro: "Cela nous aide à cerner le type de motorhome le plus adapté.",
+      bedanktTekst: "Nous analysons vos réponses et vous recontactons avec une proposition sur mesure, ou des camping-cars d'occasion qui correspondent déjà à vos souhaits.",
+      stap1Titel: "Comment allez-vous utiliser votre camping-car ?",
+      stap1Intro: "Cela nous aide à cerner le type de camping-car le plus adapté.",
       gebruikOpties: [
         { waarde: "weekend", label: "Escapades le week-end" },
         { waarde: "lange-reizen", label: "Longs voyages" },

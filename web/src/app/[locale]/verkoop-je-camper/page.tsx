@@ -13,10 +13,10 @@ export async function generateMetadata({
 }): Promise<Metadata> {
   const { locale } = await params;
   const title =
-    locale === "fr" ? "Vendez votre motorhome" : locale === "en" ? "Sell your motorhome" : "Verkoop je motorhome";
+    locale === "fr" ? "Vendez votre camping-car" : locale === "en" ? "Sell your motorhome" : "Verkoop je motorhome";
   const description =
     locale === "fr"
-      ? "Vendez votre motorhome à BMC ou laissez BMC le vendre pour vous. Inspection gratuite et un prix de marché honnête."
+      ? "Vendez votre camping-car à BMC ou laissez BMC le vendre pour vous. Inspection gratuite et un prix de marché honnête."
       : locale === "en"
       ? "Sell your motorhome to BMC or let BMC sell it for you. Free inspection and a fair market price."
       : "Verkoop uw motorhome aan BMC of laat BMC hem voor u verkopen. Gratis inspectie en een eerlijke marktprijs.";
@@ -39,16 +39,16 @@ export default async function VerkoopJeCamperPagina({
   const t =
     locale === "fr"
       ? {
-          kruimel: "Vendez votre motorhome",
-          h1: "Vendez votre motorhome, à votre façon.",
+          kruimel: "Vendez votre camping-car",
+          h1: "Vendez votre camping-car, à votre façon.",
           intro:
-            "Chez BMC, vous avez deux options : nous achetons votre motorhome directement, ou nous le vendons pour vous.",
+            "Chez BMC, vous avez deux options : nous achetons votre camping-car directement, ou nous le vendons pour vous.",
           kiesLabel: "Choisissez votre formule",
-          kiesTitel: "Deux façons de vendre votre motorhome",
+          kiesTitel: "Deux façons de vendre votre camping-car",
           formule1Label: "Vente rapide",
-          formule1Titel: "Nous achetons votre motorhome",
+          formule1Titel: "Nous achetons votre camping-car",
           formule1Intro:
-            "Vous vendez votre motorhome directement à BMC. Nous proposons un prix de marché honnête après inspection.",
+            "Vous vendez votre camping-car directement à BMC. Nous proposons un prix de marché honnête après inspection.",
           formule1Punt1: "Inspection gratuite sur place",
           formule1Punt2: "Prix de marché honnête, accord rapide",
           formule1Punt3: "Paiement immédiat, sans attente",
@@ -56,11 +56,11 @@ export default async function VerkoopJeCamperPagina({
           formule2Label: "Entièrement pris en charge",
           formule2Titel: "BMC vend pour vous",
           formule2Intro:
-            "BMC prend en charge la vente complète de votre motorhome. Nous le préparons techniquement et déterminons le prix ensemble.",
+            "BMC prend en charge la vente complète de votre camping-car. Nous le préparons techniquement et déterminons le prix ensemble.",
           formule2Punt1: "Préparation technique & contrôle inclus",
           formule2Punt2: "Prix et frais de vente convenus ensemble, en toute transparence",
           formule2Punt3: "BMC gère les annonces et les acheteurs potentiels",
-          formule2Punt4: "Vous recevez votre argent dès que le motorhome est vendu",
+          formule2Punt4: "Vous recevez votre argent dès que le camping-car est vendu",
         }
       : locale === "en"
       ? {

@@ -42,7 +42,7 @@ export default async function ContactPagina({
           kruimel: "Contact",
           titel: "Contactez-nous",
           intro:
-            "Une question sur un motorhome, un rendez-vous pour l'entretien ou simplement un conseil ? Nous sommes là pour vous aider.",
+            "Une question sur un camping-car, un rendez-vous pour l'entretien ou simplement un conseil ? Nous sommes là pour vous aider.",
           rechtstreeksContact: "Contact direct",
           adres: "Adresse",
           telefoon: "Téléphone",
@@ -61,11 +61,11 @@ export default async function ContactPagina({
           telefoonLabel: "Numéro de téléphone",
           onderwerp: "Sujet",
           maakKeuze: "Faites un choix",
-          onderwerpAankoop: "Achat d'un motorhome",
-          onderwerpVerkoop: "Vente d'un motorhome",
-          onderwerpVerhuur: "Location d'un motorhome",
-          onderwerpOpMaat: "Motorhome sur mesure",
-          onderwerpMindervaliden: "Motorhome pour personnes à mobilité réduite",
+          onderwerpAankoop: "Achat d'un camping-car",
+          onderwerpVerkoop: "Vente d'un camping-car",
+          onderwerpVerhuur: "Location d'un camping-car",
+          onderwerpOpMaat: "Camping-car sur mesure",
+          onderwerpMindervaliden: "Camping-car pour personnes à mobilité réduite",
           bericht: "Message",
         }
       : locale === "en"

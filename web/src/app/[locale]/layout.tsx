@@ -23,7 +23,7 @@ export async function generateMetadata({
   const { locale } = await params;
   const description =
     locale === "fr"
-      ? "Motorhomes à vendre et à louer chez Brussel Motorhomes Center."
+      ? "Camping-cars à vendre et à louer chez Brussel Motorhomes Center."
       : locale === "en"
       ? "Motorhomes for sale and for rent at Brussel Motorhomes Center."
       : "Motorhomes te koop en te huur bij Brussel Motorhomes Center.";

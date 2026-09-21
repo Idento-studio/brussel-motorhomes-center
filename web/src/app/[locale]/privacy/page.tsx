@@ -49,7 +49,7 @@ export default async function PrivacyPagina({
           verantwoordelijkeTekst1d: "ou appelez le",
           h2Gegevens: "Quelles données collectons-nous, et pourquoi ?",
           gegevensTekst1:
-            "Lorsque vous remplissez un formulaire sur ce site (une demande de contact, une question sur un motorhome, une demande de location ou un rendez-vous pour l'entretien), nous conservons les données que vous saisissez vous-même : votre nom, votre adresse e-mail, votre numéro de téléphone et votre message. Pour une demande de location, nous conservons également la période demandée.",
+            "Lorsque vous remplissez un formulaire sur ce site (une demande de contact, une question sur un camping-car, une demande de location ou un rendez-vous pour l'entretien), nous conservons les données que vous saisissez vous-même : votre nom, votre adresse e-mail, votre numéro de téléphone et votre message. Pour une demande de location, nous conservons également la période demandée.",
           gegevensTekst2:
             "Nous utilisons ces données uniquement pour répondre à votre demande et assurer le suivi de votre dossier. Nous ne les revendons pas et ne les utilisons pas à des fins publicitaires sans votre consentement.",
           h2Bewaartermijn: "Combien de temps conservons-nous vos données ?",

@@ -13,10 +13,10 @@ export async function generateMetadata({
 }): Promise<Metadata> {
   const { locale } = await params;
   const title =
-    locale === "fr" ? "Motorhome sur mesure" : locale === "en" ? "Custom-built motorhome" : "Motorhome op maat";
+    locale === "fr" ? "Camping-car sur mesure" : locale === "en" ? "Custom-built motorhome" : "Motorhome op maat";
   const description =
     locale === "fr"
-      ? "BMC construit des motorhomes entièrement sur mesure, d'un châssis nu à un véhicule prêt à rouler et homologué."
+      ? "BMC construit des camping-cars entièrement sur mesure, d'un châssis nu à un véhicule prêt à rouler et homologué."
       : locale === "en"
       ? "BMC builds fully custom motorhomes, from a bare chassis to a ready-to-drive, homologated vehicle."
       : "BMC bouwt motorhomes volledig op maat, van leeg chassis tot rijklaar en gehomologeerd voertuig.";
@@ -39,10 +39,10 @@ export default async function CamperOpMaatPagina({
   const t =
     locale === "fr"
       ? {
-          h1: "Votre motorhome depuis la planche à dessin",
+          h1: "Votre camping-car depuis la planche à dessin",
           intro:
             "Conçu et construit dans notre propre atelier, d'un châssis nu à un véhicule prêt à rouler et homologué.",
-          startProjectCta: "Configurez votre motorhome idéal",
+          startProjectCta: "Configurez votre camping-car idéal",
           trajectLabel: "Le parcours",
           trajectTitel: "Du premier entretien à la remise des clés",
           stap1Titel: "Entretien initial",

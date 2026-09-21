@@ -14,13 +14,13 @@ export async function generateMetadata({
   const { locale } = await params;
   const title =
     locale === "fr"
-      ? "Configurez votre motorhome idéal"
+      ? "Configurez votre camping-car idéal"
       : locale === "en"
       ? "Configure your ideal motorhome"
       : "Stel uw ideale motorhome samen";
   const description =
     locale === "fr"
-      ? "Répondez à quelques questions sur l'usage, le budget et les équipements souhaités, et nous vous proposons le motorhome qui vous correspond."
+      ? "Répondez à quelques questions sur l'usage, le budget et les équipements souhaités, et nous vous proposons le camping-car qui vous correspond."
       : locale === "en"
       ? "Answer a few questions about how you'll use it, your budget and the equipment you want, and we'll propose the motorhome that fits you."
       : "Beantwoord enkele vragen over gebruik, budget en gewenste uitrusting, en wij stellen de motorhome voor die bij u past.";
@@ -44,9 +44,9 @@ export default async function StartProjectPagina({
     locale === "fr"
       ? {
           kruimel: "Configurateur",
-          h1: "Configurez votre motorhome idéal.",
+          h1: "Configurez votre camping-car idéal.",
           intro:
-            "Cinq courtes questions sur votre usage, votre budget et les équipements souhaités. Nous analysons vos réponses et revenons vers vous avec une proposition sur mesure, ou des motorhomes d'occasion qui correspondent déjà.",
+            "Cinq courtes questions sur votre usage, votre budget et les équipements souhaités. Nous analysons vos réponses et revenons vers vous avec une proposition sur mesure, ou des camping-cars d'occasion qui correspondent déjà.",
         }
       : locale === "en"
       ? {

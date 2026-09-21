@@ -18,13 +18,13 @@ export async function generateMetadata({
   const { locale } = await params;
   const title =
     locale === "fr"
-      ? "Acheter, louer et entretenir un motorhome"
+      ? "Acheter, louer et entretenir un camping-car"
       : locale === "en"
       ? "Buy, rent and service a motorhome"
       : "Motorhomes kopen, huren en onderhouden";
   const description =
     locale === "fr"
-      ? "Motorhomes à acheter, louer ou entretenir en Belgique, près de Bruxelles. Large offre, atelier propre et accompagnement jusqu'à l'homologation belge."
+      ? "Camping-cars à acheter, louer ou entretenir en Belgique, près de Bruxelles. Large offre, atelier propre et accompagnement jusqu'à l'homologation belge."
       : locale === "en"
       ? "Motorhomes to buy, rent or service in Belgium, near Brussels. Wide range, our own workshop and guidance through Belgian homologation."
       : "Motorhomes kopen, huren of onderhouden in België, vlakbij Brussel. Ruim aanbod, eigen werkplaats en begeleiding tot Belgische homologatie.";
@@ -63,7 +63,7 @@ export default async function Home({
     locale === "fr"
       ? {
           h1: "Votre partenaire pour une liberté sans limites.",
-          lead: "Motorhomes à acheter, louer ou entretenir en Belgique. Découvrez notre large offre de motorhomes et profitez d'un entretien sans souci par des spécialistes.",
+          lead: "Camping-cars à acheter, louer ou entretenir en Belgique. Découvrez notre large offre de camping-cars et profitez d'un entretien sans souci par des spécialistes.",
           troefWerkplaats: "Atelier propre",
           troefHomologatie: "Homologation belge",
           troefDiensten: "Vente · location · entretien",
@@ -71,17 +71,17 @@ export default async function Home({
           dienstenLabel: "Ce que nous faisons",
           dienstenTitel: "Nos services",
           onderhoudTitel: "Entretien",
-          onderhoudTekst: "Confiez votre motorhome en toute tranquillité. Entretien sans souci par nos spécialistes qualifiés.",
+          onderhoudTekst: "Confiez votre camping-car en toute tranquillité. Entretien sans souci par nos spécialistes qualifiés.",
           onderhoudCta: "Prendre rendez-vous",
           accessoiresTitel: "Accessoires & options",
-          accessoiresTekst: "Personnalisez votre motorhome avec des accessoires de qualité : des panneaux solaires et porte-vélos jusqu'à la navigation avancée, montés avec soin par notre équipe.",
+          accessoiresTekst: "Personnalisez votre camping-car avec des accessoires de qualité : des panneaux solaires et porte-vélos jusqu'à la navigation avancée, montés avec soin par notre équipe.",
           accessoiresCta: "Voir les options",
-          verkoopTitel: "Vendez votre motorhome",
-          verkoopTekst: "Vendez votre motorhome directement à BMC ou laissez-nous organiser la vente complète pour vous.",
+          verkoopTitel: "Vendez votre camping-car",
+          verkoopTekst: "Vendez votre camping-car directement à BMC ou laissez-nous organiser la vente complète pour vous.",
           verkoopCta: "Découvrir les options",
           maatwerkLabel: "Sur mesure de A à Z",
           maatwerkTitel: "Du châssis nu au contrôle technique belge",
-          maatwerkTekst: "BMC construit des motorhomes entièrement sur mesure, d'un châssis nu à un véhicule prêt à rouler et homologué, parfaitement adapté à vos souhaits. Notre atelier et nos techniciens certifiés vous accompagnent depuis le premier concept jusqu'à l'homologation belge et européenne définitive. Vous apportez l'idée, nous construisons la réalité.",
+          maatwerkTekst: "BMC construit des camping-cars entièrement sur mesure, d'un châssis nu à un véhicule prêt à rouler et homologué, parfaitement adapté à vos souhaits. Notre atelier et nos techniciens certifiés vous accompagnent depuis le premier concept jusqu'à l'homologation belge et européenne définitive. Vous apportez l'idée, nous construisons la réalité.",
           stap1Titel: "Conception",
           stap1Tekst: "Agencement, châssis et finitions définis ensemble.",
           stap2Titel: "Construction",
@@ -92,16 +92,16 @@ export default async function Home({
           maatwerkVink2: "Choix de châssis, agencement et finitions",
           maatwerkVink3: "Atelier propre avec techniciens certifiés",
           maatwerkCta: "Démarrer votre projet",
-          andersvalidenLabel: "Motorhomes adaptés",
+          andersvalidenLabel: "Camping-cars adaptés",
           andersvalidenTitel: "La liberté pour tous, même avec un handicap",
-          andersvalidenTekst: "En collaboration avec VJ Mobility, nous transformons des motorhomes pour que les personnes à mobilité réduite puissent également voyager sans souci. Des rampes d'accès et portes élargies jusqu'à une direction entièrement adaptée. Nous rendons cela possible.",
+          andersvalidenTekst: "En collaboration avec VJ Mobility, nous transformons des camping-cars pour que les personnes à mobilité réduite puissent également voyager sans souci. Des rampes d'accès et portes élargies jusqu'à une direction entièrement adaptée. Nous rendons cela possible.",
           andersvalidenVink1: "Rampes d'accès & solutions d'accessibilité",
           andersvalidenVink2: "Portes élargies & intérieur adapté",
           andersvalidenVink3: "Direction adaptée (pédales & volant)",
           andersvalidenVink4: "Conseil personnalisé & sur mesure",
           andersvalidenCta: "En savoir plus",
           slotTitel: "Vous ne trouvez pas ce que vous cherchez ?",
-          slotTekst: "Contactez notre équipe. Nous vous aidons volontiers à trouver le motorhome parfait.",
+          slotTekst: "Contactez notre équipe. Nous vous aidons volontiers à trouver le camping-car parfait.",
         }
       : locale === "en"
       ? {
@@ -198,7 +198,7 @@ export default async function Home({
             src="/assets/img/home/hero.webp"
             alt={
               locale === "fr"
-                ? "Motorhomes devant le hangar de Brussel Motorhomes Center"
+                ? "Camping-cars devant le hangar de Brussel Motorhomes Center"
                 : locale === "en"
                 ? "Motorhomes in front of the Brussel Motorhomes Center warehouse"
                 : "Motorhomes voor de loods van Brussel Motorhomes Center"
@@ -364,7 +364,7 @@ export default async function Home({
               src="/assets/img/home/maatwerk.webp"
               alt={
                 locale === "fr"
-                  ? "Motorhome en construction dans l'atelier de BMC"
+                  ? "Camping-car en construction dans l'atelier de BMC"
                   : locale === "en"
                   ? "Motorhome under construction in BMC's workshop"
                   : "Motorhome in opbouw in het atelier van BMC"
@@ -382,7 +382,7 @@ export default async function Home({
             poster="/assets/img/home/andersvaliden-poster.webp"
             ariaLabel={
               locale === "fr"
-                ? "Motorhome adapté avec rampe d'accès"
+                ? "Camping-car adapté avec rampe d'accès"
                 : locale === "en"
                 ? "Adapted motorhome with access ramp"
                 : "Aangepaste motorhome met oprijplaat"

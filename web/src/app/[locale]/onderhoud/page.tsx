@@ -17,7 +17,7 @@ export async function generateMetadata({
     locale === "fr" ? "Entretien & réparations" : locale === "en" ? "Maintenance & repairs" : "Onderhoud & herstellingen";
   const description =
     locale === "fr"
-      ? "Spécialistes certifiés pour l'entretien complet de votre motorhome. Du contrôle technique annuel aux travaux de carrosserie."
+      ? "Spécialistes certifiés pour l'entretien complet de votre camping-car. Du contrôle technique annuel aux travaux de carrosserie."
       : locale === "en"
       ? "Certified specialists for the complete maintenance of your motorhome. From annual inspection to bodywork."
       : "Gecertificeerde specialisten voor het complete onderhoud van uw motorhome. Van jaarlijkse keuring tot carrosseriewerk.";
@@ -42,17 +42,17 @@ export default async function OnderhoudPagina({
       ? {
           h1: "Entretien & réparations",
           intro:
-            "Spécialistes certifiés pour l'entretien complet de votre motorhome. Du contrôle technique annuel aux travaux de carrosserie.",
+            "Spécialistes certifiés pour l'entretien complet de votre camping-car. Du contrôle technique annuel aux travaux de carrosserie.",
           dienstenLabel: "Ce que nous faisons",
           dienstenTitel: "Nos services d'entretien",
           card1Titel: "Contrôle technique annuel",
-          card1Tekst: "Contrôle technique complet et inspection de votre motorhome.",
+          card1Tekst: "Contrôle technique complet et inspection de votre camping-car.",
           card2Titel: "Vidange d'huile & filtres",
           card2Tekst: "Entretien du moteur et de la transmission pour une plus longue durée de vie.",
           card3Titel: "Climatisation & chauffage",
           card3Tekst: "Contrôle climatique, entretien et réparation de vos systèmes.",
           card4Titel: "Systèmes électriques",
-          card4Tekst: "Batterie, câblage et panneaux solaires : tout est contrôlé. Livraison d'ampoules spécifiques pour motorhomes.",
+          card4Tekst: "Batterie, câblage et panneaux solaires : tout est contrôlé. Livraison d'ampoules spécifiques pour camping-cars.",
           card5Titel: "Traitement de l'humidité",
           card5Tekst: "Prévention et réparation professionnelle des dégâts d'humidité.",
           card6Titel: "Travaux de carrosserie",
@@ -82,22 +82,22 @@ export default async function OnderhoudPagina({
           faqTitel: "Questions fréquentes sur l'entretien",
           faqVragen: [
             {
-              vraag: "Que dois-je faire pour préparer mon motorhome pour l'hiver ?",
+              vraag: "Que dois-je faire pour préparer mon camping-car pour l'hiver ?",
               antwoord:
                 "Avant les premières gelées, videz toujours tous les réservoirs d'eau : eau propre, eaux usées et surtout le chauffe-eau via la vanne de protection antigel. Débranchez la batterie habitation ou raccordez-la à un chargeur d'entretien pour éviter une décharge profonde pendant l'hivernage.",
             },
             {
-              vraag: "Préparez-vous les motorhomes pour le contrôle technique belge ?",
+              vraag: "Préparez-vous les camping-cars pour le contrôle technique belge ?",
               antwoord:
-                "Oui. Nous effectuons un pré-contrôle complet, incluant la vérification des freins, des feux, de la suspension, de l'âge des pneus et du poids. Si vous le souhaitez, nous conduisons votre motorhome jusqu'au centre de contrôle technique.",
+                "Oui. Nous effectuons un pré-contrôle complet, incluant la vérification des freins, des feux, de la suspension, de l'âge des pneus et du poids. Si vous le souhaitez, nous conduisons votre camping-car jusqu'au centre de contrôle technique.",
             },
             {
               vraag: "Pourquoi une mesure d'humidité annuelle est-elle nécessaire ?",
               antwoord:
-                "L'humidité est le pire ennemi d'un motorhome. Un contrôle annuel d'étanchéité est indispensable pour conserver la garantie d'étanchéité du fabricant, souvent de 5 à 10 ans, et pour détecter à temps les infiltrations naissantes avant qu'elles ne causent des dommages structurels.",
+                "L'humidité est le pire ennemi d'un camping-car. Un contrôle annuel d'étanchéité est indispensable pour conserver la garantie d'étanchéité du fabricant, souvent de 5 à 10 ans, et pour détecter à temps les infiltrations naissantes avant qu'elles ne causent des dommages structurels.",
             },
             {
-              vraag: "Qu'implique l'entretien d'un motorhome ?",
+              vraag: "Qu'implique l'entretien d'un camping-car ?",
               antwoord:
                 "Moteur et châssis : entretien automobile régulier selon les spécifications du fabricant, notamment l'huile, les freins, la courroie de distribution, les pneus et les filtres. Partie habitation et carrosserie : contrôle du système de gaz, du système d'eau, de l'électronique, du réfrigérateur, du chauffage, des serrures et des joints.",
             },

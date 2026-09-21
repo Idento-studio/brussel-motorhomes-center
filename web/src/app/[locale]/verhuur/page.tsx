@@ -14,7 +14,7 @@ export async function generateMetadata({
 }): Promise<Metadata> {
   const { locale } = await params;
   const title =
-    locale === "fr" ? "Motorhomes à louer" : locale === "en" ? "Motorhomes for rent" : "Motorhomes te huur";
+    locale === "fr" ? "Camping-cars à louer" : locale === "en" ? "Motorhomes for rent" : "Motorhomes te huur";
   const description =
     locale === "fr"
       ? "Des modèles de location jeunes et parfaitement entretenus. Assurance omnium, assistance dépannage européenne 24/7 et bouteille de gaz pleine incluses."
@@ -42,7 +42,7 @@ export default async function VerhuurPagina({
   const inhoud =
     locale === "fr"
       ? {
-          titel: "Motorhomes à louer",
+          titel: "Camping-cars à louer",
           intro:
             "Des modèles de location jeunes et parfaitement entretenus. Assurance omnium, assistance dépannage européenne 24/7 et bouteille de gaz pleine incluses.",
           leeg: "Il n'y a actuellement aucun modèle de location en ligne. Contactez-nous pour la flotte actuelle.",

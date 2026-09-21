@@ -42,7 +42,7 @@ export default async function AccessoiresEnOptiesPagina({
       ? {
           h1: "Accessoires & options",
           intro:
-            "Personnalisez votre motorhome avec des accessoires de qualité supérieure, montés avec soin par nos propres techniciens.",
+            "Personnalisez votre camping-car avec des accessoires de qualité supérieure, montés avec soin par nos propres techniciens.",
           aanbodLabel: "Notre offre",
           aanbodTitel: "Accessoires & montage",
           card1Titel: "Panneaux solaires & batteries",
@@ -64,9 +64,9 @@ export default async function AccessoiresEnOptiesPagina({
           hoeWerktLabel: "Comment ça marche",
           hoeWerktTitel: "De la demande au montage",
           stap1Titel: "Contactez-nous",
-          stap1Tekst: "Vous nous expliquez ce que vous recherchez et l'usage que vous faites de votre motorhome.",
+          stap1Tekst: "Vous nous expliquez ce que vous recherchez et l'usage que vous faites de votre camping-car.",
           stap2Titel: "Nous cherchons la meilleure offre",
-          stap2Tekst: "BMC compare les marques et modèles qui conviennent à votre motorhome.",
+          stap2Tekst: "BMC compare les marques et modèles qui conviennent à votre camping-car.",
           stap3Titel: "Devis incluant le montage",
           stap3Tekst: "Un seul prix pour les pièces et la pose, sans surprises.",
           stap4Titel: "Montage dans notre atelier",
@@ -85,7 +85,7 @@ export default async function AccessoiresEnOptiesPagina({
             {
               vraag: "BMC tient-elle compte de la charge utile et du PTAC de 3.500 kg ?",
               antwoord:
-                "Oui. Nous calculons avec vous le poids des accessoires souhaités, afin que votre motorhome reste dans les limites de poids légales.",
+                "Oui. Nous calculons avec vous le poids des accessoires souhaités, afin que votre camping-car reste dans les limites de poids légales.",
             },
             {
               vraag: "Un porte-vélos peut-il supporter des vélos électriques lourds ?",

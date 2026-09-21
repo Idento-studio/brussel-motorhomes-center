@@ -15,7 +15,7 @@ export async function generateMetadata({
   const title = locale === "fr" ? "À propos" : locale === "en" ? "About us" : "Over ons";
   const description =
     locale === "fr"
-      ? "Depuis plus de 15 ans, votre partenaire de confiance pour les motorhomes à Bruxelles et ses environs."
+      ? "Depuis plus de 15 ans, votre partenaire de confiance pour les camping-cars à Bruxelles et ses environs."
       : locale === "en"
       ? "For over 15 years, your trusted partner for motorhomes in Brussels and the surrounding area."
       : "Al meer dan 15 jaar uw vertrouwde partner voor motorhomes in Brussel en omstreken.";
@@ -40,16 +40,16 @@ export default async function OverOnsPagina({
       ? {
           kruimel: "À propos",
           titel: "À propos de Brussel Motorhomes Center",
-          intro: "Depuis plus de 15 ans, votre partenaire de confiance pour les motorhomes à Bruxelles et ses environs.",
+          intro: "Depuis plus de 15 ans, votre partenaire de confiance pour les camping-cars à Bruxelles et ses environs.",
           missieLabel: "Notre mission",
           missieTitel: "La passion de la route ouverte, un service au plus haut niveau",
           missieTekst1:
             "Chez Brussel Motorhomes Center, nous croyons que voyager est bien plus que se rendre d'un point A à un point B. C'est un mode de vie. La liberté de s'arrêter où l'on veut, de dormir sous les étoiles et de vivre une nouvelle aventure chaque jour.",
           missieTekst2:
-            "Fondée par deux passionnés de motorhome, notre entreprise est devenue la référence pour la vente, la location, l'entretien et les aménagements sur mesure de motorhomes dans la région bruxelloise.",
+            "Fondée par deux passionnés de camping-car, notre entreprise est devenue la référence pour la vente, la location, l'entretien et les aménagements sur mesure de camping-cars dans la région bruxelloise.",
           waaromLabel: "Pourquoi BMC",
           waaromTitel: "Nos valeurs et nos engagements",
-          waaromIntro: "Ce qui nous distingue des autres revendeurs de motorhomes en Belgique.",
+          waaromIntro: "Ce qui nous distingue des autres revendeurs de camping-cars en Belgique.",
           kwaliteitTitel: "Garantie de qualité",
           kwaliteitTekst: "Chaque véhicule est minutieusement inspecté et certifié avant la vente ou la location.",
           persoonlijkTitel: "Service personnalisé",
@@ -62,17 +62,17 @@ export default async function OverOnsPagina({
           teamTitel: "Les personnes derrière BMC",
           jimmyRol: "Gérant & fondateur",
           jimmyTekst:
-            "15 ans d'expérience comme garagiste et mécanicien dans le secteur du motorhome, et expert de terrain reconnu.",
+            "15 ans d'expérience comme garagiste et mécanicien dans le secteur du camping-car, et expert de terrain reconnu.",
           didierRol: "Vente & conseil",
           didierTekst:
-            "Expert dans l'art de trouver le motorhome parfait pour chaque client. Un conseil personnalisé et professionnel.",
+            "Expert dans l'art de trouver le camping-car parfait pour chaque client. Un conseil personnalisé et professionnel.",
           maximeRol: "Responsable du service technique",
           maximeTekst:
-            "Technicien certifié, expert de toutes les grandes marques de motorhome et des systèmes électriques.",
-          philipRol: "Conseiller & expert motorhomes",
-          philipTekst: "15 ans d'expérience dans le secteur du motorhome. Animé par sa passion pour le voyage et la technologie.",
+            "Technicien certifié, expert de toutes les grandes marques de camping-car et des systèmes électriques.",
+          philipRol: "Conseiller & expert camping-cars",
+          philipTekst: "15 ans d'expérience dans le secteur du camping-car. Animé par sa passion pour le voyage et la technologie.",
           slotTitel: "Vous ne trouvez pas ce que vous cherchez ?",
-          slotTekst: "Contactez notre équipe. Nous vous aidons volontiers à trouver le motorhome parfait.",
+          slotTekst: "Contactez notre équipe. Nous vous aidons volontiers à trouver le camping-car parfait.",
         }
       : locale === "en"
       ? {

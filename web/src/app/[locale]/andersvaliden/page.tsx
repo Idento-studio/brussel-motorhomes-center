@@ -14,13 +14,13 @@ export async function generateMetadata({
   const { locale } = await params;
   const title =
     locale === "fr"
-      ? "Motorhomes pour personnes à mobilité réduite"
+      ? "Camping-cars pour personnes à mobilité réduite"
       : locale === "en"
       ? "Motorhomes for people with reduced mobility"
       : "Motorhomes voor andersvaliden";
   const description =
     locale === "fr"
-      ? "Motorhomes adaptés en collaboration avec VJ Mobility : rampes d'accès, portes élargies et commandes adaptées."
+      ? "Camping-cars adaptés en collaboration avec VJ Mobility : rampes d'accès, portes élargies et commandes adaptées."
       : locale === "en"
       ? "Adapted motorhomes in partnership with VJ Mobility: access ramps, widened doors and adapted controls."
       : "Aangepaste motorhomes in samenwerking met VJ Mobility: oprijplaten, verbrede deuren en aangepaste besturing.";
@@ -43,19 +43,19 @@ export default async function AndersvalidenPagina({
   const t =
     locale === "fr"
       ? {
-          h1: "Motorhomes adaptés pour personnes à mobilité réduite",
+          h1: "Camping-cars adaptés pour personnes à mobilité réduite",
           intro:
-            "Nous transformons des motorhomes afin que chacun, même avec un handicap physique, puisse voyager en toute sérénité.",
+            "Nous transformons des camping-cars afin que chacun, même avec un handicap physique, puisse voyager en toute sérénité.",
           partnerLabel: "Partenaire recommandé",
           partnerTitel: "VJ Mobility",
-          videoAria: "Motorhome adapté de VJ Mobility",
-          partnerIntro: "Des motorhomes adaptés pour une autonomie maximale",
+          videoAria: "Camping-car adapté de VJ Mobility",
+          partnerIntro: "Des camping-cars adaptés pour une autonomie maximale",
           partnerP1:
             "VJ Mobility, basé à Halle, a été fondé par Jimmy, ancien garagiste et lui-même utilisateur d'un fauteuil roulant. L'entreprise combine expertise technique et expérience pratique pour des solutions de mobilité sur mesure.",
           partnerP2:
-            "En tant que client BMC, VJ Mobility sait exactement ce dont votre motorhome a besoin : intérieurs sans obstacles, cuisines surbaissées, systèmes de levage au plafond intégrés et espaces douche de plain-pied.",
-          vink1: "Adaptations automobiles et motorhome certifiées CARA",
-          vink2: "Agencements de motorhome sans obstacles avec système de levage au plafond",
+            "En tant que client BMC, VJ Mobility sait exactement ce dont votre camping-car a besoin : intérieurs sans obstacles, cuisines surbaissées, systèmes de levage au plafond intégrés et espaces douche de plain-pied.",
+          vink1: "Adaptations automobiles et camping-car certifiées CARA",
+          vink2: "Agencements de camping-car sans obstacles avec système de levage au plafond",
           vink3:
             "Accompagnement pour les dossiers auprès du VAPH (l'agence flamande pour une vie autonome) et les remboursements",
           aanpassingenLabel: "Nos adaptations",
@@ -84,7 +84,7 @@ export default async function AndersvalidenPagina({
           stap3Titel: "Transformation professionnelle",
           stap3Tekst: "Des techniciens certifiés réalisent la transformation dans un atelier spécialisé.",
           stap4Titel: "Livraison & test",
-          stap4Tekst: "Test approfondi du motorhome adapté avant la livraison.",
+          stap4Tekst: "Test approfondi du camping-car adapté avant la livraison.",
           ctaTitel: "Curieux de savoir ce que nous pouvons faire pour vous ?",
           ctaTekst: "Chaque projet est unique. Contactez-nous pour un entretien sans engagement.",
         }
