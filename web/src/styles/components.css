@@ -596,5 +596,15 @@
   display: flex;
   flex-wrap: wrap;
   gap: 0.75rem;
-  flex-shrink: 0;
+  /* Geen flex-shrink:0 (was de bug): dat dwong dit blok altijd zijn volle
+     inhoudsbreedte af, ook op smalle schermen — met .cookie-banner-inhoud's
+     eigen flex-wrap erboven bleef het dan als één stuk naar een nieuwe regel
+     springen, maar die regel zelf was breder dan het scherm, dus viel de
+     tweede knop buiten beeld i.p.v. zelf ook te wrappen. */
+  max-width: 100%;
+}
+@media (max-width: 479px) {
+  /* Onder elkaar i.p.v. naast elkaar proppen op de smalste telefoons. */
+  .cookie-banner-knoppen { flex-direction: column; width: 100%; }
+  .cookie-banner-knoppen .btn { width: 100%; }
 }
