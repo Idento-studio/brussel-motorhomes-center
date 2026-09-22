@@ -31,6 +31,9 @@
 /* Andersvaliden: partnerblok. */
 .partner h3 { margin-top: var(--sp-4); font-size: var(--fs-h3); }
 .partner p { margin-top: var(--sp-3); line-height: 1.7; color: var(--text-muted); }
+/* .partner p (tag+klasse) wint anders van .label (enkel klasse) en
+   overschrijft het accentoranje met de gedempte tekstkleur. */
+.partner .label { margin-top: 0; color: var(--accent); }
 .partner .vinklijst { margin-top: var(--sp-5); }
 
 /* FAQ: categorietabs boven de accordeon. */
