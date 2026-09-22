@@ -76,7 +76,10 @@ export function Gallery({ fotos, titel, badge, locale }: { fotos: SanityImage[];
                   type="button"
                   className={`duim${i === actief ? " is-actief" : ""}`}
                   aria-label={toontRestant ? g.bekijkAlle(fotos.length) : g.foto(i + 1)}
-                  onClick={() => (toontRestant ? setOpen(true) : setActief(i))}
+                  onClick={() => {
+                    setActief(i);
+                    setOpen(true);
+                  }}
                 >
                   <img src={urlFor(foto).width(200).height(150).fit("crop").url()} alt="" loading="lazy" />
                   {toontRestant && <span className="duim-restant">+{restant}</span>}
