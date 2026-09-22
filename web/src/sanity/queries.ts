@@ -45,6 +45,7 @@ function verkoopVelden(locale: Locale) {
   rijbewijs,
   onderstel,
   ${vertaald("indeling", locale)},
+  afmetingen,
   leeggewicht,
   mtm,
   ${vertaald("garantie", locale)},

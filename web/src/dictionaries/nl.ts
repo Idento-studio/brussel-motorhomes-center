@@ -146,6 +146,7 @@ export const nl = {
       opbouwtype: "Opbouwtype",
       staat: "Staat",
       indeling: "Indeling",
+      afmetingen: "Afmetingen (L × B × H)",
       onderstel: "Onderstel",
       brandstof: "Brandstof",
       transmissie: "Transmissie",

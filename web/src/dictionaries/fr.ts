@@ -148,6 +148,7 @@ export const fr: Dictionary = {
       opbouwtype: "Type de carrosserie",
       staat: "État",
       indeling: "Agencement",
+      afmetingen: "Dimensions (L × l × H)",
       onderstel: "Châssis",
       brandstof: "Carburant",
       transmissie: "Transmission",

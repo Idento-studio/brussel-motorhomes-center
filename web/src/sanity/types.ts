@@ -35,6 +35,7 @@ export type VerkoopVoertuig = {
   rijbewijs?: string;
   onderstel?: string;
   indeling?: string;
+  afmetingen?: {lengte?: number; breedte?: number; hoogte?: number};
   leeggewicht?: number;
   mtm?: number;
   garantie?: string;

@@ -23,6 +23,7 @@ export const verkoopVoertuig = defineType({
     {name: 'plaatsenSet', title: 'Plaatsen', options: {columns: 2}},
     {name: 'identificatieSet', title: 'Identificatie', options: {columns: 3}},
     {name: 'technischSet', title: 'Technische gegevens', options: {columns: 2}},
+    {name: 'afmetingenSet', title: 'Afmetingen (m)', options: {columns: 3}},
     {name: 'gewichtSet', title: 'Gewicht', options: {columns: 2}},
     {name: 'mindervalidenSet', title: 'Mindervaliden'},
   ],
@@ -205,6 +206,19 @@ export const verkoopVoertuig = defineType({
       description: 'Korte omschrijving van de indeling, bv. "Geen bed achteraan". Vul in per taal.',
       fieldset: 'technischSet',
       group: 'specificaties',
+    }),
+    defineField({
+      name: 'afmetingen',
+      title: 'Afmetingen',
+      type: 'object',
+      description: 'Optioneel: lengte, breedte en hoogte in meter. Leeg laten toont dit veld niet op de website.',
+      group: 'specificaties',
+      fieldset: 'afmetingenSet',
+      fields: [
+        defineField({name: 'lengte', title: 'Lengte (m)', type: 'number', description: 'Bv. 7 voor 7 meter.'}),
+        defineField({name: 'breedte', title: 'Breedte (m)', type: 'number', description: 'Bv. 2.35.'}),
+        defineField({name: 'hoogte', title: 'Hoogte (m)', type: 'number', description: 'Bv. 2.98.'}),
+      ],
     }),
     defineField({
       name: 'leeggewicht',

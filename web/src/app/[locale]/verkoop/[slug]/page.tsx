@@ -119,6 +119,9 @@ export default async function VerkoopDetailPagina({
                 <div><dt>{d.opbouwtype}</dt><dd>{opbouwtypeLabel(v.opbouwtype, locale)}</dd></div>
                 <div><dt>{d.staat}</dt><dd>{staatLabel(v.staat, locale)}</dd></div>
                 {v.indeling && <div><dt>{d.indeling}</dt><dd>{v.indeling}</dd></div>}
+                {v.afmetingen?.lengte && v.afmetingen?.breedte && v.afmetingen?.hoogte && (
+                  <div><dt>{d.afmetingen}</dt><dd>{`${v.afmetingen.lengte.toFixed(2)} × ${v.afmetingen.breedte.toFixed(2)} × ${v.afmetingen.hoogte.toFixed(2)} m`}</dd></div>
+                )}
                 <div><dt>{dict.voertuig.zitSlaap}</dt><dd>{v.zitplaatsen} / {v.slaapplaatsen}</dd></div>
                 {v.onderstel && <div><dt>{d.onderstel}</dt><dd>{v.onderstel}</dd></div>}
                 {v.motor && <div><dt>{dict.voertuig.motor}</dt><dd>{v.motor}</dd></div>}

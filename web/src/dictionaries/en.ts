@@ -148,6 +148,7 @@ export const en: Dictionary = {
       opbouwtype: "Body type",
       staat: "Condition",
       indeling: "Layout",
+      afmetingen: "Dimensions (L × W × H)",
       onderstel: "Chassis",
       brandstof: "Fuel",
       transmissie: "Transmission",
