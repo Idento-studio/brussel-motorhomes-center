@@ -131,9 +131,15 @@ export default async function VerkoopDetailPagina({
                 {(v.leeggewicht || v.mtm) && (
                   <div><dt>{d.gewicht}</dt><dd>{v.leeggewicht ? `${v.leeggewicht.toLocaleString(localeCode)} kg` : "–"} / {v.mtm ? `${v.mtm.toLocaleString(localeCode)} kg` : "–"}</dd></div>
                 )}
-                {v.garantie && <div><dt>{d.garantie}</dt><dd>{v.garantie}</dd></div>}
               </dl>
             </section>
+
+            {v.garantie && (
+              <section className="detail-blok">
+                <h2>{d.garantie}</h2>
+                <p className="onder" style={{ marginTop: "var(--sp-3)" }}>{v.garantie}</p>
+              </section>
+            )}
 
             {(v.dagindeling || v.nachtindeling) && (
               <section className="detail-blok">
