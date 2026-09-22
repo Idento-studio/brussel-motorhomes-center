@@ -29,6 +29,7 @@
 .missie .tekst p { line-height: 1.7; }
 
 /* Andersvaliden: partnerblok. */
+.partner h3 { margin-top: var(--sp-4); font-size: var(--fs-h3); }
 .partner p { margin-top: var(--sp-3); line-height: 1.7; color: var(--text-muted); }
 .partner .vinklijst { margin-top: var(--sp-5); }
 

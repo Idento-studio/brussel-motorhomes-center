@@ -199,10 +199,6 @@ export default async function AndersvalidenPagina({
 
       <section className="sectie">
         <div className="wrap">
-          <div className="sectie-kop">
-            <p className="label">{t.partnerLabel}</p>
-            <h2>{t.partnerTitel}</h2>
-          </div>
           <div className="split">
             <VideoMetGeluidsknop
               src="/assets/video/home/andersvaliden.mp4"
@@ -210,9 +206,9 @@ export default async function AndersvalidenPagina({
               ariaLabel={t.videoAria}
             />
             <div className="partner">
-              <p style={{ fontFamily: "var(--font-display)", fontSize: "1.25rem", fontWeight: 700 }}>
-                {t.partnerIntro}
-              </p>
+              <p className="label">{t.partnerLabel}</p>
+              <h2 style={{ marginTop: "var(--sp-3)", fontSize: "var(--fs-h2)" }}>{t.partnerTitel}</h2>
+              <h3>{t.partnerIntro}</h3>
               <p>{t.partnerP1}</p>
               <p>{t.partnerP2}</p>
               <ul className="vinklijst">
