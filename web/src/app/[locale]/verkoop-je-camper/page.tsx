@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { Suspense } from "react";
 import type { Metadata } from "next";
 import { VerkoopStappenKeuze } from "@/components/VerkoopStappenKeuze";
 import { L, buildAlternates, buildOpenGraph, type Locale } from "@/lib/i18n";
@@ -185,7 +186,9 @@ export default async function VerkoopJeCamperPagina({
         </div>
       </section>
 
-      <VerkoopStappenKeuze locale={locale} />
+      <Suspense fallback={null}>
+        <VerkoopStappenKeuze locale={locale} />
+      </Suspense>
     </main>
   );
 }

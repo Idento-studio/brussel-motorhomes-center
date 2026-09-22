@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import { useSearchParams } from "next/navigation";
 import { Formulier } from "@/components/Formulier";
 import type { Locale } from "@/lib/i18n";
 
@@ -100,7 +101,9 @@ function getOpties(locale: Locale): { keuze: Keuze; label: string; stappen: { ti
 }
 
 export function VerkoopStappenKeuze({ locale }: { locale: Locale }) {
-  const [keuze, setKeuze] = useState<Keuze>("bmc-koopt");
+  const searchParams = useSearchParams();
+  const keuzeUitUrl = searchParams.get("keuze");
+  const [keuze, setKeuze] = useState<Keuze>(keuzeUitUrl === "bmc-verkoopt" ? "bmc-verkoopt" : "bmc-koopt");
   const opties = getOpties(locale);
   const hoeVerkopenWaarde = getHoeVerkopenWaarde(locale);
   const actieveOptie = opties.find((optie) => optie.keuze === keuze)!;
