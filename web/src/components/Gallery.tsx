@@ -1,7 +1,7 @@
 "use client";
 
 import { useCallback, useEffect, useRef, useState } from "react";
-import { urlFor } from "@/sanity/image";
+import { urlFor, urlForVolledig } from "@/sanity/image";
 import type { SanityImage } from "@/sanity/types";
 import { getDictionary } from "@/dictionaries";
 import type { Locale } from "@/lib/i18n";
@@ -109,7 +109,7 @@ export function Gallery({ fotos, titel, badge, locale }: { fotos: SanityImage[];
 
           <img
             className="lichtbak-foto"
-            src={urlFor(hoofdfoto).width(1800).height(1350).fit("max").url()}
+            src={urlForVolledig(hoofdfoto).width(1800).height(1350).fit("max").url()}
             alt={hoofdfoto.alt ?? titel}
             onClick={(e) => e.stopPropagation()}
           />

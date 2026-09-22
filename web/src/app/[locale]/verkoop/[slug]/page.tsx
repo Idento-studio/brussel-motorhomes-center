@@ -6,7 +6,7 @@ import { Gallery } from "@/components/Gallery";
 import { Uitrusting } from "@/components/Uitrusting";
 import { Formulier } from "@/components/Formulier";
 import { KlikbareFoto } from "@/components/KlikbareFoto";
-import { urlFor } from "@/sanity/image";
+import { urlFor, urlForVolledig } from "@/sanity/image";
 import { L, buildAlternates, buildOpenGraph, type Locale } from "@/lib/i18n";
 import { getDictionary } from "@/dictionaries";
 import { opbouwtypeLabel, brandstofLabel, transmissieLabel, staatLabel, rijbewijsLabel } from "@/lib/voertuigLabels";
@@ -143,7 +143,7 @@ export default async function VerkoopDetailPagina({
                     <div>
                       <KlikbareFoto
                         src={urlFor(v.dagindeling).width(700).height(525).fit("crop").url()}
-                        groteSrc={urlFor(v.dagindeling).width(1800).height(1350).fit("max").url()}
+                        groteSrc={urlForVolledig(v.dagindeling).width(1800).height(1350).fit("max").url()}
                         alt={v.dagindeling.alt ?? d.dagindeling}
                         locale={locale}
                       />
@@ -154,7 +154,7 @@ export default async function VerkoopDetailPagina({
                     <div>
                       <KlikbareFoto
                         src={urlFor(v.nachtindeling).width(700).height(525).fit("crop").url()}
-                        groteSrc={urlFor(v.nachtindeling).width(1800).height(1350).fit("max").url()}
+                        groteSrc={urlForVolledig(v.nachtindeling).width(1800).height(1350).fit("max").url()}
                         alt={v.nachtindeling.alt ?? d.nachtindeling}
                         locale={locale}
                       />
