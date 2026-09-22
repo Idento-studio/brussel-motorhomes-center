@@ -58,6 +58,7 @@ export default async function AndersvalidenPagina({
           vink2: "Agencements de camping-car sans obstacles avec système de levage au plafond",
           vink3:
             "Accompagnement pour les dossiers auprès du VAPH (l'agence flamande pour une vie autonome) et les remboursements",
+          partnerCta: "Visiter VJ Mobility",
           aanpassingenLabel: "Nos adaptations",
           aanpassingenTitel: "De la petite intervention à la transformation complète",
           card1Titel: "Rampes d'accès & élévateurs",
@@ -105,6 +106,7 @@ export default async function AndersvalidenPagina({
           vink2: "Obstacle-free motorhome layouts with ceiling hoist system",
           vink3:
             "Support with VAPH applications (the Flemish agency for independent living) and reimbursements",
+          partnerCta: "Visit VJ Mobility",
           aanpassingenLabel: "Our adaptations",
           aanpassingenTitel: "From small adjustments to a complete conversion",
           card1Titel: "Access ramps & lifts",
@@ -150,6 +152,7 @@ export default async function AndersvalidenPagina({
           vink1: "CARA-gecertificeerde auto- en motorhome-aanpassingen",
           vink2: "Obstakelvrije motorhome-lay-outs met plafond-liftsysteem",
           vink3: "Begeleiding bij VAPH-dossiers en terugbetalingen",
+          partnerCta: "Bezoek VJ Mobility",
           aanpassingenLabel: "Onze aanpassingen",
           aanpassingenTitel: "Van kleine ingreep tot volledige ombouw",
           card1Titel: "Oprijplaten & liften",
@@ -225,6 +228,15 @@ export default async function AndersvalidenPagina({
                   {t.vink3}
                 </li>
               </ul>
+              <a
+                className="btn btn-blauw"
+                href="https://vjmobility.be/"
+                target="_blank"
+                rel="noopener noreferrer"
+                style={{ marginTop: "var(--sp-5)" }}
+              >
+                {t.partnerCta}
+              </a>
             </div>
           </div>
         </div>
