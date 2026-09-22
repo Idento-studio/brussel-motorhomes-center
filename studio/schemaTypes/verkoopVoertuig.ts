@@ -92,6 +92,7 @@ export const verkoopVoertuig = defineType({
       type: 'internationalizedArrayString',
       description: 'Korte actietekst die als label verschijnt op de kaart en de detailpagina, bv. "Gratis airco" of "Winteractie". Vul in per taal — laat een taal leeg als er geen actie loopt.',
       fieldset: 'promoSet',
+      group: 'algemeen',
     }),
     defineField({
       name: 'promoPrijs',
@@ -99,6 +100,7 @@ export const verkoopVoertuig = defineType({
       type: 'number',
       description: 'Vul dit ENKEL in bij een prijskorting: typ de nieuwe, lagere prijs (zelfde format als het veld "Prijs" hierboven, dus enkel het getal). De gewone prijs wordt dan automatisch doorstreept getoond, met deze promoprijs ernaast als actieprijs.',
       fieldset: 'promoSet',
+      group: 'algemeen',
       validation: (Rule) =>
         Rule.positive().custom((waarde, context) => {
           if (waarde === undefined) return true
@@ -115,6 +117,7 @@ export const verkoopVoertuig = defineType({
       type: 'number',
       description: 'Aantal zitplaatsen tijdens het rijden.',
       fieldset: 'plaatsenSet',
+      group: 'algemeen',
       validation: (Rule) => Rule.required().integer().positive(),
     }),
     defineField({
@@ -123,6 +126,7 @@ export const verkoopVoertuig = defineType({
       type: 'number',
       description: 'Aantal slaapplaatsen.',
       fieldset: 'plaatsenSet',
+      group: 'algemeen',
       validation: (Rule) => Rule.required().integer().positive(),
     }),
     defineField({
