@@ -250,46 +250,58 @@ export default async function AndersvalidenPagina({
             <h2>{t.aanpassingenTitel}</h2>
           </div>
           <div className="raster raster-3">
-            <article className="kaart icoon-kaart">
-              <span className="icoon-vlak">
-                <FotoMetPlaceholder src="/assets/img/andersvaliden/oprijplaten-en-liften.webp" alt="" />
-              </span>
+            <article className="kaart kaart-lift foto-kaart">
+              <div className="foto-kaart-boven">
+                <span className="media foto-kaart-beeld">
+                  <FotoMetPlaceholder src="/assets/img/andersvaliden/oprijplaten-en-liften.webp" alt="" />
+                </span>
               <h3>{t.card1Titel}</h3>
+              </div>
               <p>{t.card1Tekst}</p>
             </article>
-            <article className="kaart icoon-kaart">
-              <span className="icoon-vlak">
-                <FotoMetPlaceholder src="/assets/img/andersvaliden/verbrede-deuren.webp" alt="" />
-              </span>
+            <article className="kaart kaart-lift foto-kaart">
+              <div className="foto-kaart-boven">
+                <span className="media foto-kaart-beeld">
+                  <FotoMetPlaceholder src="/assets/img/andersvaliden/verbrede-deuren.webp" alt="" />
+                </span>
               <h3>{t.card2Titel}</h3>
+              </div>
               <p>{t.card2Tekst}</p>
             </article>
-            <article className="kaart icoon-kaart">
-              <span className="icoon-vlak">
-                <FotoMetPlaceholder src="/assets/img/andersvaliden/aangepast-interieur.webp" alt="" />
-              </span>
+            <article className="kaart kaart-lift foto-kaart">
+              <div className="foto-kaart-boven">
+                <span className="media foto-kaart-beeld">
+                  <FotoMetPlaceholder src="/assets/img/andersvaliden/aangepast-interieur.webp" alt="" />
+                </span>
               <h3>{t.card3Titel}</h3>
+              </div>
               <p>{t.card3Tekst}</p>
             </article>
-            <article className="kaart icoon-kaart">
-              <span className="icoon-vlak">
-                <FotoMetPlaceholder src="/assets/img/andersvaliden/besturingsaanpassingen.webp" alt="" />
-              </span>
+            <article className="kaart kaart-lift foto-kaart">
+              <div className="foto-kaart-boven">
+                <span className="media foto-kaart-beeld">
+                  <FotoMetPlaceholder src="/assets/img/andersvaliden/besturingsaanpassingen.webp" alt="" />
+                </span>
               <h3>{t.card4Titel}</h3>
+              </div>
               <p>{t.card4Tekst}</p>
             </article>
-            <article className="kaart icoon-kaart">
-              <span className="icoon-vlak">
-                <FotoMetPlaceholder src="/assets/img/andersvaliden/draaistoel-en-transfers.webp" alt="" />
-              </span>
+            <article className="kaart kaart-lift foto-kaart">
+              <div className="foto-kaart-boven">
+                <span className="media foto-kaart-beeld">
+                  <FotoMetPlaceholder src="/assets/img/andersvaliden/draaistoel-en-transfers.webp" alt="" />
+                </span>
               <h3>{t.card5Titel}</h3>
+              </div>
               <p>{t.card5Tekst}</p>
             </article>
-            <article className="kaart icoon-kaart">
-              <span className="icoon-vlak">
-                <FotoMetPlaceholder src="/assets/img/andersvaliden/persoonlijk-advies.webp" alt="" />
-              </span>
+            <article className="kaart kaart-lift foto-kaart">
+              <div className="foto-kaart-boven">
+                <span className="media foto-kaart-beeld">
+                  <FotoMetPlaceholder src="/assets/img/andersvaliden/persoonlijk-advies.webp" alt="" />
+                </span>
               <h3>{t.card6Titel}</h3>
+              </div>
               <p>{t.card6Tekst}</p>
             </article>
           </div>

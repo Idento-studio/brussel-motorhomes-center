@@ -201,67 +201,85 @@ export default async function OnderhoudLeefruimtePagina({
             <h2>{t.dienstenTitel}</h2>
           </div>
           <div className="raster raster-3">
-            <article className="kaart icoon-kaart">
-              <span className="icoon-vlak">
-                <FotoMetPlaceholder src="/assets/img/onderhoud/vochtbehandeling.webp" alt="" />
-              </span>
+            <article className="kaart kaart-lift foto-kaart">
+              <div className="foto-kaart-boven">
+                <span className="media foto-kaart-beeld">
+                  <FotoMetPlaceholder src="/assets/img/onderhoud/vochtbehandeling.webp" alt="" />
+                </span>
               <h3>{t.card1Titel}</h3>
+              </div>
               <p>{t.card1Tekst}</p>
             </article>
-            <article className="kaart icoon-kaart">
-              <span className="icoon-vlak">
-                <FotoMetPlaceholder src="/assets/img/onderhoud/fietsenrek.webp" alt="" />
-              </span>
+            <article className="kaart kaart-lift foto-kaart">
+              <div className="foto-kaart-boven">
+                <span className="media foto-kaart-beeld">
+                  <FotoMetPlaceholder src="/assets/img/onderhoud/fietsenrek.webp" alt="" />
+                </span>
               <h3>{t.card2Titel}</h3>
+              </div>
               <p>{t.card2Tekst}</p>
             </article>
-            <article className="kaart icoon-kaart">
-              <span className="icoon-vlak">
-                <FotoMetPlaceholder src="/assets/img/onderhoud/airco-en-verwarming.webp" alt="" />
-              </span>
+            <article className="kaart kaart-lift foto-kaart">
+              <div className="foto-kaart-boven">
+                <span className="media foto-kaart-beeld">
+                  <FotoMetPlaceholder src="/assets/img/onderhoud/airco-en-verwarming.webp" alt="" />
+                </span>
               <h3>{t.card3Titel}</h3>
+              </div>
               <p>{t.card3Tekst}</p>
             </article>
-            <article className="kaart icoon-kaart">
-              <span className="icoon-vlak">
-                <FotoMetPlaceholder src="/assets/img/onderhoud/koelkast.webp" alt="" />
-              </span>
+            <article className="kaart kaart-lift foto-kaart">
+              <div className="foto-kaart-boven">
+                <span className="media foto-kaart-beeld">
+                  <FotoMetPlaceholder src="/assets/img/onderhoud/koelkast.webp" alt="" />
+                </span>
               <h3>{t.card4Titel}</h3>
+              </div>
               <p>{t.card4Tekst}</p>
             </article>
-            <article className="kaart icoon-kaart">
-              <span className="icoon-vlak">
-                <FotoMetPlaceholder src="/assets/img/onderhoud/luifel.webp" alt="" />
-              </span>
+            <article className="kaart kaart-lift foto-kaart">
+              <div className="foto-kaart-boven">
+                <span className="media foto-kaart-beeld">
+                  <FotoMetPlaceholder src="/assets/img/onderhoud/luifel.webp" alt="" />
+                </span>
               <h3>{t.card5Titel}</h3>
+              </div>
               <p>{t.card5Tekst}</p>
             </article>
-            <article className="kaart icoon-kaart">
-              <span className="icoon-vlak">
-                <FotoMetPlaceholder src="/assets/img/onderhoud/veiligheidssloten.webp" alt="" />
-              </span>
+            <article className="kaart kaart-lift foto-kaart">
+              <div className="foto-kaart-boven">
+                <span className="media foto-kaart-beeld">
+                  <FotoMetPlaceholder src="/assets/img/onderhoud/veiligheidssloten.webp" alt="" />
+                </span>
               <h3>{t.card6Titel}</h3>
+              </div>
               <p>{t.card6Tekst}</p>
             </article>
-            <article className="kaart icoon-kaart">
-              <span className="icoon-vlak">
-                <FotoMetPlaceholder src="/assets/img/onderhoud/batterijen.webp" alt="" />
-              </span>
+            <article className="kaart kaart-lift foto-kaart">
+              <div className="foto-kaart-boven">
+                <span className="media foto-kaart-beeld">
+                  <FotoMetPlaceholder src="/assets/img/onderhoud/batterijen.webp" alt="" />
+                </span>
               <h3>{t.card7Titel}</h3>
+              </div>
               <p>{t.card7Tekst}</p>
             </article>
-            <article className="kaart icoon-kaart">
-              <span className="icoon-vlak">
-                <FotoMetPlaceholder src="/assets/img/onderhoud/tv-tv-steun-en-antenne.webp" alt="" />
-              </span>
+            <article className="kaart kaart-lift foto-kaart">
+              <div className="foto-kaart-boven">
+                <span className="media foto-kaart-beeld">
+                  <FotoMetPlaceholder src="/assets/img/onderhoud/tv-tv-steun-en-antenne.webp" alt="" />
+                </span>
               <h3>{t.card8Titel}</h3>
+              </div>
               <p>{t.card8Tekst}</p>
             </article>
-            <article className="kaart icoon-kaart">
-              <span className="icoon-vlak">
-                <FotoMetPlaceholder src="/assets/img/onderhoud/ramen.webp" alt="" />
-              </span>
+            <article className="kaart kaart-lift foto-kaart">
+              <div className="foto-kaart-boven">
+                <span className="media foto-kaart-beeld">
+                  <FotoMetPlaceholder src="/assets/img/onderhoud/ramen.webp" alt="" />
+                </span>
               <h3>{t.card9Titel}</h3>
+              </div>
               <p>{t.card9Tekst}</p>
             </article>
           </div>

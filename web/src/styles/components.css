@@ -178,6 +178,43 @@
 .icoon-kaart h3 { margin-top: var(--sp-4); font-size: 1.125rem; }
 .icoon-kaart p { margin-top: var(--sp-2); font-size: 0.875rem; line-height: 1.65; color: var(--text-muted); }
 
+/* ── Fotokaart: beeld links, titel ernaast ────────────────────────────────
+   Voor dienstenkaarten met een echte foto in plaats van een lijn-icoon. Het
+   beeldkader hergebruikt .media, zodat een ontbrekend bestand het blauwe
+   campersilhouet toont in plaats van een leeg vakje — dezelfde conventie als
+   elders op de site.
+   ------------------------------------------------------------------------ */
+
+.foto-kaart { padding: var(--sp-5); }
+
+.foto-kaart-boven {
+  display: flex;
+  align-items: center;
+  gap: var(--sp-4);
+}
+
+/* Vast vierkant: de titel ernaast mag twee regels worden zonder dat het beeld
+   meekrimpt, vandaar flex: 0 0 auto. */
+.foto-kaart-beeld {
+  flex: 0 0 auto;
+  width: 76px;
+  height: 76px;
+  border-radius: var(--radius-md);
+}
+
+.foto-kaart h3 { font-size: 1.0625rem; }
+
+.foto-kaart p {
+  margin-top: var(--sp-4);
+  font-size: 0.875rem;
+  line-height: 1.65;
+  color: var(--text-muted);
+}
+
+@media (max-width: 400px) {
+  .foto-kaart-beeld { width: 64px; height: 64px; }
+}
+
 /* ── Verticaal traject ────────────────────────────────────────────────────
    Een lijn met stippen, tekst rechts. Werkt even goed bij drie stappen als
    bij zes, en hoeft op gsm niet te veranderen — het staat daar al verticaal.
