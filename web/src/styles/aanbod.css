@@ -73,6 +73,12 @@
 @media (min-width: 1024px) {
   .detail-raster { grid-template-columns: 1.55fr 1fr; gap: var(--sp-7); }
 }
+/* Zonder min-width: 0 laat een grid-item zich standaard niet smaller maken
+   dan de intrinsieke (min-content) breedte van zijn inhoud — bv. de brede
+   huurtarieventabel duwt dan de hele kolom (en zo de hele pagina) breder dan
+   het scherm, in plaats van enkel binnen .tabel-scroll horizontaal te
+   scrollen zoals bedoeld. */
+.detail-raster > * { min-width: 0; }
 
 .galerij .media { position: relative; }
 .galerij .media .badge { position: absolute; left: 1rem; top: 1rem; z-index: 3; }

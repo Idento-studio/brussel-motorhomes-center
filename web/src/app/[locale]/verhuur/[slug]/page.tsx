@@ -184,30 +184,6 @@ export default async function VerhuurDetailPagina({
               </section>
             )}
 
-            <div className="raster raster-2" style={{ marginTop: "var(--sp-5)" }}>
-              <div className="kaart kaart-ruim">
-                <h2 style={{ fontSize: "1.125rem" }}>{d.inbegrepenTitel}</h2>
-                <div style={{ marginTop: "var(--sp-4)" }}>
-                  <ul className="vinklijst">
-                    <li><VinkIcoon />{d.inbegrepenOmnium}</li>
-                    <li><VinkIcoon />{d.inbegrepenPech}</li>
-                    <li><VinkIcoon />{d.inbegrepenGas}</li>
-                    <li><VinkIcoon />{d.inbegrepenInstructie}</li>
-                  </ul>
-                </div>
-              </div>
-              <div className="kaart kaart-ruim">
-                <h2 style={{ fontSize: "1.125rem" }}>{d.voorwaardenTitel}</h2>
-                <dl className="spec-raster" style={{ gridTemplateColumns: "1fr" }}>
-                  <div><dt>{d.waarborg}</dt><dd>{d.waarborgWaarde}</dd></div>
-                  <div><dt>{d.kilometers}</dt><dd>{d.kilometersWaarde}</dd></div>
-                  <div><dt>{d.bestuurder}</dt><dd>{d.bestuurderWaarde}</dd></div>
-                  <div><dt>{d.inleveren}</dt><dd>{d.inleverenWaarde}</dd></div>
-                  <div><dt>{d.huisdieren}</dt><dd>{d.huisdierenWaarde}</dd></div>
-                </dl>
-              </div>
-            </div>
-
             {(v.dagindeling || v.nachtindeling) && (
               <section className="detail-blok">
                 <h2>{d.indeling}</h2>
@@ -257,6 +233,30 @@ export default async function VerhuurDetailPagina({
                 )}
               </section>
             )}
+
+            <div className="raster raster-2" style={{ marginTop: "var(--sp-5)" }}>
+              <div className="kaart kaart-ruim">
+                <h2 style={{ fontSize: "1.125rem" }}>{d.inbegrepenTitel}</h2>
+                <div style={{ marginTop: "var(--sp-4)" }}>
+                  <ul className="vinklijst">
+                    <li><VinkIcoon />{d.inbegrepenOmnium}</li>
+                    <li><VinkIcoon />{d.inbegrepenPech}</li>
+                    <li><VinkIcoon />{d.inbegrepenGas}</li>
+                    <li><VinkIcoon />{d.inbegrepenInstructie}</li>
+                  </ul>
+                </div>
+              </div>
+              <div className="kaart kaart-ruim">
+                <h2 style={{ fontSize: "1.125rem" }}>{d.voorwaardenTitel}</h2>
+                <dl className="spec-raster" style={{ gridTemplateColumns: "1fr" }}>
+                  <div><dt>{d.waarborg}</dt><dd>{d.waarborgWaarde}</dd></div>
+                  <div><dt>{d.kilometers}</dt><dd>{d.kilometersWaarde}</dd></div>
+                  <div><dt>{d.bestuurder}</dt><dd>{d.bestuurderWaarde}</dd></div>
+                  <div><dt>{d.inleveren}</dt><dd>{d.inleverenWaarde}</dd></div>
+                  <div><dt>{d.huisdieren}</dt><dd>{d.huisdierenWaarde}</dd></div>
+                </dl>
+              </div>
+            </div>
 
             {v.notitie && <p className="notitie notitie-stil" style={{ marginTop: "var(--sp-5)" }}>{v.notitie}</p>}
           </div>
