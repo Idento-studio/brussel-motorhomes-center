@@ -448,6 +448,14 @@
   text-transform: uppercase;
   color: var(--text-muted);
 }
+/* Rode asterisk bij elk verplicht veld — automatisch via :has(), zodat dit
+   voor elk formulier op de site werkt zonder elk label handmatig aan te
+   passen (nieuwe formuliervelden krijgen dit dus ook gratis mee zolang ze
+   het .veld > label + input/select/textaera-patroon volgen). */
+.veld > label:has(+ :required)::after {
+  content: " *";
+  color: var(--danger);
+}
 .veld input, .veld select, .veld textarea {
   width: 100%;
   border: 1px solid var(--border-strong);
@@ -484,6 +492,10 @@
   color: var(--text-muted);
 }
 .akkoord input { margin-top: 3px; width: 1rem; height: 1rem; accent-color: var(--accent); }
+
+/* Verstuurknop staat als los blokje na .velden (dat zelf eindigt op de
+   privacy-checkbox) — zonder marge stond die knop er bovenop geplakt. */
+.formulier > .btn[type="submit"] { margin-top: var(--sp-5); }
 
 /* Honeypot: onzichtbaar voor mensen, ingevuld door bots. */
 .honeypot {
