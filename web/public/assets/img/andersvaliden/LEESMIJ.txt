@@ -1,3 +1,14 @@
 ANDERSVALIDEN
 =============
 vj-mobility.png   naast het partnerblok   1200 x 900 (4:3)
+
+oprijplaten-en-liften.webp        dienst 'Oprijplaten & liften'
+verbrede-deuren.webp              dienst 'Verbrede deuren'
+aangepast-interieur.webp          dienst 'Aangepast interieur'
+besturingsaanpassingen.webp       dienst 'Besturingsaanpassingen'
+draaistoel-en-transfers.webp      dienst 'Draaistoel & transfers'
+persoonlijk-advies.webp           dienst 'Persoonlijk advies'
+
+160 x 160 (vierkant), transparante achtergrond aanbevolen — zelfde formaat
+als de dienst-icoontjes op /onderhoud/ en /accessoires-en-opties/. Het
+beeldje komt op een goudkleurig rond vlak van 44 px op het scherm.

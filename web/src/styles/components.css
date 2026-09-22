@@ -171,6 +171,10 @@
   background: var(--goud-100);
   color: var(--accent-ink);
 }
+/* Sommige icoon-vlakken tonen een eigen afbeelding i.p.v. een lijn-icoon
+   (bv. onderhoud/accessoires) — enkel van toepassing als er ook echt een
+   <img> in zit, raakt dus de sitebrede SVG-icoontjes elders niet. */
+.icoon-vlak img { width: 1.75rem; height: 1.75rem; object-fit: contain; }
 .icoon-kaart h3 { margin-top: var(--sp-4); font-size: 1.125rem; }
 .icoon-kaart p { margin-top: var(--sp-2); font-size: 0.875rem; line-height: 1.65; color: var(--text-muted); }
 

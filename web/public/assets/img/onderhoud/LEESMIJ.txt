@@ -1,0 +1,33 @@
+ONDERHOUD (3 pagina's: /onderhoud/, /onderhoud/chassis/, /onderhoud/leefruimte/)
+==============================================================================
+chassis-algemeen.png                  kaart 'Onderhoud chassis' op /onderhoud/
+leefruimte-algemeen.png               kaart 'Onderhoud leefruimte' op /onderhoud/
+jaarlijkse-keuring.png                dienst 'Jaarlijkse keuring'
+olieverversing-en-filters.png         dienst 'Olieverversing & filters'
+airco-en-verwarming.png               dienst 'Airco & verwarming'
+elektrische-systemen.png              dienst 'Elektrische systemen'
+vochtbehandeling.png                  dienst 'Vochtbehandeling'
+carrosseriewerk.png                   dienst 'Carrosseriewerk'
+bestek-op-maat.png                    dienst 'Bestek op maat'
+voorbereiding-technische-controle.png dienst 'Voorbereiding technische controle'
+ramen.png                             dienst 'Ramen'
+trekhaak-of-levelingsysteem.png       dienst 'Trekhaak of levelingsysteem' (enkel op /onderhoud/chassis/)
+fietsenrek.png                        dienst 'Fietsenrek' (enkel op /onderhoud/leefruimte/)
+koelkast.png                          dienst 'Koelkast' (enkel op /onderhoud/leefruimte/)
+luifel.png                            dienst 'Luifel' (enkel op /onderhoud/leefruimte/)
+veiligheidssloten.png                 dienst 'Veiligheidssloten' (enkel op /onderhoud/leefruimte/)
+batterijen.png                        dienst 'Batterijen' (enkel op /onderhoud/leefruimte/)
+tv-tv-steun-en-antenne.png            dienst 'TV, TV-steun & antenne' (enkel op /onderhoud/leefruimte/)
+
+160 x 160 (vierkant), transparante achtergrond aanbevolen. Het beeldje komt
+op een goudkleurig rond vlak van 44 px op het scherm, dus deze resolutie
+geeft nog scherpe weergave op retina-schermen.
+
+Sommige diensten komen op meerdere pagina's voor onder dezelfde naam
+(vochtbehandeling.png, airco-en-verwarming.png en ramen.png staan zowel op
+/onderhoud/ als op de chassis- of leefruimte-subpagina) — je hoeft daar maar
+één bestand voor te maken, dat wordt overal hergebruikt.
+
+chassis-algemeen.png en leefruimte-algemeen.png zijn de twee grote
+kaarten bovenaan /onderhoud/ die doorlinken naar de twee subpagina's — een
+iets bredere, sfeervollere foto mag hier, de rest zijn kleine dienst-icoontjes.

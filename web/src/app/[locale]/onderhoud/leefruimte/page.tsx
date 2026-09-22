@@ -1,6 +1,7 @@
 import Link from "next/link";
 import type { Metadata } from "next";
 import { Formulier } from "@/components/Formulier";
+import { FotoMetPlaceholder } from "@/components/FotoMetPlaceholder";
 import { L, SITE_URL, buildAlternates, buildOpenGraph, type Locale } from "@/lib/i18n";
 import { getDictionary } from "@/dictionaries";
 import { JsonLd } from "@/components/JsonLd";
@@ -202,63 +203,63 @@ export default async function OnderhoudLeefruimtePagina({
           <div className="raster raster-3">
             <article className="kaart icoon-kaart">
               <span className="icoon-vlak">
-                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.9" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d="M12 3l8 3v6c0 5-3.4 8.3-8 9.5C7.4 20.3 4 17 4 12V6z" /></svg>
+                <FotoMetPlaceholder src="/assets/img/onderhoud/vochtbehandeling.webp" alt="" />
               </span>
               <h3>{t.card1Titel}</h3>
               <p>{t.card1Tekst}</p>
             </article>
             <article className="kaart icoon-kaart">
               <span className="icoon-vlak">
-                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.9" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><circle cx="6" cy="17" r="3" /><circle cx="18" cy="17" r="3" /><path d="M6 17 10 8h4l4 9M10 8l1.5-3h3" /></svg>
+                <FotoMetPlaceholder src="/assets/img/onderhoud/fietsenrek.webp" alt="" />
               </span>
               <h3>{t.card2Titel}</h3>
               <p>{t.card2Tekst}</p>
             </article>
             <article className="kaart icoon-kaart">
               <span className="icoon-vlak">
-                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.9" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d="M3 8h11a3 3 0 1 0-3-3M3 14h14a3 3 0 1 1-3 3M3 11h9" /></svg>
+                <FotoMetPlaceholder src="/assets/img/onderhoud/airco-en-verwarming.webp" alt="" />
               </span>
               <h3>{t.card3Titel}</h3>
               <p>{t.card3Tekst}</p>
             </article>
             <article className="kaart icoon-kaart">
               <span className="icoon-vlak">
-                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.9" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><rect x="6" y="2" width="12" height="20" rx="1.5" /><path d="M6 9h12M9 5.5v2M9 13.5v2" /></svg>
+                <FotoMetPlaceholder src="/assets/img/onderhoud/koelkast.webp" alt="" />
               </span>
               <h3>{t.card4Titel}</h3>
               <p>{t.card4Tekst}</p>
             </article>
             <article className="kaart icoon-kaart">
               <span className="icoon-vlak">
-                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.9" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d="M3 10c3-4 15-4 18 0M4 10v9M20 10v9M3 19h18" /></svg>
+                <FotoMetPlaceholder src="/assets/img/onderhoud/luifel.webp" alt="" />
               </span>
               <h3>{t.card5Titel}</h3>
               <p>{t.card5Tekst}</p>
             </article>
             <article className="kaart icoon-kaart">
               <span className="icoon-vlak">
-                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.9" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><rect x="5" y="11" width="14" height="9" rx="1.5" /><path d="M8 11V7a4 4 0 0 1 8 0v4" /></svg>
+                <FotoMetPlaceholder src="/assets/img/onderhoud/veiligheidssloten.webp" alt="" />
               </span>
               <h3>{t.card6Titel}</h3>
               <p>{t.card6Tekst}</p>
             </article>
             <article className="kaart icoon-kaart">
               <span className="icoon-vlak">
-                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.9" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><rect x="2" y="8" width="18" height="9" rx="1.5" /><path d="M22 11v3M6 9v7M10 9v7" /></svg>
+                <FotoMetPlaceholder src="/assets/img/onderhoud/batterijen.webp" alt="" />
               </span>
               <h3>{t.card7Titel}</h3>
               <p>{t.card7Tekst}</p>
             </article>
             <article className="kaart icoon-kaart">
               <span className="icoon-vlak">
-                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.9" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><rect x="3" y="4" width="18" height="13" rx="1.5" /><path d="M8 20h8M12 17v3M7 4l3-2M17 4l-3-2" /></svg>
+                <FotoMetPlaceholder src="/assets/img/onderhoud/tv-tv-steun-en-antenne.webp" alt="" />
               </span>
               <h3>{t.card8Titel}</h3>
               <p>{t.card8Tekst}</p>
             </article>
             <article className="kaart icoon-kaart">
               <span className="icoon-vlak">
-                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.9" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d="M4 5h16v14H4zM12 5v14M4 12h16" /></svg>
+                <FotoMetPlaceholder src="/assets/img/onderhoud/ramen.webp" alt="" />
               </span>
               <h3>{t.card9Titel}</h3>
               <p>{t.card9Tekst}</p>

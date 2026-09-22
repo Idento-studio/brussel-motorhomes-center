@@ -1,0 +1,14 @@
+ACCESSOIRES & OPTIES (/accessoires-en-opties/)
+===============================================
+zonnepanelen-en-accus.png     dienst 'Zonnepanelen & accu's'
+fietsendragers-en-racks.png   dienst 'Fietsendragers & racks'
+navigatie-en-multimedia.png   dienst 'Navigatie & multimedia'
+dakramen-en-ventilatie.png    dienst 'Dakramen & ventilatie'
+veiligheid-en-beveiliging.png dienst 'Veiligheid & beveiliging'
+comfort-en-opberging.png      dienst 'Comfort & opberging'
+luifel.png                    dienst 'Luifel'
+tv-antenne-en-trekhaak.png    dienst 'TV, antenne & trekhaak'
+
+160 x 160 (vierkant), transparante achtergrond aanbevolen. Het beeldje komt
+op een goudkleurig rond vlak van 44 px op het scherm, dus deze resolutie
+geeft nog scherpe weergave op retina-schermen.

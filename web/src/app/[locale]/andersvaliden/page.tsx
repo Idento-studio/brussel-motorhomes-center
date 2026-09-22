@@ -1,6 +1,7 @@
 import Link from "next/link";
 import type { Metadata } from "next";
 import { VideoMetGeluidsknop } from "@/components/VideoMetGeluidsknop";
+import { FotoMetPlaceholder } from "@/components/FotoMetPlaceholder";
 import { L, buildAlternates, buildOpenGraph, type Locale } from "@/lib/i18n";
 import { getDictionary } from "@/dictionaries";
 import { JsonLd } from "@/components/JsonLd";
@@ -251,42 +252,42 @@ export default async function AndersvalidenPagina({
           <div className="raster raster-3">
             <article className="kaart icoon-kaart">
               <span className="icoon-vlak">
-                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.9" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d="M3 19h18M3 19 15 6M9 19v-6" /></svg>
+                <FotoMetPlaceholder src="/assets/img/andersvaliden/oprijplaten-en-liften.webp" alt="" />
               </span>
               <h3>{t.card1Titel}</h3>
               <p>{t.card1Tekst}</p>
             </article>
             <article className="kaart icoon-kaart">
               <span className="icoon-vlak">
-                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.9" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d="M6 3h12v18H6zM14.5 12h.01" /></svg>
+                <FotoMetPlaceholder src="/assets/img/andersvaliden/verbrede-deuren.webp" alt="" />
               </span>
               <h3>{t.card2Titel}</h3>
               <p>{t.card2Tekst}</p>
             </article>
             <article className="kaart icoon-kaart">
               <span className="icoon-vlak">
-                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.9" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d="M4 8l8-4 8 4v8l-8 4-8-4zM4 8l8 4 8-4M12 12v8" /></svg>
+                <FotoMetPlaceholder src="/assets/img/andersvaliden/aangepast-interieur.webp" alt="" />
               </span>
               <h3>{t.card3Titel}</h3>
               <p>{t.card3Tekst}</p>
             </article>
             <article className="kaart icoon-kaart">
               <span className="icoon-vlak">
-                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.9" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d="M12 3a9 9 0 1 1 0 18 9 9 0 0 1 0-18zM12 12v9M12 12 4.5 8.5M12 12l7.5-3.5" /></svg>
+                <FotoMetPlaceholder src="/assets/img/andersvaliden/besturingsaanpassingen.webp" alt="" />
               </span>
               <h3>{t.card4Titel}</h3>
               <p>{t.card4Tekst}</p>
             </article>
             <article className="kaart icoon-kaart">
               <span className="icoon-vlak">
-                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.9" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d="M20 12a8 8 0 1 1-2.4-5.7M20 3v4h-4" /></svg>
+                <FotoMetPlaceholder src="/assets/img/andersvaliden/draaistoel-en-transfers.webp" alt="" />
               </span>
               <h3>{t.card5Titel}</h3>
               <p>{t.card5Tekst}</p>
             </article>
             <article className="kaart icoon-kaart">
               <span className="icoon-vlak">
-                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.9" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d="M21 12a8 8 0 0 1-11.6 7.1L4 21l1.9-5.4A8 8 0 1 1 21 12z" /></svg>
+                <FotoMetPlaceholder src="/assets/img/andersvaliden/persoonlijk-advies.webp" alt="" />
               </span>
               <h3>{t.card6Titel}</h3>
               <p>{t.card6Tekst}</p>
