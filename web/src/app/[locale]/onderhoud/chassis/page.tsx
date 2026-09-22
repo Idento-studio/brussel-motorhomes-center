@@ -1,7 +1,6 @@
 import Link from "next/link";
 import type { Metadata } from "next";
 import { Formulier } from "@/components/Formulier";
-import { Accordeon } from "@/components/Accordeon";
 import { L, buildAlternates, buildOpenGraph, type Locale } from "@/lib/i18n";
 import { getDictionary } from "@/dictionaries";
 import { JsonLd } from "@/components/JsonLd";
@@ -13,23 +12,22 @@ export async function generateMetadata({
   params: Promise<{ locale: Locale }>;
 }): Promise<Metadata> {
   const { locale } = await params;
-  const title =
-    locale === "fr" ? "Entretien & réparations" : locale === "en" ? "Maintenance & repairs" : "Onderhoud & herstellingen";
+  const title = locale === "fr" ? "Entretien du châssis" : locale === "en" ? "Chassis maintenance" : "Onderhoud chassis";
   const description =
     locale === "fr"
-      ? "Spécialistes certifiés pour l'entretien complet de votre camping-car. Du contrôle technique annuel aux travaux de carrosserie."
+      ? "Spécialistes certifiés pour l'entretien du châssis de votre camping-car : contrôle technique annuel, vidange, systèmes électriques et carrosserie."
       : locale === "en"
-      ? "Certified specialists for the complete maintenance of your motorhome. From annual inspection to bodywork."
-      : "Gecertificeerde specialisten voor het complete onderhoud van uw motorhome. Van jaarlijkse keuring tot carrosseriewerk.";
+      ? "Certified specialists for your motorhome's chassis maintenance: annual inspection, oil changes, electrical systems and bodywork."
+      : "Gecertificeerde specialisten voor het onderhoud van het chassis van uw motorhome: jaarlijkse keuring, olieverversing, elektrische systemen en carrosseriewerk.";
   return {
     title,
     description,
-    alternates: buildAlternates("/onderhoud/"),
-    ...buildOpenGraph({ locale, title, description, pad: "/onderhoud/" }),
+    alternates: buildAlternates("/onderhoud/chassis/"),
+    ...buildOpenGraph({ locale, title, description, pad: "/onderhoud/chassis/" }),
   };
 }
 
-export default async function OnderhoudPagina({
+export default async function OnderhoudChassisPagina({
   params,
 }: {
   params: Promise<{ locale: Locale }>;
@@ -40,19 +38,11 @@ export default async function OnderhoudPagina({
   const t =
     locale === "fr"
       ? {
-          h1: "Entretien & réparations",
+          h1: "Entretien du châssis",
           intro:
-            "Spécialistes certifiés pour l'entretien complet de votre camping-car. Du contrôle technique annuel aux travaux de carrosserie.",
-          kiesLabel: "Deux domaines d'entretien",
-          kiesTitel: "Quel entretien recherchez-vous ?",
-          chassisTitel: "Entretien du châssis",
-          chassisTekst: "Contrôle technique, moteur, systèmes électriques et carrosserie.",
-          chassisCta: "Découvrir",
-          leefruimteTitel: "Entretien de l'espace de vie",
-          leefruimteTekst: "Traitement de l'humidité, réfrigérateur, accessoires et équipements intégrés.",
-          leefruimteCta: "Découvrir",
+            "Spécialistes certifiés pour l'entretien du châssis et des composants techniques de votre camping-car — du contrôle technique annuel à la carrosserie.",
           dienstenLabel: "Ce que nous faisons",
-          dienstenTitel: "Nos services d'entretien",
+          dienstenTitel: "Nos services d'entretien du châssis",
           card1Titel: "Contrôle technique annuel",
           card1Tekst: "Contrôle technique complet et inspection de votre camping-car.",
           card2Titel: "Vidange d'huile & filtres",
@@ -69,10 +59,10 @@ export default async function OnderhoudPagina({
           card7Tekst: "Devis détaillé pour vos projets ou pour les compagnies d'assurance.",
           card8Titel: "Préparation au contrôle technique",
           card8Tekst: "Planification et accompagnement tout au long du processus de contrôle.",
-          card9Titel: "Fenêtres",
-          card9Tekst: "Nouveau joint, remplacement ou fixation.",
+          card9Titel: "Attelage ou système de mise à niveau",
+          card9Tekst: "Pour camping-car et fourgon aménagé.",
           waaromLabel: "Pourquoi BMC",
-          waaromTitel: "Pourquoi choisir BMC pour l'entretien ?",
+          waaromTitel: "Pourquoi choisir BMC pour l'entretien de votre châssis ?",
           waaromTekst:
             "Nos mécaniciens sont certifiés et travaillent exclusivement avec des pièces d'origine. Prix transparents, communication claire et délai d'exécution rapide.",
           vink1: "Mécaniciens certifiés",
@@ -87,45 +77,14 @@ export default async function OnderhoudPagina({
           naam: "Nom",
           email: "E-mail",
           bericht: "Message",
-          faqTitel: "Questions fréquentes sur l'entretien",
-          faqVragen: [
-            {
-              vraag: "Que dois-je faire pour préparer mon camping-car pour l'hiver ?",
-              antwoord:
-                "Avant les premières gelées, videz toujours tous les réservoirs d'eau : eau propre, eaux usées et surtout le chauffe-eau via la vanne de protection antigel. Débranchez la batterie habitation ou raccordez-la à un chargeur d'entretien pour éviter une décharge profonde pendant l'hivernage.",
-            },
-            {
-              vraag: "Préparez-vous les camping-cars pour le contrôle technique belge ?",
-              antwoord:
-                "Oui. Nous effectuons un pré-contrôle complet, incluant la vérification des freins, des feux, de la suspension, de l'âge des pneus et du poids. Si vous le souhaitez, nous conduisons votre camping-car jusqu'au centre de contrôle technique.",
-            },
-            {
-              vraag: "Pourquoi une mesure d'humidité annuelle est-elle nécessaire ?",
-              antwoord:
-                "L'humidité est le pire ennemi d'un camping-car. Un contrôle annuel d'étanchéité est indispensable pour conserver la garantie d'étanchéité du fabricant, souvent de 5 à 10 ans, et pour détecter à temps les infiltrations naissantes avant qu'elles ne causent des dommages structurels.",
-            },
-            {
-              vraag: "Qu'implique l'entretien d'un camping-car ?",
-              antwoord:
-                "Moteur et châssis : entretien automobile régulier selon les spécifications du fabricant, notamment l'huile, les freins, la courroie de distribution, les pneus et les filtres. Partie habitation et carrosserie : contrôle du système de gaz, du système d'eau, de l'électronique, du réfrigérateur, du chauffage, des serrures et des joints.",
-            },
-          ],
         }
       : locale === "en"
       ? {
-          h1: "Maintenance & repairs",
+          h1: "Chassis maintenance",
           intro:
-            "Certified specialists for the complete maintenance of your motorhome. From annual inspection to bodywork.",
-          kiesLabel: "Two maintenance areas",
-          kiesTitel: "Which maintenance are you looking for?",
-          chassisTitel: "Chassis maintenance",
-          chassisTekst: "Technical inspection, engine, electrical systems and bodywork.",
-          chassisCta: "Discover",
-          leefruimteTitel: "Living area maintenance",
-          leefruimteTekst: "Damp treatment, refrigerator, accessories and built-in appliances.",
-          leefruimteCta: "Discover",
+            "Certified specialists for the maintenance of your motorhome's chassis and technical components — from annual inspection to bodywork.",
           dienstenLabel: "What we do",
-          dienstenTitel: "Our maintenance services",
+          dienstenTitel: "Our chassis maintenance services",
           card1Titel: "Annual inspection",
           card1Tekst: "Full technical inspection and check-up of your motorhome.",
           card2Titel: "Oil change & filters",
@@ -142,10 +101,10 @@ export default async function OnderhoudPagina({
           card7Tekst: "Detailed quote for your projects or for insurance companies.",
           card8Titel: "Inspection preparation",
           card8Tekst: "Planning and guidance throughout the inspection process.",
-          card9Titel: "Windows",
-          card9Tekst: "New seal, replacement or fixing.",
+          card9Titel: "Tow bar or levelling system",
+          card9Tekst: "For motorhomes and campervans.",
           waaromLabel: "Why BMC",
-          waaromTitel: "Why choose BMC for maintenance?",
+          waaromTitel: "Why choose BMC for your chassis maintenance?",
           waaromTekst:
             "Our mechanics are certified and work exclusively with original parts. Transparent prices, clear communication and a fast turnaround.",
           vink1: "Certified mechanics",
@@ -160,44 +119,13 @@ export default async function OnderhoudPagina({
           naam: "Name",
           email: "Email",
           bericht: "Message",
-          faqTitel: "Frequently asked questions about maintenance",
-          faqVragen: [
-            {
-              vraag: "What do I need to do to winterize my motorhome?",
-              antwoord:
-                "Before the first frost, always drain all water tanks: fresh water, waste water and especially the water heater via the frost protection valve. Disconnect the leisure battery or connect it to a trickle charger to prevent deep discharge during winter storage.",
-            },
-            {
-              vraag: "Do you prepare motorhomes for the Belgian roadworthiness inspection?",
-              antwoord:
-                "Yes. We carry out a full pre-inspection, including checks of the brakes, lights, suspension, tyre age and weight. If you wish, we can drive your motorhome to the inspection centre.",
-            },
-            {
-              vraag: "Why is an annual damp measurement necessary?",
-              antwoord:
-                "Damp is a motorhome's worst enemy. An annual water-tightness check is essential to preserve the manufacturer's water-tightness warranty, often 5 to 10 years, and to detect emerging leaks in time before they cause structural damage.",
-            },
-            {
-              vraag: "What does motorhome maintenance involve?",
-              antwoord:
-                "Engine and chassis: regular automotive maintenance according to manufacturer specifications, including oil, brakes, timing belt, tyres and filters. Living area and bodywork: check of the gas system, water system, electronics, refrigerator, heating, locks and seals.",
-            },
-          ],
         }
       : {
-          h1: "Onderhoud & herstellingen",
+          h1: "Onderhoud chassis",
           intro:
-            "Gecertificeerde specialisten voor het complete onderhoud van uw motorhome. Van jaarlijkse keuring tot carrosseriewerk.",
-          kiesLabel: "Twee onderhoudsdomeinen",
-          kiesTitel: "Welk onderhoud zoekt u?",
-          chassisTitel: "Onderhoud chassis",
-          chassisTekst: "Technische keuring, motor, elektrische systemen en carrosserie.",
-          chassisCta: "Ontdek",
-          leefruimteTitel: "Onderhoud leefruimte",
-          leefruimteTekst: "Vochtbehandeling, koelkast, accessoires en inbouwtoestellen.",
-          leefruimteCta: "Ontdek",
+            "Gecertificeerde specialisten voor het onderhoud van het chassis en de technische onderdelen van uw motorhome — van jaarlijkse keuring tot carrosseriewerk.",
           dienstenLabel: "Wat wij doen",
-          dienstenTitel: "Onze onderhoudsdiensten",
+          dienstenTitel: "Onze diensten voor onderhoud chassis",
           card1Titel: "Jaarlijkse keuring",
           card1Tekst: "Volledige technische controle en inspectie van uw motorhome.",
           card2Titel: "Olieverversing & filters",
@@ -214,10 +142,10 @@ export default async function OnderhoudPagina({
           card7Tekst: "Gedetailleerd bestek voor projecten of verzekeringsmaatschappijen.",
           card8Titel: "Voorbereiding technische controle",
           card8Tekst: "Planning en begeleiding doorheen het keuringsproces.",
-          card9Titel: "Ramen",
-          card9Tekst: "Nieuwe dichting, vervanging of bevestiging.",
+          card9Titel: "Trekhaak of levelingsysteem",
+          card9Tekst: "Voor motorhome en campervan.",
           waaromLabel: "Waarom BMC",
-          waaromTitel: "Waarom BMC kiezen voor onderhoud?",
+          waaromTitel: "Waarom BMC kiezen voor onderhoud van uw chassis?",
           waaromTekst:
             "Onze monteurs zijn gecertificeerd en werken uitsluitend met originele onderdelen. Transparante prijzen, duidelijke communicatie en een snelle doorlooptijd.",
           vink1: "Gecertificeerde monteurs",
@@ -232,79 +160,31 @@ export default async function OnderhoudPagina({
           naam: "Naam",
           email: "E-mail",
           bericht: "Bericht",
-          faqTitel: "Veelgestelde vragen over onderhoud",
-          faqVragen: [
-            {
-              vraag: "Wat moet ik doen om de motorhome winterklaar te maken?",
-              antwoord:
-                "Laat vóór de eerste vorst altijd alle waterreservoirs leeglopen: vers water, vuil water en vooral de boiler via het vorstbeveiligingsventiel. Koppel de leefbatterij los of sluit ze aan op een druppellader om diepontlading tijdens de winterstalling te vermijden.",
-            },
-            {
-              vraag: "Maken jullie motorhomes klaar voor de Belgische autokeuring?",
-              antwoord:
-                "Ja. Wij voeren een volledige pre-keuring uit, inclusief controle van remmen, lichten, ophanging, bandenleeftijd en gewicht. Indien gewenst rijden wij met uw motorhome naar het keuringsstation.",
-            },
-            {
-              vraag: "Waarom is een jaarlijkse vochtmeting noodzakelijk?",
-              antwoord:
-                "Vocht is de grootste vijand van een motorhome. Een jaarlijkse waterdichtheidscontrole is verplicht om de fabrieksgarantie op waterdichtheid, vaak 5 tot 10 jaar, te behouden en beginnende infiltraties tijdig op te sporen vóór er structurele schade ontstaat.",
-            },
-            {
-              vraag: "Wat houdt het onderhoud van een motorhome in?",
-              antwoord:
-                "Motor en chassis: regulier auto-onderhoud volgens fabrieksspecificaties, waaronder olie, remmen, distributieriem, banden en filters. Woongedeelte en opbouw: controle van gassysteem, watersysteem, elektronica, koelkast, verwarming, sloten en dichtingen.",
-            },
-          ],
         };
 
   return (
     <main id="inhoud">
       <div className="paginakop">
         <div className="wrap">
-          <JsonLd data={buildBreadcrumbList(locale, [{ label: dict.breadcrumbHome, pad: "/" }, { label: dict.nav.onderhoud }])} />
-          <JsonLd data={buildService(locale, t.h1, t.intro, "/onderhoud/")} />
+          <JsonLd
+            data={buildBreadcrumbList(locale, [
+              { label: dict.breadcrumbHome, pad: "/" },
+              { label: dict.nav.onderhoud, pad: "/onderhoud/" },
+              { label: t.h1 },
+            ])}
+          />
+          <JsonLd data={buildService(locale, t.h1, t.intro, "/onderhoud/chassis/")} />
           <nav className="kruimelpad" aria-label="Kruimelpad">
             <Link href={L(locale, "/")}>{dict.breadcrumbHome}</Link>
             <span aria-hidden="true">/</span>
-            <span aria-current="page">{dict.nav.onderhoud}</span>
+            <Link href={L(locale, "/onderhoud/")}>{dict.nav.onderhoud}</Link>
+            <span aria-hidden="true">/</span>
+            <span aria-current="page">{t.h1}</span>
           </nav>
           <h1>{t.h1}</h1>
           <p className="intro">{t.intro}</p>
         </div>
       </div>
-
-      <section className="sectie sectie-vlak">
-        <div className="wrap">
-          <div className="sectie-kop">
-            <p className="label">{t.kiesLabel}</p>
-            <h2>{t.kiesTitel}</h2>
-          </div>
-          <div className="raster raster-2">
-            <article className="kaart kaart-lift icoon-kaart">
-              <span className="icoon-vlak">
-                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.9" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d="M9 4h6v3H9zM7 5H5v15h14V5h-2M9 13l2 2 4-4" /></svg>
-              </span>
-              <h3>{t.chassisTitel}</h3>
-              <p>{t.chassisTekst}</p>
-              <Link className="tekst-link" href={L(locale, "/onderhoud/chassis/")} style={{ marginTop: "var(--sp-4)" }}>
-                {t.chassisCta}
-                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6" /></svg>
-              </Link>
-            </article>
-            <article className="kaart kaart-lift icoon-kaart">
-              <span className="icoon-vlak">
-                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.9" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d="M12 3l8 3v6c0 5-3.4 8.3-8 9.5C7.4 20.3 4 17 4 12V6z" /></svg>
-              </span>
-              <h3>{t.leefruimteTitel}</h3>
-              <p>{t.leefruimteTekst}</p>
-              <Link className="tekst-link" href={L(locale, "/onderhoud/leefruimte/")} style={{ marginTop: "var(--sp-4)" }}>
-                {t.leefruimteCta}
-                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6" /></svg>
-              </Link>
-            </article>
-          </div>
-        </div>
-      </section>
 
       <section className="sectie">
         <div className="wrap">
@@ -371,7 +251,7 @@ export default async function OnderhoudPagina({
             </article>
             <article className="kaart icoon-kaart">
               <span className="icoon-vlak">
-                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.9" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d="M4 5h16v14H4zM12 5v14M4 12h16" /></svg>
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.9" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><circle cx="12" cy="6" r="2.5" /><path d="M12 8.5v6M7 20h10M9 20l3-5.5 3 5.5" /></svg>
               </span>
               <h3>{t.card9Titel}</h3>
               <p>{t.card9Tekst}</p>
@@ -408,27 +288,18 @@ export default async function OnderhoudPagina({
           </div>
           <Formulier titel={t.formTitel} locale={locale}>
             <div className="veld">
-              <label htmlFor="onderhoud-naam">{t.naam}</label>
-              <input id="onderhoud-naam" name="naam" type="text" required />
+              <label htmlFor="onderhoud-chassis-naam">{t.naam}</label>
+              <input id="onderhoud-chassis-naam" name="naam" type="text" required />
             </div>
             <div className="veld">
-              <label htmlFor="onderhoud-email">{t.email}</label>
-              <input id="onderhoud-email" name="email" type="email" required />
+              <label htmlFor="onderhoud-chassis-email">{t.email}</label>
+              <input id="onderhoud-chassis-email" name="email" type="email" required />
             </div>
             <div className="veld veld-breed">
-              <label htmlFor="onderhoud-bericht">{t.bericht}</label>
-              <textarea id="onderhoud-bericht" name="bericht" rows={4} required />
+              <label htmlFor="onderhoud-chassis-bericht">{t.bericht}</label>
+              <textarea id="onderhoud-chassis-bericht" name="bericht" rows={4} required />
             </div>
           </Formulier>
-        </div>
-      </section>
-
-      <section className="sectie">
-        <div className="wrap">
-          <div className="sectie-kop is-midden">
-            <h2>{t.faqTitel}</h2>
-          </div>
-          <Accordeon idPrefix="onderhoud" vragen={t.faqVragen} />
         </div>
       </section>
     </main>

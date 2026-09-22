@@ -15,6 +15,8 @@ const STATISCHE_PADEN = [
   "/verkoop/",
   "/verhuur/",
   "/onderhoud/",
+  "/onderhoud/chassis/",
+  "/onderhoud/leefruimte/",
   "/accessoires-en-opties/",
   "/camper-op-maat/",
   "/camper-op-maat/start-project/",
