@@ -36,6 +36,11 @@ export function Formulier({
 }) {
   const dict = getDictionary(locale);
   const [status, setStatus] = useState<"idle" | "bezig" | "verzonden" | "fout">("idle");
+  // Tijdstip van het renderen van dit formulier, als extra spamdrempel naast
+  // het honeypot-veld: een bot die het formulier meteen na het laden van de
+  // pagina invult en verstuurt (sneller dan een mens ooit kan), wordt zo ook
+  // tegengehouden — zelfs als hij het honeypot-veld toevallig leeg laat.
+  const [gemonteerdOp] = useState(() => Date.now());
 
   async function handleSubmit(e: FormEvent<HTMLFormElement>) {
     e.preventDefault();
@@ -43,6 +48,10 @@ export function Formulier({
 
     const honeypot = form.elements.namedItem("website") as HTMLInputElement | null;
     if (honeypot && honeypot.value.trim() !== "") {
+      setStatus("verzonden");
+      return;
+    }
+    if (Date.now() - gemonteerdOp < 3000) {
       setStatus("verzonden");
       return;
     }

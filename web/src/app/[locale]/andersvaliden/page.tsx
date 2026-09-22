@@ -27,7 +27,7 @@ export async function generateMetadata({
   return {
     title,
     description,
-    alternates: buildAlternates("/andersvaliden/"),
+    alternates: buildAlternates("/andersvaliden/", locale),
     ...buildOpenGraph({ locale, title, description, pad: "/andersvaliden/" }),
   };
 }

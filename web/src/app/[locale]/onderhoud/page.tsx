@@ -2,7 +2,7 @@ import Link from "next/link";
 import type { Metadata } from "next";
 import { Formulier } from "@/components/Formulier";
 import { Accordeon } from "@/components/Accordeon";
-import { L, buildAlternates, buildOpenGraph, type Locale } from "@/lib/i18n";
+import { L, SITE_URL, buildAlternates, buildOpenGraph, type Locale } from "@/lib/i18n";
 import { getDictionary } from "@/dictionaries";
 import { JsonLd } from "@/components/JsonLd";
 import { buildBreadcrumbList, buildService } from "@/lib/structuredData";
@@ -24,8 +24,14 @@ export async function generateMetadata({
   return {
     title,
     description,
-    alternates: buildAlternates("/onderhoud/"),
-    ...buildOpenGraph({ locale, title, description, pad: "/onderhoud/" }),
+    alternates: buildAlternates("/onderhoud/", locale),
+    ...buildOpenGraph({
+      locale,
+      title,
+      description,
+      pad: "/onderhoud/",
+      afbeelding: { url: `${SITE_URL}/assets/img/social/og-onderhoud.jpg`, width: 1200, height: 630, alt: title },
+    }),
   };
 }
 
@@ -409,11 +415,11 @@ export default async function OnderhoudPagina({
           <Formulier titel={t.formTitel} locale={locale}>
             <div className="veld">
               <label htmlFor="onderhoud-naam">{t.naam}</label>
-              <input id="onderhoud-naam" name="naam" type="text" required />
+              <input id="onderhoud-naam" name="naam" type="text" autoComplete="name" required />
             </div>
             <div className="veld">
               <label htmlFor="onderhoud-email">{t.email}</label>
-              <input id="onderhoud-email" name="email" type="email" required />
+              <input id="onderhoud-email" name="email" type="email" autoComplete="email" required />
             </div>
             <div className="veld veld-breed">
               <label htmlFor="onderhoud-bericht">{t.bericht}</label>

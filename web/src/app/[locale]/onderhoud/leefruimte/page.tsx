@@ -1,7 +1,7 @@
 import Link from "next/link";
 import type { Metadata } from "next";
 import { Formulier } from "@/components/Formulier";
-import { L, buildAlternates, buildOpenGraph, type Locale } from "@/lib/i18n";
+import { L, SITE_URL, buildAlternates, buildOpenGraph, type Locale } from "@/lib/i18n";
 import { getDictionary } from "@/dictionaries";
 import { JsonLd } from "@/components/JsonLd";
 import { buildBreadcrumbList, buildService } from "@/lib/structuredData";
@@ -23,8 +23,14 @@ export async function generateMetadata({
   return {
     title,
     description,
-    alternates: buildAlternates("/onderhoud/leefruimte/"),
-    ...buildOpenGraph({ locale, title, description, pad: "/onderhoud/leefruimte/" }),
+    alternates: buildAlternates("/onderhoud/leefruimte/", locale),
+    ...buildOpenGraph({
+      locale,
+      title,
+      description,
+      pad: "/onderhoud/leefruimte/",
+      afbeelding: { url: `${SITE_URL}/assets/img/social/og-onderhoud.jpg`, width: 1200, height: 630, alt: title },
+    }),
   };
 }
 
@@ -290,11 +296,11 @@ export default async function OnderhoudLeefruimtePagina({
           <Formulier titel={t.formTitel} locale={locale}>
             <div className="veld">
               <label htmlFor="onderhoud-leefruimte-naam">{t.naam}</label>
-              <input id="onderhoud-leefruimte-naam" name="naam" type="text" required />
+              <input id="onderhoud-leefruimte-naam" name="naam" type="text" autoComplete="name" required />
             </div>
             <div className="veld">
               <label htmlFor="onderhoud-leefruimte-email">{t.email}</label>
-              <input id="onderhoud-leefruimte-email" name="email" type="email" required />
+              <input id="onderhoud-leefruimte-email" name="email" type="email" autoComplete="email" required />
             </div>
             <div className="veld veld-breed">
               <label htmlFor="onderhoud-leefruimte-bericht">{t.bericht}</label>

@@ -23,7 +23,7 @@ export async function generateMetadata({
   return {
     title,
     description,
-    alternates: buildAlternates("/veelgestelde-vragen/"),
+    alternates: buildAlternates("/veelgestelde-vragen/", locale),
     ...buildOpenGraph({ locale, title, description, pad: "/veelgestelde-vragen/" }),
   };
 }

@@ -238,6 +238,10 @@ export function CamperConfigurator({ locale }: { locale: Locale }) {
   const [stap, setStap] = useState<Stap>(1);
   const [gebruik, setGebruik] = useState("");
   const [status, setStatus] = useState<"idle" | "bezig" | "verzonden" | "fout">("idle");
+  // Zelfde extra spamdrempel als Formulier.tsx: naast het honeypot-veld ook
+  // een minimale tijd sinds het renderen, want deze configurator doorloopt 5
+  // stappen — een mens heeft dus sowieso meer dan een paar seconden nodig.
+  const [gemonteerdOp] = useState(() => Date.now());
 
   function volgende() {
     setStap((s) => (s < TOTAAL_STAPPEN ? ((s + 1) as Stap) : s));
@@ -254,6 +258,10 @@ export function CamperConfigurator({ locale }: { locale: Locale }) {
 
     const honeypot = form.elements.namedItem("website") as HTMLInputElement | null;
     if (honeypot && honeypot.value.trim() !== "") {
+      setStatus("verzonden");
+      return;
+    }
+    if (Date.now() - gemonteerdOp < 3000) {
       setStatus("verzonden");
       return;
     }
@@ -402,15 +410,15 @@ export function CamperConfigurator({ locale }: { locale: Locale }) {
         <div className="velden">
           <div className="veld">
             <label htmlFor="conf-naam">{t.naam}</label>
-            <input id="conf-naam" name="naam" type="text" required={stap === 5} />
+            <input id="conf-naam" name="naam" type="text" autoComplete="name" required={stap === 5} />
           </div>
           <div className="veld">
             <label htmlFor="conf-email">{t.email}</label>
-            <input id="conf-email" name="email" type="email" required={stap === 5} />
+            <input id="conf-email" name="email" type="email" autoComplete="email" required={stap === 5} />
           </div>
           <div className="veld">
             <label htmlFor="conf-telefoon">{t.telefoon}</label>
-            <input id="conf-telefoon" name="telefoon" type="tel" />
+            <input id="conf-telefoon" name="telefoon" type="tel" autoComplete="tel" />
           </div>
           <div className="veld">
             <label htmlFor="conf-timing">{t.timing}</label>

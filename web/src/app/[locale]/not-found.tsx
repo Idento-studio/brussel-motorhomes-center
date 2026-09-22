@@ -28,6 +28,33 @@ export default function NotFound() {
             <Link className="btn btn-blauw" href={L("fr", "/")}>Site en français</Link>
             <Link className="btn btn-stil" href={L("en", "/")}>English site</Link>
           </div>
+
+          <div style={{ marginTop: "var(--sp-7)", display: "grid", gap: "var(--sp-4)" }}>
+            <p style={{ color: "var(--text-muted)", fontSize: "var(--fs-small)" }}>
+              Motorhomes te koop / à vendre / for sale
+            </p>
+            <div className="knoppen" style={{ display: "flex", flexWrap: "wrap", gap: "0.625rem", justifyContent: "center" }}>
+              <Link className="btn btn-stil btn-klein" href={L("nl", "/verkoop/")}>NL</Link>
+              <Link className="btn btn-stil btn-klein" href={L("fr", "/verkoop/")}>FR</Link>
+              <Link className="btn btn-stil btn-klein" href={L("en", "/verkoop/")}>EN</Link>
+            </div>
+            <p style={{ color: "var(--text-muted)", fontSize: "var(--fs-small)" }}>
+              Motorhomes te huur / à louer / for rent
+            </p>
+            <div className="knoppen" style={{ display: "flex", flexWrap: "wrap", gap: "0.625rem", justifyContent: "center" }}>
+              <Link className="btn btn-stil btn-klein" href={L("nl", "/verhuur/")}>NL</Link>
+              <Link className="btn btn-stil btn-klein" href={L("fr", "/verhuur/")}>FR</Link>
+              <Link className="btn btn-stil btn-klein" href={L("en", "/verhuur/")}>EN</Link>
+            </div>
+            <p style={{ color: "var(--text-muted)", fontSize: "var(--fs-small)" }}>
+              Contact / Contact / Contact
+            </p>
+            <div className="knoppen" style={{ display: "flex", flexWrap: "wrap", gap: "0.625rem", justifyContent: "center" }}>
+              <Link className="btn btn-stil btn-klein" href={L("nl", "/contact/")}>NL</Link>
+              <Link className="btn btn-stil btn-klein" href={L("fr", "/contact/")}>FR</Link>
+              <Link className="btn btn-stil btn-klein" href={L("en", "/contact/")}>EN</Link>
+            </div>
+          </div>
         </div>
       </section>
     </main>

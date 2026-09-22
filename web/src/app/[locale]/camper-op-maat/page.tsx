@@ -1,7 +1,7 @@
 import Link from "next/link";
 import type { Metadata } from "next";
 import { Formulier } from "@/components/Formulier";
-import { L, buildAlternates, buildOpenGraph, type Locale } from "@/lib/i18n";
+import { L, SITE_URL, buildAlternates, buildOpenGraph, type Locale } from "@/lib/i18n";
 import { getDictionary } from "@/dictionaries";
 import { JsonLd } from "@/components/JsonLd";
 import { buildBreadcrumbList, buildService } from "@/lib/structuredData";
@@ -23,8 +23,14 @@ export async function generateMetadata({
   return {
     title,
     description,
-    alternates: buildAlternates("/camper-op-maat/"),
-    ...buildOpenGraph({ locale, title, description, pad: "/camper-op-maat/" }),
+    alternates: buildAlternates("/camper-op-maat/", locale),
+    ...buildOpenGraph({
+      locale,
+      title,
+      description,
+      pad: "/camper-op-maat/",
+      afbeelding: { url: `${SITE_URL}/assets/img/social/og-camper-op-maat.jpg`, width: 1200, height: 630, alt: title },
+    }),
   };
 }
 
@@ -224,19 +230,19 @@ export default async function CamperOpMaatPagina({
           <Formulier titel={t.formTitel} intro={t.formIntro} submitLabel={t.formSubmit} locale={locale}>
             <div className="veld">
               <label htmlFor="maatwerk-voornaam">{dict.voertuig.detail.voornaam}</label>
-              <input id="maatwerk-voornaam" name="voornaam" type="text" required />
+              <input id="maatwerk-voornaam" name="voornaam" type="text" autoComplete="given-name" required />
             </div>
             <div className="veld">
               <label htmlFor="maatwerk-achternaam">{dict.voertuig.detail.achternaam}</label>
-              <input id="maatwerk-achternaam" name="achternaam" type="text" required />
+              <input id="maatwerk-achternaam" name="achternaam" type="text" autoComplete="family-name" required />
             </div>
             <div className="veld">
               <label htmlFor="maatwerk-email">{dict.voertuig.detail.email}</label>
-              <input id="maatwerk-email" name="email" type="email" required />
+              <input id="maatwerk-email" name="email" type="email" autoComplete="email" required />
             </div>
             <div className="veld">
               <label htmlFor="maatwerk-telefoon">{dict.voertuig.detail.telefoon}</label>
-              <input id="maatwerk-telefoon" name="telefoon" type="tel" />
+              <input id="maatwerk-telefoon" name="telefoon" type="tel" autoComplete="tel" />
             </div>
             <div className="veld veld-breed">
               <label htmlFor="maatwerk-bericht">{t.projectLabel}</label>

@@ -3,7 +3,7 @@ import { Suspense } from "react";
 import type { Metadata } from "next";
 import { haalVerkoopVoertuigen } from "@/sanity/queries";
 import { SaleFilters } from "@/components/SaleFilters";
-import { L, buildAlternates, buildOpenGraph, type Locale } from "@/lib/i18n";
+import { L, SITE_URL, buildAlternates, buildOpenGraph, type Locale } from "@/lib/i18n";
 import { getDictionary } from "@/dictionaries";
 import { JsonLd } from "@/components/JsonLd";
 import { buildBreadcrumbList } from "@/lib/structuredData";
@@ -25,8 +25,14 @@ export async function generateMetadata({
   return {
     title,
     description,
-    alternates: buildAlternates("/verkoop/"),
-    ...buildOpenGraph({ locale, title, description, pad: "/verkoop/" }),
+    alternates: buildAlternates("/verkoop/", locale),
+    ...buildOpenGraph({
+      locale,
+      title,
+      description,
+      pad: "/verkoop/",
+      afbeelding: { url: `${SITE_URL}/assets/img/social/og-verkoop.jpg`, width: 1200, height: 630, alt: title },
+    }),
   };
 }
 

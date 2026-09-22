@@ -1,7 +1,7 @@
 import Link from "next/link";
 import type { Metadata } from "next";
 import { CamperConfigurator } from "@/components/CamperConfigurator";
-import { L, buildAlternates, buildOpenGraph, type Locale } from "@/lib/i18n";
+import { L, SITE_URL, buildAlternates, buildOpenGraph, type Locale } from "@/lib/i18n";
 import { getDictionary } from "@/dictionaries";
 import { JsonLd } from "@/components/JsonLd";
 import { buildBreadcrumbList } from "@/lib/structuredData";
@@ -27,8 +27,14 @@ export async function generateMetadata({
   return {
     title,
     description,
-    alternates: buildAlternates("/camper-op-maat/start-project/"),
-    ...buildOpenGraph({ locale, title, description, pad: "/camper-op-maat/start-project/" }),
+    alternates: buildAlternates("/camper-op-maat/start-project/", locale),
+    ...buildOpenGraph({
+      locale,
+      title,
+      description,
+      pad: "/camper-op-maat/start-project/",
+      afbeelding: { url: `${SITE_URL}/assets/img/social/og-camper-op-maat.jpg`, width: 1200, height: 630, alt: title },
+    }),
   };
 }
 

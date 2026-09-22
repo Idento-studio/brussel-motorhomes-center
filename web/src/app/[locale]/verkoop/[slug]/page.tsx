@@ -36,7 +36,7 @@ export async function generateMetadata({
   return {
     title: voertuig.titel,
     description: beschrijving,
-    alternates: buildAlternates(`/verkoop/${slug}/`),
+    alternates: buildAlternates(`/verkoop/${slug}/`, locale),
     ...buildOpenGraph({
       locale,
       title: voertuig.titel,
@@ -223,10 +223,10 @@ export default async function VerkoopDetailPagina({
 
             <Formulier titel={d.formTitel} intro={d.formIntroKoop} submitLabel={d.formSubmit} locale={locale}>
               <input type="hidden" name="camper" value={v.titel} />
-              <div className="veld"><label htmlFor="aanvraag-voornaam">{d.voornaam}</label><input id="aanvraag-voornaam" name="voornaam" type="text" required /></div>
-              <div className="veld"><label htmlFor="aanvraag-achternaam">{d.achternaam}</label><input id="aanvraag-achternaam" name="achternaam" type="text" required /></div>
-              <div className="veld"><label htmlFor="aanvraag-email">{d.email}</label><input id="aanvraag-email" name="email" type="email" required /></div>
-              <div className="veld"><label htmlFor="aanvraag-telefoon">{d.telefoon}</label><input id="aanvraag-telefoon" name="telefoon" type="tel" /></div>
+              <div className="veld"><label htmlFor="aanvraag-voornaam">{d.voornaam}</label><input id="aanvraag-voornaam" name="voornaam" type="text" autoComplete="given-name" required /></div>
+              <div className="veld"><label htmlFor="aanvraag-achternaam">{d.achternaam}</label><input id="aanvraag-achternaam" name="achternaam" type="text" autoComplete="family-name" required /></div>
+              <div className="veld"><label htmlFor="aanvraag-email">{d.email}</label><input id="aanvraag-email" name="email" type="email" autoComplete="email" required /></div>
+              <div className="veld"><label htmlFor="aanvraag-telefoon">{d.telefoon}</label><input id="aanvraag-telefoon" name="telefoon" type="tel" autoComplete="tel" /></div>
               <div className="veld veld-breed">
                 <label htmlFor="aanvraag-bericht">{d.bericht}</label>
                 <textarea id="aanvraag-bericht" name="bericht" rows={4} defaultValue={dict.voertuig.interesseBericht(v.titel)} />

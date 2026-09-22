@@ -196,15 +196,15 @@ export function VerkoopStappenKeuze({ locale }: { locale: Locale }) {
           <Formulier titel={t.formTitel} submitLabel={t.submitLabel} locale={locale}>
             <div className="veld">
               <label htmlFor="verkopen-naam">{t.naam}</label>
-              <input id="verkopen-naam" name="naam" type="text" required />
+              <input id="verkopen-naam" name="naam" type="text" autoComplete="name" required />
             </div>
             <div className="veld">
               <label htmlFor="verkopen-email">{t.email}</label>
-              <input id="verkopen-email" name="email" type="email" required />
+              <input id="verkopen-email" name="email" type="email" autoComplete="email" required />
             </div>
             <div className="veld">
               <label htmlFor="verkopen-telefoon">{t.telefoon}</label>
-              <input id="verkopen-telefoon" name="telefoon" type="tel" />
+              <input id="verkopen-telefoon" name="telefoon" type="tel" autoComplete="tel" />
             </div>
             <div className="veld">
               <label htmlFor="verkopen-camper">{t.merkModel}</label>

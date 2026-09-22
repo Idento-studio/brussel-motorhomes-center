@@ -40,6 +40,33 @@ export const viewport: Viewport = {
   themeColor: "#1A4B77",
 };
 
+/**
+ * Basis-CSP als <meta http-equiv>, omdat dit vandaag nog als volledig
+ * statische export op GitHub Pages draait — die laat geen eigen HTTP-headers
+ * toe, enkel een meta-tag kan dus overal (ook op de preview) afdwingen wat
+ * er mag laden. Zodra de site op Vercel draait, komt daar via vercel.json
+ * headers[] een sterkere versie bovenop (die kan wél frame-ancestors zetten,
+ * wat een meta-tag niet kan). 'unsafe-inline' is nodig voor de twee inline
+ * redirectscripts (/ en /studio) en voor de React inline style-attributen
+ * die overal in de site gebruikt worden — een striktere nonce-gebaseerde CSP
+ * kan niet zonder server die per request een nonce genereert.
+ * googletagmanager.com/google-analytics.com staan er alvast bij zodat GA4
+ * (LAUNCH.md §7, nog niet geactiveerd) meteen werkt zonder deze policy dan
+ * nog eens te moeten aanpassen.
+ */
+const CSP = [
+  "default-src 'self'",
+  "script-src 'self' 'unsafe-inline' https://www.googletagmanager.com",
+  "style-src 'self' 'unsafe-inline'",
+  "img-src 'self' data: https://cdn.sanity.io https://www.google-analytics.com https://www.googletagmanager.com",
+  "font-src 'self' data:",
+  "connect-src 'self' https://formspree.io https://*.sanity.io https://www.google-analytics.com https://analytics.google.com https://region1.google-analytics.com",
+  "frame-src 'self' https://www.google.com",
+  "form-action 'self' https://formspree.io",
+  "base-uri 'self'",
+  "object-src 'none'",
+].join("; ");
+
 // De echte html/body-shell staat enkel hier (verplicht: de root layout is de
 // enige plek die <html>/<body> mag renderen), dus deze layout kent de actieve
 // taal niet — enkel het geneste [locale]-segment weet of het nl/fr/en is.
@@ -57,6 +84,9 @@ export const viewport: Viewport = {
 export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
     <html lang="nl-BE" className={`${newsreader.variable} ${instrumentSans.variable}`}>
+      <head>
+        <meta httpEquiv="Content-Security-Policy" content={CSP} />
+      </head>
       <body>{children}</body>
     </html>
   );

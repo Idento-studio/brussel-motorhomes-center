@@ -15,12 +15,17 @@ export function wisselLocale(pathname: string, doel: Locale): string {
   return `/${doel}${zonderLocale || "/"}`;
 }
 
-export function buildAlternates(pad: string) {
-  const urlVoor = (locale: Locale) => `${SITE_URL}${pad === "/" ? `/${locale}/` : `/${locale}${pad}`}`;
+/**
+ * `canonical` moet naar de huidige taalversie zelf wijzen — enkel de
+ * `x-default`-hreflang hoort naar de standaardtaal (nl) te verwijzen. Elke
+ * pagina geeft dus haar eigen `locale` door.
+ */
+export function buildAlternates(pad: string, locale: Locale) {
+  const urlVoor = (l: Locale) => `${SITE_URL}${pad === "/" ? `/${l}/` : `/${l}${pad}`}`;
   return {
-    canonical: urlVoor(defaultLocale),
+    canonical: urlVoor(locale),
     languages: {
-      ...Object.fromEntries(locales.map((locale) => [locale, urlVoor(locale)])),
+      ...Object.fromEntries(locales.map((l) => [l, urlVoor(l)])),
       "x-default": urlVoor(defaultLocale),
     },
   };

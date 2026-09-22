@@ -56,7 +56,11 @@ export function Gallery({ fotos, titel, badge, locale }: { fotos: SanityImage[];
       <div className="galerij">
         <button type="button" className="media media-4x3 media-rond galerij-opener" onClick={() => setOpen(true)}>
           {badge && <span className="badge badge-occasion">{badge}</span>}
-          <img src={urlFor(hoofdfoto).width(1200).height(900).fit("crop").url()} alt={hoofdfoto.alt ?? titel} />
+          <img
+            src={urlFor(hoofdfoto).width(1200).height(900).fit("crop").url()}
+            alt={hoofdfoto.alt ?? titel}
+            fetchPriority="high"
+          />
           <span className="galerij-vergroot" aria-hidden="true">
             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round"><circle cx="11" cy="11" r="7" /><path d="m21 21-4.3-4.3M11 8v6M8 11h6" /></svg>
             {g.bekijkFotos}

@@ -23,7 +23,7 @@ export async function generateMetadata({
   return {
     title,
     description,
-    alternates: buildAlternates("/contact/"),
+    alternates: buildAlternates("/contact/", locale),
     ...buildOpenGraph({ locale, title, description, pad: "/contact/" }),
   };
 }
@@ -216,19 +216,19 @@ export default async function ContactPagina({
           <Formulier titel={t.formTitel} intro={t.formIntro} submitLabel={t.formSubmit} locale={locale}>
             <div className="veld">
               <label htmlFor="contact-voornaam">{t.voornaam}</label>
-              <input id="contact-voornaam" name="voornaam" type="text" required />
+              <input id="contact-voornaam" name="voornaam" type="text" autoComplete="given-name" required />
             </div>
             <div className="veld">
               <label htmlFor="contact-achternaam">{t.achternaam}</label>
-              <input id="contact-achternaam" name="achternaam" type="text" required />
+              <input id="contact-achternaam" name="achternaam" type="text" autoComplete="family-name" required />
             </div>
             <div className="veld">
               <label htmlFor="contact-email">{t.emailLabel}</label>
-              <input id="contact-email" name="email" type="email" required />
+              <input id="contact-email" name="email" type="email" autoComplete="email" required />
             </div>
             <div className="veld">
               <label htmlFor="contact-telefoon">{t.telefoonLabel}</label>
-              <input id="contact-telefoon" name="telefoon" type="tel" />
+              <input id="contact-telefoon" name="telefoon" type="tel" autoComplete="tel" />
             </div>
             <div className="veld veld-breed">
               <label htmlFor="contact-onderwerp">{t.onderwerp}</label>

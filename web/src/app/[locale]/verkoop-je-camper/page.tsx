@@ -2,7 +2,7 @@ import Link from "next/link";
 import { Suspense } from "react";
 import type { Metadata } from "next";
 import { VerkoopStappenKeuze } from "@/components/VerkoopStappenKeuze";
-import { L, buildAlternates, buildOpenGraph, type Locale } from "@/lib/i18n";
+import { L, SITE_URL, buildAlternates, buildOpenGraph, type Locale } from "@/lib/i18n";
 import { getDictionary } from "@/dictionaries";
 import { JsonLd } from "@/components/JsonLd";
 import { buildBreadcrumbList, buildService } from "@/lib/structuredData";
@@ -24,8 +24,14 @@ export async function generateMetadata({
   return {
     title,
     description,
-    alternates: buildAlternates("/verkoop-je-camper/"),
-    ...buildOpenGraph({ locale, title, description, pad: "/verkoop-je-camper/" }),
+    alternates: buildAlternates("/verkoop-je-camper/", locale),
+    ...buildOpenGraph({
+      locale,
+      title,
+      description,
+      pad: "/verkoop-je-camper/",
+      afbeelding: { url: `${SITE_URL}/assets/img/social/og-verkoop-je-camper.jpg`, width: 1200, height: 630, alt: title },
+    }),
   };
 }
 

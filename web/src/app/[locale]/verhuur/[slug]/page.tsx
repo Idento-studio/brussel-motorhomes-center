@@ -39,7 +39,7 @@ export async function generateMetadata({
   return {
     title,
     description,
-    alternates: buildAlternates(`/verhuur/${slug}/`),
+    alternates: buildAlternates(`/verhuur/${slug}/`, locale),
     ...buildOpenGraph({
       locale,
       title,
@@ -274,10 +274,10 @@ export default async function VerhuurDetailPagina({
 
             <Formulier titel={d.formTitel} intro={d.formIntroHuur} submitLabel={d.formSubmit} locale={locale}>
               <input type="hidden" name="camper" value={v.titel} />
-              <div className="veld"><label htmlFor="huur-voornaam">{d.voornaam}</label><input id="huur-voornaam" name="voornaam" type="text" required /></div>
-              <div className="veld"><label htmlFor="huur-achternaam">{d.achternaam}</label><input id="huur-achternaam" name="achternaam" type="text" required /></div>
-              <div className="veld"><label htmlFor="huur-email">{d.email}</label><input id="huur-email" name="email" type="email" required /></div>
-              <div className="veld"><label htmlFor="huur-telefoon">{d.telefoon}</label><input id="huur-telefoon" name="telefoon" type="tel" /></div>
+              <div className="veld"><label htmlFor="huur-voornaam">{d.voornaam}</label><input id="huur-voornaam" name="voornaam" type="text" autoComplete="given-name" required /></div>
+              <div className="veld"><label htmlFor="huur-achternaam">{d.achternaam}</label><input id="huur-achternaam" name="achternaam" type="text" autoComplete="family-name" required /></div>
+              <div className="veld"><label htmlFor="huur-email">{d.email}</label><input id="huur-email" name="email" type="email" autoComplete="email" required /></div>
+              <div className="veld"><label htmlFor="huur-telefoon">{d.telefoon}</label><input id="huur-telefoon" name="telefoon" type="tel" autoComplete="tel" /></div>
               <div className="veld veld-breed">
                 <label>{d.gewensePeriode}</label>
                 <div className="periode-raster">

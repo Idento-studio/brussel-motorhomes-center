@@ -22,7 +22,7 @@ export async function generateMetadata({
   return {
     title,
     description,
-    alternates: buildAlternates("/over-ons/"),
+    alternates: buildAlternates("/over-ons/", locale),
     ...buildOpenGraph({ locale, title, description, pad: "/over-ons/" }),
   };
 }

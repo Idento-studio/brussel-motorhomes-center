@@ -22,7 +22,7 @@ export async function generateMetadata({
     title,
     description,
     robots: { index: false, follow: true },
-    alternates: buildAlternates("/privacy/"),
+    alternates: buildAlternates("/privacy/", locale),
     ...buildOpenGraph({ locale, title, description, pad: "/privacy/" }),
   };
 }
@@ -56,9 +56,12 @@ export default async function PrivacyPagina({
           bewaartermijnTekst:
             "Les demandes qui n'aboutissent pas à un accord sont conservées pendant douze mois maximum. Les données liées à une vente, une location ou une réparation sont conservées aussi longtemps que la loi l'exige, notamment pour la comptabilité et la période de garantie.",
           h2Cookies: "Cookies et analytique",
-          cookiesTekst1: "Ce site ne place lui-même aucun cookie publicitaire. Des cookies fonctionnels sont nécessaires au bon fonctionnement du site et pour mémoriser votre choix en matière de cookies. Nous ne plaçons des cookies analytiques qu'après votre acceptation ; vous pouvez toujours modifier votre choix via",
+          cookiesTekst1: "Ce site ne place lui-même aucun cookie publicitaire. Des cookies fonctionnels sont nécessaires au bon fonctionnement du site et pour mémoriser votre choix en matière de cookies. Nous ne plaçons des cookies analytiques (Google Analytics) qu'après votre acceptation ; vous pouvez toujours modifier votre choix via",
           cookiesLinkTekst: "Paramètres des cookies",
           cookiesTekst2: "en bas de chaque page.",
+          h2Verwerkers: "Avec qui partageons-nous vos données ?",
+          verwerkersTekst:
+            "Pour faire fonctionner ce site, nous faisons appel à quelques prestataires qui traitent vos données en notre nom : Formspree pour le traitement technique des formulaires que vous soumettez, Vercel pour l'hébergement du site, et Google (Google Analytics) pour les statistiques de visite, uniquement si vous avez accepté les cookies analytiques. Nous transmettons vos données à ces prestataires dans la mesure strictement nécessaire à leur service.",
           h2Rechten: "Vos droits",
           rechtenTekst1:
             "Vous avez le droit de consulter vos données, de les faire rectifier ou de les faire supprimer. Vous pouvez également vous opposer au traitement ou en demander la limitation. Envoyez pour cela un e-mail à",
@@ -66,7 +69,7 @@ export default async function PrivacyPagina({
           h2Wijzigingen: "Modifications",
           wijzigingenTekst:
             "Nous adaptons cette politique de confidentialité lorsque le fonctionnement du site ou la législation l'exige. La date ci-dessous indique quand la dernière modification a eu lieu.",
-          bijgewerkt: "Dernière mise à jour en 2026. [À VÉRIFIER : faire relire cette politique avant la mise en ligne.]",
+          bijgewerkt: "Dernière mise à jour le 22 septembre 2026.",
         }
       : locale === "en"
       ? {
@@ -87,9 +90,12 @@ export default async function PrivacyPagina({
           bewaartermijnTekst:
             "Requests that do not lead to an agreement are kept for a maximum of twelve months. Data relating to a sale, rental or repair is kept for as long as required by law, including for accounting purposes and the warranty period.",
           h2Cookies: "Cookies and analytics",
-          cookiesTekst1: "This site does not place any advertising cookies itself. Functional cookies are necessary for the site to work and to remember your cookie choice. We only place analytics cookies after you accept them; you can always change your choice via",
+          cookiesTekst1: "This site does not place any advertising cookies itself. Functional cookies are necessary for the site to work and to remember your cookie choice. We only place analytics cookies (Google Analytics) after you accept them; you can always change your choice via",
           cookiesLinkTekst: "Cookie settings",
           cookiesTekst2: "at the bottom of every page.",
+          h2Verwerkers: "Who do we share your data with?",
+          verwerkersTekst:
+            "To run this site, we work with a few providers who process your data on our behalf: Formspree for technically processing the forms you submit, Vercel for hosting the site, and Google (Google Analytics) for visitor statistics, only if you have accepted analytics cookies. We only share your data with these providers to the extent strictly necessary for their service.",
           h2Rechten: "Your rights",
           rechtenTekst1:
             "You have the right to access your data, have it corrected or have it deleted. You may also object to the processing or request that it be restricted. To do so, send an email to",
@@ -97,7 +103,7 @@ export default async function PrivacyPagina({
           h2Wijzigingen: "Changes",
           wijzigingenTekst:
             "We update this privacy policy whenever the operation of the site or legislation requires it. The date below shows when the last update took place.",
-          bijgewerkt: "Last updated in 2026. [TO REVIEW: have this policy checked before it goes live.]",
+          bijgewerkt: "Last updated on 22 September 2026.",
         }
       : {
           kruimel: "Privacybeleid",
@@ -117,9 +123,12 @@ export default async function PrivacyPagina({
           bewaartermijnTekst:
             "Aanvragen die niet tot een overeenkomst leiden, bewaren we maximaal twaalf maanden. Gegevens die bij een verkoop, verhuur of herstelling horen, bewaren we zolang de wet dat verplicht, onder meer voor de boekhouding en de garantieperiode.",
           h2Cookies: "Cookies en analytics",
-          cookiesTekst1: "Deze site plaatst zelf geen advertentiecookies. Functionele cookies zijn nodig om de site te laten werken en je cookiekeuze te onthouden. Analytische cookies plaatsen we enkel nadat je ze aanvaardt; je kan je keuze altijd wijzigen via",
+          cookiesTekst1: "Deze site plaatst zelf geen advertentiecookies. Functionele cookies zijn nodig om de site te laten werken en je cookiekeuze te onthouden. Analytische cookies (Google Analytics) plaatsen we enkel nadat je ze aanvaardt; je kan je keuze altijd wijzigen via",
           cookiesLinkTekst: "Cookie-instellingen",
           cookiesTekst2: "onderaan elke pagina.",
+          h2Verwerkers: "Met wie delen we je gegevens?",
+          verwerkersTekst:
+            "Om deze site te laten werken, doen we een beroep op enkele partijen die gegevens namens ons verwerken: Formspree voor de technische verwerking van de formulieren die je invult, Vercel voor de hosting van de site, en Google (Google Analytics) voor bezoekersstatistieken, enkel als je analytische cookies hebt aanvaard. We delen je gegevens met deze partijen enkel voor zover dat nodig is om hun dienst te leveren.",
           h2Rechten: "Je rechten",
           rechtenTekst1:
             "Je hebt het recht om je gegevens in te kijken, te laten verbeteren of te laten wissen. Je kan ook bezwaar maken tegen de verwerking of vragen om ze te beperken. Stuur daarvoor een mail naar",
@@ -127,7 +136,7 @@ export default async function PrivacyPagina({
           h2Wijzigingen: "Wijzigingen",
           wijzigingenTekst:
             "We passen dit privacybeleid aan wanneer de werking van de site of de wetgeving daarom vraagt. De datum hieronder toont wanneer de laatste wijziging gebeurde.",
-          bijgewerkt: "Laatst bijgewerkt op 2026. [NA TE KIJKEN: laat dit beleid nalezen voor het live gaat.]",
+          bijgewerkt: "Laatst bijgewerkt op 22 september 2026.",
         };
 
   return (
@@ -171,6 +180,11 @@ export default async function PrivacyPagina({
           <h2>{t.h2Cookies}</h2>
           <p>
             {t.cookiesTekst1} <a href="#" data-cookie-settings="">{t.cookiesLinkTekst}</a> {t.cookiesTekst2}
+          </p>
+
+          <h2>{t.h2Verwerkers}</h2>
+          <p>
+            {t.verwerkersTekst}
           </p>
 
           <h2>{t.h2Rechten}</h2>

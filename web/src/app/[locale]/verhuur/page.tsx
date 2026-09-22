@@ -2,7 +2,7 @@ import Link from "next/link";
 import type { Metadata } from "next";
 import { haalVerhuurVoertuigen } from "@/sanity/queries";
 import { RentalFilters } from "@/components/RentalFilters";
-import { L, buildAlternates, buildOpenGraph, type Locale } from "@/lib/i18n";
+import { L, SITE_URL, buildAlternates, buildOpenGraph, type Locale } from "@/lib/i18n";
 import { getDictionary } from "@/dictionaries";
 import { JsonLd } from "@/components/JsonLd";
 import { buildBreadcrumbList } from "@/lib/structuredData";
@@ -24,8 +24,14 @@ export async function generateMetadata({
   return {
     title,
     description,
-    alternates: buildAlternates("/verhuur/"),
-    ...buildOpenGraph({ locale, title, description, pad: "/verhuur/" }),
+    alternates: buildAlternates("/verhuur/", locale),
+    ...buildOpenGraph({
+      locale,
+      title,
+      description,
+      pad: "/verhuur/",
+      afbeelding: { url: `${SITE_URL}/assets/img/social/og-verhuur.jpg`, width: 1200, height: 630, alt: title },
+    }),
   };
 }
 

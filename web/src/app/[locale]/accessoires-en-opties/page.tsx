@@ -2,7 +2,7 @@ import Link from "next/link";
 import type { Metadata } from "next";
 import { Formulier } from "@/components/Formulier";
 import { Accordeon } from "@/components/Accordeon";
-import { L, buildAlternates, buildOpenGraph, type Locale } from "@/lib/i18n";
+import { L, SITE_URL, buildAlternates, buildOpenGraph, type Locale } from "@/lib/i18n";
 import { getDictionary } from "@/dictionaries";
 import { JsonLd } from "@/components/JsonLd";
 import { buildBreadcrumbList, buildService } from "@/lib/structuredData";
@@ -24,8 +24,14 @@ export async function generateMetadata({
   return {
     title,
     description,
-    alternates: buildAlternates("/accessoires-en-opties/"),
-    ...buildOpenGraph({ locale, title, description, pad: "/accessoires-en-opties/" }),
+    alternates: buildAlternates("/accessoires-en-opties/", locale),
+    ...buildOpenGraph({
+      locale,
+      title,
+      description,
+      pad: "/accessoires-en-opties/",
+      afbeelding: { url: `${SITE_URL}/assets/img/social/og-accessoires.jpg`, width: 1200, height: 630, alt: title },
+    }),
   };
 }
 
@@ -371,19 +377,19 @@ export default async function AccessoiresEnOptiesPagina({
           <Formulier titel={t.formTitel} intro={t.formIntro} locale={locale}>
             <div className="veld">
               <label htmlFor="acc-voornaam">{dict.voertuig.detail.voornaam}</label>
-              <input id="acc-voornaam" name="voornaam" type="text" required />
+              <input id="acc-voornaam" name="voornaam" type="text" autoComplete="given-name" required />
             </div>
             <div className="veld">
               <label htmlFor="acc-achternaam">{dict.voertuig.detail.achternaam}</label>
-              <input id="acc-achternaam" name="achternaam" type="text" required />
+              <input id="acc-achternaam" name="achternaam" type="text" autoComplete="family-name" required />
             </div>
             <div className="veld">
               <label htmlFor="acc-email">{dict.voertuig.detail.email}</label>
-              <input id="acc-email" name="email" type="email" required />
+              <input id="acc-email" name="email" type="email" autoComplete="email" required />
             </div>
             <div className="veld">
               <label htmlFor="acc-telefoon">{t.telefoon}</label>
-              <input id="acc-telefoon" name="telefoon" type="tel" />
+              <input id="acc-telefoon" name="telefoon" type="tel" autoComplete="tel" />
             </div>
             <div className="veld veld-breed">
               <label htmlFor="acc-bericht">{dict.voertuig.detail.bericht}</label>

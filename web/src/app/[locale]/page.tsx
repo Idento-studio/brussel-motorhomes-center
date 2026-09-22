@@ -31,7 +31,7 @@ export async function generateMetadata({
   return {
     title,
     description,
-    alternates: buildAlternates("/"),
+    alternates: buildAlternates("/", locale),
     ...buildOpenGraph({ locale, title, description, pad: "/" }),
   };
 }
