@@ -3,10 +3,12 @@ import { Suspense } from "react";
 import type { Metadata } from "next";
 import { haalVerkoopVoertuigen } from "@/sanity/queries";
 import { SaleFilters } from "@/components/SaleFilters";
+import { Accordeon } from "@/components/Accordeon";
+import { faqVragenVoor } from "@/lib/faqData";
 import { L, SITE_URL, buildAlternates, buildOpenGraph, type Locale } from "@/lib/i18n";
 import { getDictionary } from "@/dictionaries";
 import { JsonLd } from "@/components/JsonLd";
-import { buildBreadcrumbList } from "@/lib/structuredData";
+import { buildBreadcrumbList, buildFAQPage } from "@/lib/structuredData";
 
 export async function generateMetadata({
   params,
@@ -44,6 +46,7 @@ export default async function VerkoopPagina({
   const { locale } = await params;
   const dict = getDictionary(locale);
   const voertuigen = await haalVerkoopVoertuigen(locale);
+  const faqVragen = faqVragenVoor(locale, "koop");
 
   const inhoud =
     locale === "fr"
@@ -55,6 +58,7 @@ export default async function VerkoopPagina({
           laden: "Chargement de l'offre…",
           ctaTitel: "Vous ne trouvez pas ce que vous cherchez ?",
           ctaTekst: "Contactez notre équipe. Nous vous aidons volontiers à trouver le camping-car parfait.",
+          faqTitel: "Questions fréquentes sur l'achat",
         }
       : locale === "en"
       ? {
@@ -65,6 +69,7 @@ export default async function VerkoopPagina({
           laden: "Loading stock…",
           ctaTitel: "Can't find what you're looking for?",
           ctaTekst: "Get in touch with our team. We're happy to help you find the perfect motorhome.",
+          faqTitel: "Frequently asked questions about buying",
         }
       : {
           titel: "Motorhomes te koop",
@@ -74,6 +79,7 @@ export default async function VerkoopPagina({
           laden: "Aanbod laden…",
           ctaTitel: "Niet gevonden wat u zoekt?",
           ctaTekst: "Neem contact op met ons team. Wij helpen u graag bij het vinden van de perfecte motorhome.",
+          faqTitel: "Veelgestelde vragen over kopen",
         };
 
   return (
@@ -81,6 +87,7 @@ export default async function VerkoopPagina({
       <div className="paginakop">
         <div className="wrap">
           <JsonLd data={buildBreadcrumbList(locale, [{ label: dict.breadcrumbHome, pad: "/" }, { label: dict.voertuig.kruimelTeKoop }])} />
+          <JsonLd data={buildFAQPage(faqVragen)} />
           <nav className="kruimelpad" aria-label="Kruimelpad">
             <Link href={L(locale, "/")}>{dict.breadcrumbHome}</Link>
             <span aria-hidden="true">/</span>
@@ -113,6 +120,15 @@ export default async function VerkoopPagina({
             <Link className="btn btn-goud" href={L(locale, "/contact/")}>{dict.nav.contact}</Link>
             <a className="btn btn-blauw" href="tel:+32471407949">{dict.voertuig.detail.bel}</a>
           </div>
+        </div>
+      </section>
+
+      <section className="sectie sectie-vlak">
+        <div className="wrap">
+          <div className="sectie-kop is-midden">
+            <h2>{inhoud.faqTitel}</h2>
+          </div>
+          <Accordeon idPrefix="koop" vragen={faqVragen} />
         </div>
       </section>
     </main>

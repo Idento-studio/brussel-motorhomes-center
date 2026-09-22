@@ -2,10 +2,12 @@ import Link from "next/link";
 import type { Metadata } from "next";
 import { haalVerhuurVoertuigen } from "@/sanity/queries";
 import { RentalFilters } from "@/components/RentalFilters";
+import { Accordeon } from "@/components/Accordeon";
+import { faqVragenVoor } from "@/lib/faqData";
 import { L, SITE_URL, buildAlternates, buildOpenGraph, type Locale } from "@/lib/i18n";
 import { getDictionary } from "@/dictionaries";
 import { JsonLd } from "@/components/JsonLd";
-import { buildBreadcrumbList } from "@/lib/structuredData";
+import { buildBreadcrumbList, buildFAQPage } from "@/lib/structuredData";
 
 export async function generateMetadata({
   params,
@@ -44,6 +46,7 @@ export default async function VerhuurPagina({
   const dict = getDictionary(locale);
   const d = dict.voertuig.detail;
   const voertuigen = await haalVerhuurVoertuigen(locale);
+  const faqVragen = faqVragenVoor(locale, "huur");
 
   const inhoud =
     locale === "fr"
@@ -56,6 +59,7 @@ export default async function VerhuurPagina({
           goedOmWeten: "Bon à savoir",
           ctaTitel: "Des questions sur la location ?",
           ctaTekst: "Nous vous aidons volontiers à choisir le bon modèle et la bonne période.",
+          faqTitel: "Questions fréquentes sur la location",
         }
       : locale === "en"
       ? {
@@ -67,6 +71,7 @@ export default async function VerhuurPagina({
           goedOmWeten: "Good to know",
           ctaTitel: "Questions about renting?",
           ctaTekst: "We're happy to help you choose the right model and the right period.",
+          faqTitel: "Frequently asked questions about renting",
         }
       : {
           titel: "Motorhomes te huur",
@@ -77,6 +82,7 @@ export default async function VerhuurPagina({
           goedOmWeten: "Goed om te weten",
           ctaTitel: "Vragen over huren?",
           ctaTekst: "Wij helpen u graag bij het kiezen van het juiste model en de juiste periode.",
+          faqTitel: "Veelgestelde vragen over huren",
         };
 
   return (
@@ -84,6 +90,7 @@ export default async function VerhuurPagina({
       <div className="paginakop">
         <div className="wrap">
           <JsonLd data={buildBreadcrumbList(locale, [{ label: dict.breadcrumbHome, pad: "/" }, { label: dict.voertuig.kruimelTeHuur }])} />
+          <JsonLd data={buildFAQPage(faqVragen)} />
           <nav className="kruimelpad" aria-label="Kruimelpad">
             <Link href={L(locale, "/")}>{dict.breadcrumbHome}</Link>
             <span aria-hidden="true">/</span>
@@ -136,6 +143,15 @@ export default async function VerhuurPagina({
             <Link className="btn btn-goud" href={L(locale, "/contact/")}>{dict.nav.contact}</Link>
             <a className="btn btn-blauw" href="tel:+32471407949">{d.bel}</a>
           </div>
+        </div>
+      </section>
+
+      <section className="sectie sectie-vlak">
+        <div className="wrap">
+          <div className="sectie-kop is-midden">
+            <h2>{inhoud.faqTitel}</h2>
+          </div>
+          <Accordeon idPrefix="huur" vragen={faqVragen} />
         </div>
       </section>
     </main>
