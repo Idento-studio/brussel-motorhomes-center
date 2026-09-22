@@ -379,7 +379,14 @@
   font-weight: 600;
 }
 .actiebalk a + a { border-left: 1px solid var(--inverse-hairline); }
-body { padding-bottom: 4rem; }
+/* Moet exact evenveel ruimte vrijhouden als de vaste .actiebalk effectief
+   inneemt, incl. dezelfde env(safe-area-inset-bottom) — anders duwt de balk
+   op telefoons met een homeindicator (bv. recente iPhones) de onderste
+   footerlinks (algemene voorwaarden, privacybeleid, cookie-instellingen)
+   gewoon achter zichzelf weg. Iets extra marge (4.5rem i.p.v. het strikte
+   minimum) zodat kleine verschillen in lettertype-/icoonrendering tussen
+   toestellen niet opnieuw tot een net-niet-passende balk leiden. */
+body { padding-bottom: calc(4.5rem + env(safe-area-inset-bottom, 0px)); }
 @media (min-width: 768px) {
   .actiebalk { display: none; }
   body { padding-bottom: 0; }
