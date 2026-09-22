@@ -69,6 +69,7 @@ function verhuurVelden(locale: Locale) {
   ${vertaald("promoTekst", locale)},
   "merk": merk->naam,
   opbouwtype,
+  staat,
   zitplaatsen,
   slaapplaatsen,
   onderstel,

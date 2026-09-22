@@ -64,6 +64,14 @@ export const verhuurVoertuig = defineType({
       group: 'specificaties',
     }),
     defineField({
+      name: 'staat',
+      title: 'Staat',
+      type: 'string',
+      description: 'Is dit een nieuwe camper of een occasie (tweedehands)? Optioneel: laat leeg als je dit niet wil tonen.',
+      options: {list: ['Nieuw', 'Occasie'], layout: 'radio'},
+      group: 'specificaties',
+    }),
+    defineField({
       name: 'zitplaatsen',
       title: 'Zitplaatsen',
       type: 'number',

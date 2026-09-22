@@ -57,6 +57,7 @@ export type VerhuurVoertuig = {
   promoTekst?: string;
   merk?: string;
   opbouwtype?: "Alkoof" | "Campervan" | "Halfintegraal" | "Integraal";
+  staat?: "Nieuw" | "Occasie";
   zitplaatsen?: number;
   slaapplaatsen?: number;
   onderstel?: string;

@@ -10,7 +10,7 @@ import { urlFor, urlForVolledig } from "@/sanity/image";
 import type { TariefPeriode } from "@/sanity/types";
 import { L, buildAlternates, buildOpenGraph, type Locale } from "@/lib/i18n";
 import { getDictionary } from "@/dictionaries";
-import { opbouwtypeLabel, brandstofLabel, transmissieLabel, rijbewijsLabel } from "@/lib/voertuigLabels";
+import { opbouwtypeLabel, staatLabel, brandstofLabel, transmissieLabel, rijbewijsLabel } from "@/lib/voertuigLabels";
 import { JsonLd } from "@/components/JsonLd";
 import { buildBreadcrumbList, buildRentalProduct } from "@/lib/structuredData";
 
@@ -118,22 +118,18 @@ export default async function VerhuurDetailPagina({
                 </div>
               )}
               <h1>{v.titel}</h1>
-              <ul className="pil-rij" style={{ marginTop: "var(--sp-3)" }}>
-                <li className="pil">{v.slaapplaatsen ? dict.voertuig.slaapplaatsen(v.slaapplaatsen) : dict.voertuig.slaapplaatsenOpAanvraag}</li>
-                <li className="pil">{rijbewijsLabel(v.rijbewijs, locale) ?? dict.voertuig.rijbewijsBStandaard}</li>
-                {v.afmetingen?.lengte && (
-                  <li className="pil">{`${v.afmetingen.lengte.toFixed(2)} × ${v.afmetingen.breedte?.toFixed(2)} × ${v.afmetingen.hoogte?.toFixed(2)} m`}</li>
-                )}
-              </ul>
-              <p className="onder" style={{ marginTop: "var(--sp-4)" }}>{v.indeling ?? dict.voertuig.indelingOpAanvraag}</p>
             </header>
 
-            {(v.opbouwtype || v.zitplaatsen || v.slaapplaatsen || v.onderstel || v.motor || v.brandstof || v.transmissie || v.rijbewijs || v.leeggewicht || v.mtm) && (
+            {(v.opbouwtype || v.staat || v.indeling || v.afmetingen?.lengte || v.zitplaatsen || v.slaapplaatsen || v.onderstel || v.motor || v.brandstof || v.transmissie || v.rijbewijs || v.leeggewicht || v.mtm) && (
               <section className="detail-blok">
                 <h2>{d.specificaties}</h2>
                 <dl className="spec-raster">
                   {v.opbouwtype && <div><dt>{d.opbouwtype}</dt><dd>{opbouwtypeLabel(v.opbouwtype, locale)}</dd></div>}
+                  {v.staat && <div><dt>{d.staat}</dt><dd>{staatLabel(v.staat, locale)}</dd></div>}
                   {v.indeling && <div><dt>{d.indeling}</dt><dd>{v.indeling}</dd></div>}
+                  {v.afmetingen?.lengte && v.afmetingen?.breedte && v.afmetingen?.hoogte && (
+                    <div><dt>{d.afmetingen}</dt><dd>{`${v.afmetingen.lengte.toFixed(2)} × ${v.afmetingen.breedte.toFixed(2)} × ${v.afmetingen.hoogte.toFixed(2)} m`}</dd></div>
+                  )}
                   {(v.zitplaatsen || v.slaapplaatsen) && (
                     <div><dt>{dict.voertuig.zitSlaap}</dt><dd>{v.zitplaatsen ?? "–"} / {v.slaapplaatsen ?? "–"}</dd></div>
                   )}
