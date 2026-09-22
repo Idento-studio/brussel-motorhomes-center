@@ -2,6 +2,7 @@ import Link from "next/link";
 import type { Metadata } from "next";
 import { Formulier } from "@/components/Formulier";
 import { Accordeon } from "@/components/Accordeon";
+import { FotoMetPlaceholder } from "@/components/FotoMetPlaceholder";
 import { L, SITE_URL, buildAlternates, buildOpenGraph, type Locale } from "@/lib/i18n";
 import { getDictionary } from "@/dictionaries";
 import { JsonLd } from "@/components/JsonLd";
@@ -265,60 +266,76 @@ export default async function AccessoiresEnOptiesPagina({
             <h2>{t.aanbodTitel}</h2>
           </div>
           <div className="raster raster-4">
-            <article className="kaart icoon-kaart">
-              <span className="icoon-vlak">
-                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.9" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d="M12 3v3M12 18v3M4.2 7.5l2.6 1.5M17.2 15l2.6 1.5M4.2 16.5l2.6-1.5M17.2 9l2.6-1.5M12 8.6a3.4 3.4 0 1 1 0 6.8 3.4 3.4 0 0 1 0-6.8z" /></svg>
-              </span>
-              <h3>{t.card1Titel}</h3>
+            <article className="kaart kaart-lift foto-kaart">
+              <div className="foto-kaart-boven">
+                <span className="media foto-kaart-beeld">
+                  <FotoMetPlaceholder src="/assets/img/accessoires/zonnepanelen-en-accus.webp" alt="" />
+                </span>
+                <h3>{t.card1Titel}</h3>
+              </div>
               <p>{t.card1Tekst}</p>
             </article>
-            <article className="kaart icoon-kaart">
-              <span className="icoon-vlak">
-                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.9" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d="M6 18.5a3.5 3.5 0 1 1 0-7 3.5 3.5 0 0 1 0 7zM18 18.5a3.5 3.5 0 1 1 0-7 3.5 3.5 0 0 1 0 7zM6 15h6l3-8h3M9 7h4" /></svg>
-              </span>
-              <h3>{t.card2Titel}</h3>
+            <article className="kaart kaart-lift foto-kaart">
+              <div className="foto-kaart-boven">
+                <span className="media foto-kaart-beeld">
+                  <FotoMetPlaceholder src="/assets/img/accessoires/fietsendragers-en-racks.webp" alt="" />
+                </span>
+                <h3>{t.card2Titel}</h3>
+              </div>
               <p>{t.card2Tekst}</p>
             </article>
-            <article className="kaart icoon-kaart">
-              <span className="icoon-vlak">
-                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.9" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d="M12 21s7-5.6 7-11a7 7 0 1 0-14 0c0 5.4 7 11 7 11zM12 8.6a1.9 1.9 0 1 1 0 3.8 1.9 1.9 0 0 1 0-3.8z" /></svg>
-              </span>
-              <h3>{t.card3Titel}</h3>
+            <article className="kaart kaart-lift foto-kaart">
+              <div className="foto-kaart-boven">
+                <span className="media foto-kaart-beeld">
+                  <FotoMetPlaceholder src="/assets/img/accessoires/navigatie-en-multimedia.webp" alt="" />
+                </span>
+                <h3>{t.card3Titel}</h3>
+              </div>
               <p>{t.card3Tekst}</p>
             </article>
-            <article className="kaart icoon-kaart">
-              <span className="icoon-vlak">
-                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.9" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d="M4 5h16v14H4zM12 5v14M4 12h16" /></svg>
-              </span>
-              <h3>{t.card4Titel}</h3>
+            <article className="kaart kaart-lift foto-kaart">
+              <div className="foto-kaart-boven">
+                <span className="media foto-kaart-beeld">
+                  <FotoMetPlaceholder src="/assets/img/accessoires/dakramen-en-ventilatie.webp" alt="" />
+                </span>
+                <h3>{t.card4Titel}</h3>
+              </div>
               <p>{t.card4Tekst}</p>
             </article>
-            <article className="kaart icoon-kaart">
-              <span className="icoon-vlak">
-                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.9" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d="M5 11h14v10H5zM8 11V7.5a4 4 0 0 1 8 0V11M12 15v3" /></svg>
-              </span>
-              <h3>{t.card5Titel}</h3>
+            <article className="kaart kaart-lift foto-kaart">
+              <div className="foto-kaart-boven">
+                <span className="media foto-kaart-beeld">
+                  <FotoMetPlaceholder src="/assets/img/accessoires/veiligheid-en-beveiliging.webp" alt="" />
+                </span>
+                <h3>{t.card5Titel}</h3>
+              </div>
               <p>{t.card5Tekst}</p>
             </article>
-            <article className="kaart icoon-kaart">
-              <span className="icoon-vlak">
-                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.9" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d="M4 8l8-4 8 4v8l-8 4-8-4zM4 8l8 4 8-4M12 12v8" /></svg>
-              </span>
-              <h3>{t.card6Titel}</h3>
+            <article className="kaart kaart-lift foto-kaart">
+              <div className="foto-kaart-boven">
+                <span className="media foto-kaart-beeld">
+                  <FotoMetPlaceholder src="/assets/img/accessoires/comfort-en-opberging.webp" alt="" />
+                </span>
+                <h3>{t.card6Titel}</h3>
+              </div>
               <p>{t.card6Tekst}</p>
             </article>
-            <article className="kaart icoon-kaart">
-              <span className="icoon-vlak">
-                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.9" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d="M3 12a9 9 0 0 1 18 0zM12 12v7a2.5 2.5 0 0 0 5 0" /></svg>
-              </span>
-              <h3>{t.card7Titel}</h3>
+            <article className="kaart kaart-lift foto-kaart">
+              <div className="foto-kaart-boven">
+                <span className="media foto-kaart-beeld">
+                  <FotoMetPlaceholder src="/assets/img/accessoires/luifel.webp" alt="" />
+                </span>
+                <h3>{t.card7Titel}</h3>
+              </div>
               <p>{t.card7Tekst}</p>
             </article>
-            <article className="kaart icoon-kaart">
-              <span className="icoon-vlak">
-                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.9" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d="M3 5h18v11H3zM9 20h6M12 16v4" /></svg>
-              </span>
-              <h3>{t.card8Titel}</h3>
+            <article className="kaart kaart-lift foto-kaart">
+              <div className="foto-kaart-boven">
+                <span className="media foto-kaart-beeld">
+                  <FotoMetPlaceholder src="/assets/img/accessoires/tv-antenne-en-trekhaak.webp" alt="" />
+                </span>
+                <h3>{t.card8Titel}</h3>
+              </div>
               <p>{t.card8Tekst}</p>
             </article>
           </div>
