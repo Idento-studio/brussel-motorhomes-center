@@ -96,7 +96,7 @@ export function SiteHeader({ locale, actiefPad }: { locale: Locale; actiefPad?: 
             <span className="merk-tekst">Brussel<span>Motorhomes Center</span></span>
           </Link>
 
-          <nav className="hoofdnav" aria-label="Hoofdnavigatie">
+          <nav className={`hoofdnav${locale === "fr" ? " hoofdnav-fr" : ""}`} aria-label="Hoofdnavigatie">
             {NAV_LINKS.map((link) => (
               <Link key={link.href} href={link.href} aria-current={actiefPad === link.href ? "page" : undefined}>
                 {link.label}

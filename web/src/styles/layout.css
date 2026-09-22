@@ -148,6 +148,17 @@
 }
 @media (min-width: 1280px) { .hoofdnav { gap: 2.25rem; } }
 
+/* De Franse labels ("Personnes à mobilité réduite", "Vendez votre
+   camping-car", ...) zijn merkbaar langer dan de NL/EN-versies — met de
+   normale gap/lettergrootte past de rij zelfs op een breed scherm niet
+   binnen de --wrap-maxbreedte (1400px), waardoor tekst lelijk midden in
+   een woord afbreekt naar een 2de/3de regel. Enkel voor FR de rij
+   compacter maken i.p.v. dit sitebreed te doen — NL/EN passen al
+   probleemloos op één regel. */
+.hoofdnav-fr { gap: 1rem; font-size: 0.78125rem; }
+@media (min-width: 1280px) { .hoofdnav-fr { gap: 1.25rem; } }
+.hoofdnav-fr a { white-space: nowrap; }
+
 .hoofdnav a { position: relative; padding-block: 0.25rem; }
 .hoofdnav a::after {
   content: "";
