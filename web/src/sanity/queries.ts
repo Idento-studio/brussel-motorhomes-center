@@ -4,12 +4,22 @@ import type { Locale } from "@/lib/i18n";
 
 /**
  * Velden die met sanity-plugin-internationalized-array zijn ingevoerd, komen
- * terug als [{_key: "nl", value: "..."}, {_key: "fr", value: "..."}]. Deze
- * helper haalt de waarde voor de actieve taal op, met terugval op Nederlands
- * (nooit een leeg veld tonen als de Franse vertaling nog ontbreekt).
+ * terug als [{language: "nl", value: "..."}, {language: "fr", value: "..."}].
+ * Deze helper haalt de waarde voor de actieve taal op, met terugval op
+ * Nederlands (nooit een leeg veld tonen als de Franse vertaling nog
+ * ontbreekt).
+ *
+ * Filtert op het "language"-veld, niet op _key: de v4-versie van de plugin
+ * zette de taalcode nog in _key (bv. _key == "nl"), maar sinds de v5-migratie
+ * (zie studio/migrations/internationalized-array-v5) staat die taalcode in
+ * een apart "language"-veld en is _key een willekeurige string. Filteren op
+ * _key == locale matcht sindsdien niets meer — elk internationalizedArray-
+ * veld op de hele site (indeling, garantie, chassisEnCabine, woongedeelte,
+ * extras, promoTekst, notitie, ...) kwam daardoor leeg terug, ook al staat
+ * de data er wel degelijk.
  */
 function vertaald(veld: string, locale: Locale) {
-  return `"${veld}": coalesce(${veld}[_key == "${locale}"][0].value, ${veld}[_key == "nl"][0].value)`;
+  return `"${veld}": coalesce(${veld}[language == "${locale}"][0].value, ${veld}[language == "nl"][0].value)`;
 }
 
 function verkoopVelden(locale: Locale) {
