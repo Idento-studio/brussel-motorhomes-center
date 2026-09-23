@@ -5,6 +5,11 @@
 // besparingspotentieel (LAUNCH.md §10). Origineel blijft gewoon staan —
 // enkel de <img src>-verwijzingen in de code wijzen voortaan naar .webp.
 // Los uitvoeren met: node scripts/genereer-webp.mjs
+//
+// hero.jpg zit hier bewust niet meer bij: die staat full-bleed op elke
+// viewportbreedte (position:absolute; inset:0 in .hero-media), dus één vaste
+// maat is er te klein op desktop of nodeloos groot op mobiel. Die krijgt een
+// eigen responsive srcset via genereer-hero-srcset.mjs.
 import sharp from "sharp";
 import { readdirSync, statSync } from "node:fs";
 import { fileURLToPath } from "node:url";
@@ -16,20 +21,25 @@ const __dirname = dirname(fileURLToPath(import.meta.url));
 // hero-foto) en geen zichtbaar kwaliteitsverlies bij deze waarde.
 const KWALITEIT = 75;
 
-// merken-logo's worden nergens breder dan ~126px getoond (zie .merken-balk
-// img in components.css) — zelfs met ruime marge voor 3x-schermen volstaat
-// 420px breed. Zonder deze cap bleven de brongeüploade PNG's (680x340) tot
-// 1,8x groter dan ooit zichtbaar, wat PageSpeed terecht als verspilling
-// aanwees. Andere mappen behouden hun brongrootte (geen vaste, voorspelbare
-// weergavebreedte zoals bij deze logo-balk).
+// Elke maxBreedte hier is de brongrootte gedeeld door de werkelijke
+// CSS-weergavebreedte × ~2 (marge voor 2x-retina) — PageSpeed op de
+// homepage (mobiel) wees deze bestanden expliciet aan als groter dan hun
+// weergavegrootte:
+//  - dienst-*.jpg / maatwerk.jpg: kaartje in .media-kaart (raster-3), tot
+//    ~480px breed op desktop -> 960px volstaat ruim.
+//  - andersvaliden-poster.jpg: smalle, staande videoposter, tot ~372px op
+//    mobiel weergegeven -> 720px volstaat.
+//  - merken-logo's: nergens breder dan ~126px getoond (.merken-balk img in
+//    components.css) -> 260px i.p.v. de vorige (te ruime) 420px.
 const MAPPEN = [
-  { pad: "../public/assets/img/home", maxBreedte: null },
+  { pad: "../public/assets/img/home", maxBreedte: 960, negeer: ["hero.jpg"] },
   { pad: "../public/assets/img/over-ons", maxBreedte: null },
-  { pad: "../public/assets/img/merken", maxBreedte: 420 },
+  { pad: "../public/assets/img/merken", maxBreedte: 260 },
 ];
 
-async function verwerkMap(pad, maxBreedte) {
+async function verwerkMap(pad, maxBreedte, negeer = []) {
   for (const bestand of readdirSync(pad)) {
+    if (negeer.includes(bestand)) continue;
     const volledig = join(pad, bestand);
     if (statSync(volledig).isDirectory()) continue;
     const ext = extname(bestand).toLowerCase();
@@ -42,6 +52,6 @@ async function verwerkMap(pad, maxBreedte) {
   }
 }
 
-for (const { pad, maxBreedte } of MAPPEN) {
-  await verwerkMap(join(__dirname, pad), maxBreedte);
+for (const { pad, maxBreedte, negeer } of MAPPEN) {
+  await verwerkMap(join(__dirname, pad), maxBreedte, negeer);
 }

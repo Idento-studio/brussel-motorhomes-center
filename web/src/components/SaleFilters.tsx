@@ -128,7 +128,13 @@ export function SaleFilters({ voertuigen, locale }: { voertuigen: VerkoopVoertui
         {gefilterd.map((v) => (
           <article key={v._id} className="kaart kaart-lift camper">
             <div className="media media-4x3">
-              <img src={urlFor(v.coverFoto).width(600).height(450).fit("crop").url()} alt={v.coverFoto.alt ?? v.titel} loading="lazy" />
+              <img
+                src={urlFor(v.coverFoto).width(600).height(450).fit("crop").url()}
+                srcSet={`${urlFor(v.coverFoto).width(400).height(300).fit("crop").url()} 400w, ${urlFor(v.coverFoto).width(600).height(450).fit("crop").url()} 600w, ${urlFor(v.coverFoto).width(800).height(600).fit("crop").url()} 800w`}
+                sizes="(min-width: 1024px) 33vw, (min-width: 640px) 50vw, 100vw"
+                alt={v.coverFoto.alt ?? v.titel}
+                loading="lazy"
+              />
               <span className="badge badge-occasion" style={{ position: "absolute", left: "0.75rem", top: "0.75rem", zIndex: 3 }}>{staatLabel(v.staat, locale)}</span>
               {v.mindervalideGeschikt && (
                 <span className="badge badge-stil" style={{ position: "absolute", left: "0.75rem", top: "2.25rem", zIndex: 3 }}>{d.mindervaliden}</span>

@@ -195,7 +195,9 @@ export default async function Home({
       <section className="hero">
         <div className="media hero-media">
           <FotoMetPlaceholder
-            src="/assets/img/home/hero.webp"
+            src="/assets/img/home/hero-1600.webp"
+            srcSet="/assets/img/home/hero-640.webp 640w, /assets/img/home/hero-960.webp 960w, /assets/img/home/hero-1280.webp 1280w, /assets/img/home/hero-1600.webp 1600w"
+            sizes="100vw"
             alt={
               locale === "fr"
                 ? "Camping-cars devant le hangar de Brussel Motorhomes Center"

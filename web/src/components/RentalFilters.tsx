@@ -90,7 +90,13 @@ export function RentalFilters({ voertuigen, locale }: { voertuigen: VerhuurVoert
           return (
             <article key={v._id} className="kaart kaart-lift camper">
               <div className="media media-4x3">
-                <img src={urlFor(v.coverFoto).width(600).height(450).fit("crop").url()} alt={v.coverFoto.alt ?? v.titel} loading="lazy" />
+                <img
+                  src={urlFor(v.coverFoto).width(600).height(450).fit("crop").url()}
+                  srcSet={`${urlFor(v.coverFoto).width(400).height(300).fit("crop").url()} 400w, ${urlFor(v.coverFoto).width(600).height(450).fit("crop").url()} 600w, ${urlFor(v.coverFoto).width(800).height(600).fit("crop").url()} 800w`}
+                  sizes="(min-width: 1024px) 33vw, (min-width: 640px) 50vw, 100vw"
+                  alt={v.coverFoto.alt ?? v.titel}
+                  loading="lazy"
+                />
                 {v.promoTekst && (
                   <span className="badge badge-nieuw" style={{ position: "absolute", left: "auto", right: "0.75rem", top: "0.75rem", zIndex: 3, whiteSpace: "nowrap" }}>{d.promo}: {v.promoTekst}</span>
                 )}

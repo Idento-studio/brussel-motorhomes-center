@@ -25,8 +25,20 @@ import { metPad } from "@/lib/basePath";
  * niet opnieuw afgespeeld — zonder deze check bleef zo'n ontbrekend bestand
  * als een kapot-afbeelding-icoontje staan in plaats van netjes te verdwijnen.
  */
-export function FotoMetPlaceholder({ src, ...props }: ImgHTMLAttributes<HTMLImageElement>) {
+export function FotoMetPlaceholder({ src, srcSet, ...props }: ImgHTMLAttributes<HTMLImageElement>) {
   const volledigeSrc = typeof src === "string" && src.startsWith("/") ? metPad(src) : src;
+  // srcSet is "pad breedtew, pad breedtew, ..." — elk root-relatief pad
+  // krijgt dezelfde basePath-behandeling als src hierboven.
+  const volledigeSrcSet =
+    typeof srcSet === "string"
+      ? srcSet
+          .split(",")
+          .map((deel) => {
+            const [pad, descriptor] = deel.trim().split(/\s+/);
+            return `${pad.startsWith("/") ? metPad(pad) : pad}${descriptor ? ` ${descriptor}` : ""}`;
+          })
+          .join(", ")
+      : srcSet;
   const ref = useRef<HTMLImageElement>(null);
 
   useEffect(() => {
@@ -36,5 +48,13 @@ export function FotoMetPlaceholder({ src, ...props }: ImgHTMLAttributes<HTMLImag
   }, []);
 
   // eslint-disable-next-line jsx-a11y/alt-text -- alt komt altijd van de aanroeper mee
-  return <img ref={ref} src={volledigeSrc} {...props} onError={(e) => e.currentTarget.remove()} />;
+  return (
+    <img
+      ref={ref}
+      src={volledigeSrc}
+      srcSet={volledigeSrcSet}
+      {...props}
+      onError={(e) => e.currentTarget.remove()}
+    />
+  );
 }
