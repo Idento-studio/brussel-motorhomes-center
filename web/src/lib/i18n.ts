@@ -36,7 +36,7 @@ const OG_LOCALE: Record<Locale, string> = { nl: "nl_BE", fr: "fr_BE", en: "en_US
 type OgAfbeelding = { url: string; width: number; height: number; alt: string };
 
 const STANDAARD_OG_AFBEELDING: OgAfbeelding = {
-  url: `${SITE_URL}/assets/img/social/bmc-featured.png`,
+  url: `${SITE_URL}/assets/img/social/bmc-featured.jpg`,
   width: 1200,
   height: 630,
   alt: "Brussel Motorhomes Center",

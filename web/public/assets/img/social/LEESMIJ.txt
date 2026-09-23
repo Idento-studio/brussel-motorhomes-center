@@ -1,10 +1,18 @@
-SOCIAL EN ICONEN
-================
-Deze horen NIET in deze map maar rechtstreeks in assets/img/ :
+SOCIAL / OPENGRAPH-AFBEELDINGEN
+================================
+bmc-featured.jpg        1200 x 630   standaard og:image, gebruikt op elke pagina die geen eigen afbeelding meegeeft (home, contact, privacy, FAQ, ...)
+og-verkoop.jpg          1200 x 630   og:image op /verkoop/
+og-verhuur.jpg          1200 x 630   og:image op /verhuur/
+og-onderhoud.jpg        1200 x 630   og:image op /onderhoud/, /onderhoud/chassis/ en /onderhoud/leefruimte/
+og-verkoop-je-camper.jpg 1200 x 630  og:image op /verkoop-je-camper/
+og-camper-op-maat.jpg   1200 x 630   og:image op /camper-op-maat/ en /camper-op-maat/start-project/
+og-accessoires.jpg      1200 x 630   og:image op /accessoires-en-opties/
 
-og-image.jpg           1200 x 630   verschijnt bij het delen op WhatsApp,
-                                    Facebook en LinkedIn
-apple-touch-icon.png    180 x 180
-icon-192.png            192 x 192   voor het webmanifest
-icon-512.png            512 x 512   voor het webmanifest
-favicon.svg                         staat er al, vervang hem door het merkicoon
+Elke vehicle-detailpagina (/verkoop/[slug]/, /verhuur/[slug]/) gebruikt een
+eigen og:image (de cover-foto van dat voertuig, via Sanity), staat dus niet
+in deze map.
+
+Formaat: JPEG, ~80-95 kB. Bewust géén PNG — WhatsApp's linkpreview-crawler is
+strenger dan Facebook/Twitter over bestandsgrootte, en een PNG van een foto
+is onnodig groot (bmc-featured stond eerst als PNG op 677 kB, wat de
+opengraph-preview op WhatsApp liet mislukken; als JPEG nu ~95 kB).
