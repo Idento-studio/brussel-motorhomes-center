@@ -41,8 +41,6 @@ export function SiteFooter({ locale, dict }: { locale: Locale; dict: Dictionary 
             <a href="https://idento.be/" target="_blank" rel="noopener noreferrer">{dict.footer.webdesign}</a>
           </p>
           <p>
-            <Link href={L(locale, "/algemene-voorwaarden/")}>{dict.footer.algemeneVoorwaarden}</Link>
-            <span className="tekst-scheiding" aria-hidden="true">&middot;</span>
             <Link href={L(locale, "/privacy/")}>{dict.footer.privacybeleid}</Link>
             <span className="tekst-scheiding" aria-hidden="true">&middot;</span>
             <a href="#" data-cookie-settings>{dict.footer.cookieInstellingen}</a>

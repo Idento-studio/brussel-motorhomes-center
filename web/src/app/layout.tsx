@@ -67,6 +67,39 @@ const CSP = [
   "object-src 'none'",
 ].join("; ");
 
+const GA_MEASUREMENT_ID = "G-0MDYKGHD3R";
+
+/**
+ * Consent Mode v2, vóór gtag.js zelf geladen wordt: alle opslag standaard
+ * "denied", en enkel bijgewerkt naar "granted" als de bezoeker al eerder
+ * "analytics" koos in de cookiebanner (CookieConsent.tsx, opgeslagen onder
+ * localStorage-sleutel "bmc-cookiekeuze" — moet in sync blijven met die
+ * OPSLAGSLEUTEL/CookieKeuze-waarde als die ooit wijzigt). dataLayer.push()
+ * queuet gewoon door terwijl het externe script (hieronder, async) nog laadt
+ * — de volgorde van dít inline script vóór dat <script async>-tag is dus
+ * voldoende, ze hoeven niet op elkaar te wachten.
+ * kies("analytics") in CookieConsent.tsx roept nadien zelf ook nog
+ * gtag('consent','update', ...) aan, voor directe activatie zonder herlaad.
+ */
+const GA_BOOTSTRAP = `
+window.dataLayer = window.dataLayer || [];
+function gtag(){window.dataLayer.push(arguments);}
+window.gtag = gtag;
+gtag('consent', 'default', {
+  ad_storage: 'denied',
+  ad_user_data: 'denied',
+  ad_personalization: 'denied',
+  analytics_storage: 'denied'
+});
+try {
+  if (localStorage.getItem('bmc-cookiekeuze') === 'analytics') {
+    gtag('consent', 'update', { analytics_storage: 'granted' });
+  }
+} catch (e) {}
+gtag('js', new Date());
+gtag('config', '${GA_MEASUREMENT_ID}');
+`;
+
 // De echte html/body-shell staat enkel hier (verplicht: de root layout is de
 // enige plek die <html>/<body> mag renderen), dus deze layout kent de actieve
 // taal niet — enkel het geneste [locale]-segment weet of het nl/fr/en is.
@@ -86,6 +119,8 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
     <html lang="nl-BE" className={`${newsreader.variable} ${instrumentSans.variable}`}>
       <head>
         <meta httpEquiv="Content-Security-Policy" content={CSP} />
+        <script dangerouslySetInnerHTML={{ __html: GA_BOOTSTRAP }} />
+        <script async src={`https://www.googletagmanager.com/gtag/js?id=${GA_MEASUREMENT_ID}`} />
       </head>
       <body>{children}</body>
     </html>

@@ -8,6 +8,12 @@ import { getDictionary } from "@/dictionaries";
 export type CookieKeuze = "noodzakelijk" | "analytics";
 const OPSLAGSLEUTEL = "bmc-cookiekeuze";
 
+declare global {
+  interface Window {
+    gtag?: (...args: unknown[]) => void;
+  }
+}
+
 export function haalCookieKeuze(): CookieKeuze | null {
   try {
     const waarde = localStorage.getItem(OPSLAGSLEUTEL);
@@ -18,11 +24,13 @@ export function haalCookieKeuze(): CookieKeuze | null {
 }
 
 /**
- * Bewust géén derde "voorkeuren"-categorie: de site plaatst vandaag zelf
- * enkel functionele (altijd aan) en analytische cookies (zie privacy-pagina,
- * §Cookies en analytics). Zodra GA4 wordt toegevoegd (LAUNCH.md §7), moet
- * die loader zelf haalCookieKeuze() === "analytics" checken vóór hij laadt —
- * deze banner regelt enkel de keuze zelf, niet het effectief laden.
+ * Bewust géén derde "voorkeuren"-categorie: de site plaatst zelf enkel
+ * functionele (altijd aan) en analytische cookies (zie privacy-pagina,
+ * §Cookies en analytics). GA4 (layout.tsx, Consent Mode v2) start met
+ * analytics_storage op "denied" en leest zelf haalCookieKeuze() bij het
+ * laden voor een reeds eerder gemaakte keuze; deze banner werkt bij
+ * aanvaarden ook meteen gtag('consent','update', ...) bij voor directe
+ * activatie in dezelfde sessie, zonder herlaad.
  *
  * De "Enkel noodzakelijke" en "Analytics aanvaarden" knoppen hebben bewust
  * gelijke visuele nadruk (zelfde stijl/grootte), zoals de Belgische
@@ -57,6 +65,12 @@ export function CookieConsent({ locale }: { locale: Locale }) {
       localStorage.setItem(OPSLAGSLEUTEL, keuze);
     } catch {
       // Privémodus/geblokkeerde opslag: keuze geldt enkel voor dit bezoek.
+    }
+    // Directe activatie zonder herlaad — het GA4-bootstrapscript in
+    // layout.tsx zet analytics_storage standaard op "denied"; bij aanvaarden
+    // hier meteen bijwerken i.p.v. te wachten tot de volgende paginalaad.
+    if (keuze === "analytics" && typeof window.gtag === "function") {
+      window.gtag("consent", "update", { analytics_storage: "granted" });
     }
     setZichtbaar(false);
   };
