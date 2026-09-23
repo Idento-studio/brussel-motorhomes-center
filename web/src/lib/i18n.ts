@@ -2,7 +2,7 @@ export const locales = ["nl", "fr", "en"] as const;
 export type Locale = (typeof locales)[number];
 export const defaultLocale: Locale = "nl";
 
-export const SITE_URL = "https://brusselmotorhomes.be";
+export const SITE_URL = "https://brusselmotorhomescenter.be";
 
 /** Bouwt een locale-voorafgegaan pad, bv. L("fr", "/verkoop/") -> "/fr/verkoop/". */
 export function L(locale: Locale, pad: string): string {
