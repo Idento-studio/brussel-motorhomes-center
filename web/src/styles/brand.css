@@ -103,7 +103,14 @@
 
 *, *::before, *::after { box-sizing: border-box; }
 
-html { scroll-behavior: smooth; }
+/*
+ * Bewust geen "html { scroll-behavior: smooth; }": Next.js scrollt bij elke
+ * Link-navigatie naar boven, maar met smooth scroll actief kan die animatie
+ * halverwege afgebroken worden zodra de nieuwe pagina zijn hoogte bepaalt,
+ * waardoor je net niet helemaal bovenaan uitkomt (zichtbaar op desktop én
+ * mobiel). Enige plek die smooth scroll écht gebruikte is de skip-link
+ * (#inhoud); dat verlies weegt niet op tegen deze navigatiebug.
+ */
 
 body {
   margin: 0;
@@ -158,7 +165,6 @@ table { border-collapse: collapse; }
 .label-licht { color: var(--blauw-200); }
 
 @media (prefers-reduced-motion: reduce) {
-  html { scroll-behavior: auto; }
   *, *::before, *::after {
     animation-duration: 0.01ms !important;
     animation-iteration-count: 1 !important;
