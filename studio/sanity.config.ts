@@ -4,6 +4,7 @@ import {visionTool} from '@sanity/vision'
 import {nlNLLocale} from '@sanity/locale-nl-nl'
 import {internationalizedArray} from 'sanity-plugin-internationalized-array'
 import {schemaTypes} from './schemaTypes'
+import {structure} from './structure'
 
 export default defineConfig({
   name: 'default',
@@ -17,7 +18,7 @@ export default defineConfig({
   // vlaggetje/taalmenu linksonder in de Studio en zet je "Nederlands" aan —
   // dat blijft daarna bewaard in die browser.
   plugins: [
-    structureTool(),
+    structureTool({structure}),
     visionTool(),
     nlNLLocale(),
     // Veldniveau-vertaling voor de vrije tekstvelden van de campers (indeling,
